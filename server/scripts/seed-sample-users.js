@@ -77,6 +77,77 @@ const SAMPLE_USERS = [
     bio: "Product manager. Runs retros, town halls, and one very competitive Kahoot night.",
     avatarUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=256&h=256&fit=crop&crop=face",
   },
+  // Casual / amateur discussion personas
+  {
+    name: "Greg Patterson",
+    email: "greg.patterson@readers.passr.net",
+    displayName: "TriviaDadGreg",
+    bio: "Volunteered to host team trivia. Knows Dave from Finance personally. WiFi troubleshooting is my superpower.",
+    avatarUrl: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=256&h=256&fit=crop&crop=face",
+  },
+  {
+    name: "Becky Holt",
+    email: "becky.holt@readers.passr.net",
+    displayName: "plantmom_becks",
+    bio: "837 plant photos, zero Kubernetes certifications. Will still win the nature round.",
+    avatarUrl: "https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=256&h=256&fit=crop",
+  },
+  {
+    name: "Kyle Wu",
+    email: "kyle.wu@readers.passr.net",
+    displayName: "DungeonKyle",
+    bio: "Miniature painter and part-time bard. My dice are weighted with hope.",
+    avatarUrl: "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=256&h=256&fit=crop",
+  },
+  {
+    name: "Janet Moss",
+    email: "janet.moss@readers.passr.net",
+    displayName: "JanetAndTheBirds",
+    bio: "Birdwatcher. Can ID a warbler by silhouette but not a phishing email.",
+    avatarUrl: "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=256&h=256&fit=crop",
+  },
+  {
+    name: "Mo Haddad",
+    email: "mo.haddad@readers.passr.net",
+    displayName: "call_sign_m0o",
+    bio: "Amateur radio operator. CQ CQ. Also CQ for anyone who fixed the projector.",
+    avatarUrl: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=256&h=256&fit=crop",
+  },
+  {
+    name: "Ash Rivera",
+    email: "ash.rivera@readers.passr.net",
+    displayName: "boardgame_ash",
+    bio: "Owns 200 board games. Wins maybe three of them. Brings snacks to every offsite.",
+    avatarUrl: "https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?w=256&h=256&fit=crop",
+  },
+  {
+    name: "Tyler Boone",
+    email: "tyler.boone@readers.passr.net",
+    displayName: "homebrew_tyler",
+    bio: "Home brewer, part-time QA destroyer. My IPA is hazy; my Jira tickets are clearer.",
+    avatarUrl: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=256&h=256&fit=crop",
+  },
+  {
+    name: "Pat O'Brien",
+    email: "pat.obrien@readers.passr.net",
+    displayName: "retro_pat64",
+    bio: "Still owns a CRT for 'latency reasons.' High score in everything except cloud migration.",
+    avatarUrl: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=256&h=256&fit=crop",
+  },
+  {
+    name: "Fiona Lee",
+    email: "fiona.lee@readers.passr.net",
+    displayName: "yarn_fiona",
+    bio: "Knitting through standup since 2019. Currently frogging a sweater and a sprint plan.",
+    avatarUrl: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=256&h=256&fit=crop",
+  },
+  {
+    name: "Omar Siddiq",
+    email: "omar.siddiq@readers.passr.net",
+    displayName: "catsitter_omar",
+    bio: "Avatar is my cat Dennis. He has strong opinions on RoomSignal vs TriviaRat.",
+    avatarUrl: "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=256&h=256&fit=crop",
+  },
 ];
 
 async function fetchAvatarDataUrl(url) {
