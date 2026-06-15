@@ -492,6 +492,10 @@ button {
   object-position: center top;
 }
 
+.article-body .platform-entry-banner picture {
+  display: block;
+}
+
 .article-body .platform-entry-banner .platform-rank {
   position: absolute;
   top: 14px;
