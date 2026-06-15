@@ -933,6 +933,10 @@ body.modal-open {
   color: var(--text-muted);
 }
 
+.site-version {
+  margin-left: 0.35em;
+}
+
 /* Empty state */
 .empty-state {
   padding: 80px 0;

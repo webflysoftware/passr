@@ -1,0 +1,117 @@
+name: Deploy to production
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Build and deploy passr.net
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build static site
+        run: |
+          VERSION="${GITHUB_SHA::7}"
+          echo "BUILD_VERSION=${VERSION}" >> "$GITHUB_ENV"
+          npm run build -- --version="${VERSION}"
+
+      - name: Sync cache busters on root pages
+        run: |
+          for file in index.html about.html topic.html contact.html article.html; do
+            if [ -f "$file" ]; then
+              sed -i "s/?v=[^\"']*/?v=${BUILD_VERSION}/g" "$file"
+            fi
+          done
+
+      - name: Deploy static site via rsync
+        uses: burnett01/rsync-deployments@7.0.2
+        with:
+          switches: -avzr --delete
+          path: ./
+          remote_path: /var/www/passr.net/
+          remote_host: ${{ secrets.DEPLOY_HOST }}
+          remote_user: ${{ secrets.DEPLOY_USER }}
+          remote_key: ${{ secrets.DEPLOY_SSH_KEY }}
+          remote_port: ${{ secrets.DEPLOY_PORT || 22 }}
+          exclude: |
+            .git/
+            .github/
+            node_modules/
+            server/
+            scripts/
+            nginx/
+            package.json
+            .gitignore
+            .DS_Store
+
+      - name: Deploy API via rsync
+        uses: burnett01/rsync-deployments@7.0.2
+        with:
+          switches: -avzr --delete
+          path: server/
+          remote_path: /opt/passr-api/
+          remote_host: ${{ secrets.DEPLOY_HOST }}
+          remote_user: ${{ secrets.DEPLOY_USER }}
+          remote_key: ${{ secrets.DEPLOY_SSH_KEY }}
+          remote_port: ${{ secrets.DEPLOY_PORT || 22 }}
+          exclude: |
+            node_modules/
+            .env
+
+      - name: Install dependencies and restart API
+        uses: appleboy/ssh-action@v1.2.0
+        env:
+          PASSR_MONGODB_URI: ${{ secrets.PASSR_MONGODB_URI }}
+          PASSR_JWT_SECRET: ${{ secrets.PASSR_JWT_SECRET }}
+          PASSR_SUPER_ADMIN_EMAILS: ${{ secrets.PASSR_SUPER_ADMIN_EMAILS }}
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ secrets.DEPLOY_PORT || 22 }}
+          envs: PASSR_MONGODB_URI,PASSR_JWT_SECRET,PASSR_SUPER_ADMIN_EMAILS
+          script: |
+            set -euo pipefail
+            cat > /opt/passr-api/.env <<EOF
+            NODE_ENV=production
+            PORT=3010
+            HOST=127.0.0.1
+            MONGODB_URI=${PASSR_MONGODB_URI}
+            JWT_SECRET=${PASSR_JWT_SECRET}
+            PASSR_SUPER_ADMIN_EMAILS=${PASSR_SUPER_ADMIN_EMAILS}
+            PASSR_SUPER_ADMIN_DOMAINS=passr.net,webfly.io
+            AUTO_VERIFY_EMAIL=false
+            EOF
+            cd /opt/passr-api
+            npm ci --omit=dev
+            pm2 startOrReload /opt/passr-api/ecosystem.config.cjs --env production
+            pm2 save
+            curl -sf http://127.0.0.1:3010/health
+
+      - name: Verify deployment
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ secrets.DEPLOY_PORT || 22 }}
+          script: |
+            test -f /var/www/passr.net/index.html
+            curl -sf http://127.0.0.1:3010/health
+            echo "passr.net deployed (static build ${{ env.BUILD_VERSION }})"

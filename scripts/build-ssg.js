@@ -19,6 +19,33 @@ const HERO_ALTS = {
   "top-digital-voting-platforms-2026": "Hand placing a ballot into a voting box",
 };
 
+function loadSiteVersion() {
+  const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, "package.json"), "utf8"));
+  if (!pkg.version) {
+    throw new Error("package.json is missing a version field");
+  }
+  return pkg.version;
+}
+
+function footerBottomHtml(siteVersion) {
+  return `<div class="footer-bottom">&copy; 2026 PASSR. All rights reserved. <span class="site-version">v${escapeHtml(siteVersion)}</span></div>`;
+}
+
+const STATIC_PAGES = ["index.html", "about.html", "contact.html", "topic.html", "article.html"];
+const FOOTER_BOTTOM_RE = /<div class="footer-bottom">&copy; 2026 PASSR\. All rights reserved\.(?:\s*<span class="site-version">v[^<]+<\/span>)?<\/div>/;
+
+function syncStaticPageFooters(siteVersion) {
+  const footerHtml = footerBottomHtml(siteVersion);
+  for (const file of STATIC_PAGES) {
+    const filePath = path.join(ROOT, file);
+    const html = fs.readFileSync(filePath, "utf8");
+    if (!FOOTER_BOTTOM_RE.test(html)) {
+      throw new Error(`Could not update footer in ${file}`);
+    }
+    fs.writeFileSync(filePath, html.replace(FOOTER_BOTTOM_RE, footerHtml));
+  }
+}
+
 function loadCatalog() {
   const code = fs.readFileSync(path.join(ROOT, "js/articles.js"), "utf8");
   return new Function(`${code}\nreturn { ARTICLES, AUTHORS, CATEGORIES, getCategoryLabel, formatDate };`)();
@@ -300,7 +327,7 @@ function buildInlineJsonLd(blogPosting) {
   return JSON.stringify(inline, null, 2);
 }
 
-function buildArticleHtml(article, author, getCategoryLabel, formatDate, innerHtml, blogPosting, heroAlt) {
+function buildArticleHtml(article, author, getCategoryLabel, formatDate, innerHtml, blogPosting, heroAlt, siteVersion) {
   const pageUrl = `${SITE_URL}/article/${article.slug}`;
   const imageUrl = absoluteUrl(article.image);
   const jsonSidecar = `/data/articles/${article.slug}.json`;
@@ -443,7 +470,7 @@ ${innerHtml.split("\n").map((line) => (line ? `        ${line}` : "")).join("\n"
           </ul>
         </div>
       </div>
-      <div class="footer-bottom">&copy; 2026 PASSR. All rights reserved.</div>
+      ${footerBottomHtml(siteVersion)}
     </div>
   </footer>
 
@@ -562,11 +589,12 @@ function ensureDir(dirPath) {
 }
 
 function main() {
+  const siteVersion = loadSiteVersion();
   const { ARTICLES, AUTHORS, getCategoryLabel, formatDate } = loadCatalog();
   const dataArticlesDir = path.join(ROOT, "data/articles");
   ensureDir(dataArticlesDir);
 
-  console.log(`Building ${ARTICLES.length} articles (version ${BUILD_VERSION})…`);
+  console.log(`Building ${ARTICLES.length} articles (version ${BUILD_VERSION}, site v${siteVersion})…`);
 
   for (const article of ARTICLES) {
     const author = AUTHORS[article.author];
@@ -576,7 +604,7 @@ function main() {
 
     const innerHtml = renderArticleInner(article, author, getCategoryLabel, formatDate);
     const { sidecar, blogPosting } = buildArticleJson(article, author, getCategoryLabel);
-    const html = buildArticleHtml(article, author, getCategoryLabel, formatDate, innerHtml, blogPosting, HERO_ALTS[article.slug] || article.title);
+    const html = buildArticleHtml(article, author, getCategoryLabel, formatDate, innerHtml, blogPosting, HERO_ALTS[article.slug] || article.title, siteVersion);
 
     const articleDir = path.join(ROOT, "article", article.slug);
     ensureDir(articleDir);
@@ -591,6 +619,8 @@ function main() {
     path.join(dataArticlesDir, "index.json"),
     `${JSON.stringify(buildArticlesIndex(ARTICLES, getCategoryLabel), null, 2)}\n`
   );
+
+  syncStaticPageFooters(siteVersion);
 
   console.log(`Done. Generated ${ARTICLES.length} pages, ${ARTICLES.length} JSON sidecars, sitemap, and catalog index.`);
 }
