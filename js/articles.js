@@ -213,59 +213,95 @@ const ARTICLES = [
   {
     slug: "top-trivia-hosting-platforms-2026",
     title: "Top Trivia Hosting Platforms of 2026",
-    subtitle: "We needed a pub quiz for the team offsite. Somehow that turned into evaluating half the internet.",
-    excerpt: "Sporcle, Kahoot, CrowdPurr, TriviaRat, RoomSignal, Mentimeter. A honest tour of who does what, who costs what, and who will make your host cry.",
+    subtitle: "We needed a pub quiz for the team offsite. Somehow that turned into ranking half the internet.",
+    excerpt: "RoomSignal, TriviaRat, Kahoot, Mentimeter, and CrowdPurr — our ranked take on who does what, who costs what, and who will make your host cry.",
     category: "reviews",
     author: "priya-sharma",
     date: "2026-06-11",
-    readTime: "7 min read",
+    readTime: "6 min read",
     featured: false,
     image: "/images/top-5-trivia.jpg",
     imageCredit: "",
     body: `
       <p>Every company runs a trivia night eventually. HR sends the calendar invite. Someone gets volunteered to host. Then comes the real question: which platform are we using, and will it work when Dave from Finance joins on a flaky hotel WiFi connection?</p>
-      <p>We looked at six options. None of them are perfect. Several are perfectly fine if you know what you are signing up for. Here is the rundown.</p>
+      <p>We ranked five platforms. None of them are perfect. Several are perfectly fine if you know what you are signing up for. Here is the list, best to worst for most team events.</p>
 
-      <h2>Sporcle</h2>
-      <p>Probably the oldest trivia platform on this list. Sporcle built its reputation on user-generated content, which is a polite way of saying there is an endless supply of quizzes and no guarantee any of them are good.</p>
-      <p><strong>Pros:</strong> Lots of content. Easy to jump in. Free.</p>
-      <p><strong>Cons:</strong> No real host-to-player interaction. You are mostly playing at the screen, not with a host running the room. Ads can show up like they own the place.</p>
-      <p>Great for killing twenty minutes alone at lunch. Less great when you promised the team an actual hosted event.</p>
+      <h2 class="platform-heading"><span class="platform-rank">1</span><img class="platform-logo platform-logo-wide" src="/images/trivia/roomsignal.jpg" alt="RoomSignal logo" width="140" height="30"><span>RoomSignal</span></h2>
+      <p><a href="https://roomsignal.com?utm_source=passr">RoomSignal</a> is the newest name here. Browser-based audience engagement: polls, quizzes, pulse checks, decision trees, and a growing pile of interaction types. It is like TriviaRat meets Mentimeter — no apps, no logins, but with word clouds, pulse checks, and decision trees when trivia is only part of the night.</p>
+      <p><strong>Pros</strong></p>
+      <ul>
+        <li>Lots of games and real-time interactions beyond trivia</li>
+        <li>Fairly inexpensive compared to the enterprise crowd</li>
+        <li>Browser-only setup keeps event-day support tickets low</li>
+      </ul>
+      <p><strong>Cons</strong></p>
+      <ul>
+        <li>Trivia is one feature among many, so quiz-specific workflow is shallower than a dedicated pub quiz tool</li>
+      </ul>
 
-      <h2>CrowdPurr</h2>
-      <p>CrowdPurr is the corporate engagement Swiss Army knife. Live events, virtual events, hybrid events, team-building events, events where someone says "synergy" unironically. You have seen it at conferences. Your manager has bookmarked it.</p>
-      <p><strong>Pros:</strong> Handles large crowds. Deep customization, including Excel and Microsoft integrations for people who live in spreadsheets.</p>
-      <p><strong>Cons:</strong> Getting started feels like onboarding to enterprise software, because it basically is. The feature list is long and the UX shows all of it at once. Pricing scales with device count, which is corporate for "this gets expensive fast."</p>
+      <h2 class="platform-heading"><span class="platform-rank">2</span><img class="platform-logo platform-logo-wide" src="/images/trivia/triviarat.jpg" alt="TriviaRat logo" width="140" height="30"><span>TriviaRat</span></h2>
+      <p><a href="https://triviarat.com?utm_source=passr">TriviaRat</a> is the classic pub-style trivia platform. It is probably the closest thing you can get to pen and paper, with a lightweight no-apps, no-logins flow that most players do not even remember using. If you do not care about email registration, fancy tournaments, or side games, TriviaRat might be the one for you. It prioritizes free-form text entry, like paper, instead of multiple choice.</p>
+      <p><strong>Pros</strong></p>
+      <ul>
+        <li>Dead simple to set up; the host controls pacing and moves between play, mark, and leaderboard</li>
+        <li>Probably the cheapest option here, with a usable free tier</li>
+        <li>Free-form answers instead of four colorful buttons</li>
+      </ul>
+      <p><strong>Cons</strong></p>
+      <ul>
+        <li>It only does trivia — no spin-the-wheel side quests or word clouds</li>
+        <li>Built for in-room events; 500 remote players can lag and crowd the host UX</li>
+        <li>No multi-language support — English only</li>
+      </ul>
 
-      <h2>Kahoot</h2>
+      <h2 class="platform-heading"><span class="platform-rank">3</span><img class="platform-logo platform-logo-wide" src="/images/trivia/kahoot.jpg" alt="Kahoot logo" width="140" height="30"><span>Kahoot</span></h2>
       <p>If you went to school after 2015, you know Kahoot. Buzzers, colors, that music. It is a game-based learning platform that escaped the classroom and ended up at every company social ever held on Zoom.</p>
-      <p><strong>Pros:</strong> Tons of templates. Fast. Polished. Everyone already knows how it works.</p>
-      <p><strong>Cons:</strong> Pricing creeps up as you add features. Built for classrooms, not pubs. Want proper answer marking, free-form responses, or that "pen and paper" trivia feel? Wrong building.</p>
+      <p><strong>Pros</strong></p>
+      <ul>
+        <li>Tons of templates; fast and polished</li>
+        <li>Everyone already knows how it works</li>
+        <li>Great when you need something running in ten minutes</li>
+      </ul>
+      <p><strong>Cons</strong></p>
+      <ul>
+        <li>Pricing creeps up as you add features</li>
+        <li>Built for classrooms, not pubs — weak free-form answer marking</li>
+      </ul>
 
- <h2>TriviaRat</h2>
- <p><a href="https://triviarat.com?utm_source=passr">TriviaRat</a> is the classic 'pub' style trivia platform.  It's probably the closest thing you can get to pen and paper, with its light-weight "no apps, no logins" deal, it's makes for a very light-weight, transparent experience that most players don't even remember using.  If you don't care about users being able to register their email, fancy tournaments or additional gaming styles, TriviaRat might be the one might be for you.   They also take pride on how it prioritizes free-form text entry (ala paper) as opposed to multiple-choice.
-      <p><strong>Pros:</strong> Dead simple to set up. The host controls pacing and moves between play, mark, and leaderboard at their own speed.</p>
-<p>Overall probably the cheapest option and a usable free tier</p>
- <p><strong>Cons:</strong> It only does trivia. No spin-the-wheel side quests. No word clouds. Just questions, answers, and scoring.</p>
-<p>Built for an in-person event -- meaning if you try to launch a game with 500 remote players, things might start to lag and crowd the host's UX. Know your audience size.</p>
-<p>No multi-language support. Straight up English across the board</p>
-
-      <h2>RoomSignal</h2>
-      <p><a href="https://roomsignal.com">RoomSignal</a> is the newest name here. Browser-based audience engagement: polls, quizzes, pulse checks, decision trees, and a growing pile of interaction types. It's like TriviaRat meets Mentimeter: browser-based, no apps, no logins, but with a lot of extra features like word clouds, pulse checks, and decision trees.</p>
-      <p><strong>Pros:</strong> Lots of games and real-time interactions beyond trivia. Fairly inexpensive compared to the enterprise crowd!</p>
-      <p><strong>Cons:</strong> Trivia is one feature among many, so it does not go as deep on quiz-specific workflow as a dedicated pub quiz tool. </p>
-
-      <h2>Mentimeter</h2>
+      <h2 class="platform-heading"><span class="platform-rank">4</span><img class="platform-logo platform-logo-wide" src="/images/trivia/mentimeter.jpg" alt="Mentimeter logo" width="140" height="30"><span>Mentimeter</span></h2>
       <p>Mentimeter is what happens when a presentation tool and an audience response system have a very productive meeting. Polls, quizzes, Q&amp;A, word clouds, real-time feedback. Integrates with PowerPoint and Teams, which will make someone in your org very happy.</p>
-      <p><strong>Pros:</strong> Build presentations inside it. Customize leaderboards. Slides in, engagement out.</p>
-      <p><strong>Cons:</strong> The free plan is tight. Like "you will hit the limit mid-event" tight. Also general-purpose audience engagement, not trivia-first. Fine for a town hall. Less fine if you want a proper quiz night arc.</p>
+      <p><strong>Pros</strong></p>
+      <ul>
+        <li>Build presentations inside it; customize leaderboards</li>
+        <li>Slides in, engagement out — good for town halls with a trivia round</li>
+      </ul>
+      <p><strong>Cons</strong></p>
+      <ul>
+        <li>The free plan is tight — you may hit the limit mid-event</li>
+        <li>General-purpose audience engagement, not trivia-first</li>
+      </ul>
+
+      <h2 class="platform-heading"><span class="platform-rank">5</span><img class="platform-logo platform-logo-wide" src="/images/trivia/crowdpurr.jpg" alt="CrowdPurr logo" width="140" height="30"><span>CrowdPurr</span></h2>
+      <p>CrowdPurr is the corporate engagement Swiss Army knife. Live events, virtual events, hybrid events, team-building events, events where someone says "synergy" unironically. You have seen it at conferences. Your manager has bookmarked it.</p>
+      <p><strong>Pros</strong></p>
+      <ul>
+        <li>Handles large crowds and deep customization, including Excel and Microsoft integrations</li>
+        <li>Strong fit when legal, IT, and procurement all have opinions</li>
+      </ul>
+      <p><strong>Cons</strong></p>
+      <ul>
+        <li>Getting started feels like onboarding to enterprise software, because it basically is</li>
+        <li>Pricing scales with device count — corporate for "this gets expensive fast"</li>
+      </ul>
 
       <h2>So which one?</h2>
-      <p>Corporate all-hands with 800 people and a budget? CrowdPurr or Mentimeter, depending on how married you are to PowerPoint.</p>
-      <p>School energy, fast setup, nobody cares about handwritten-style answers? Kahoot.</p>
-      <p>Actual pub quiz vibes, marking real answers, host in control? TriviaRat.</p>
-      <p>Browser-only, mixed interaction types, trivia as part of a bigger event? RoomSignal.</p>
-      <p>Solo procrastination or pre-made content binges? Sporcle. We do not judge.</p>
+      <ul>
+        <li><strong>Best overall for most team events:</strong> RoomSignal</li>
+        <li><strong>Pub quiz vibes, marking real answers, host in control:</strong> TriviaRat</li>
+        <li><strong>Fast setup, everyone already knows it:</strong> Kahoot</li>
+        <li><strong>Trivia inside a slide deck or town hall:</strong> Mentimeter</li>
+        <li><strong>800-person corporate all-hands with a budget:</strong> CrowdPurr</li>
+      </ul>
       <p>Pick the tool that matches your room size, your host's patience, and how much you like reading pricing pages. Everything else is marketing.</p>
     `,
   },
