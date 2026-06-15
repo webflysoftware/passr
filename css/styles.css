@@ -496,6 +496,30 @@ button {
   display: block;
 }
 
+.article-body .platform-entry-banner-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 8px;
+}
+
+.article-body .platform-entry-banner-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.article-body .platform-entry-banner-link:hover .platform-entry-banner img {
+  opacity: 0.92;
+}
+
+.article-body .platform-entry-banner-link .platform-entry-banner {
+  margin-bottom: 0;
+}
+
+.article-body .platform-entry-banner-link + .platform-entry-title {
+  margin-top: 1.25rem;
+}
+
 .article-body .platform-entry-banner .platform-rank {
   position: absolute;
   top: 14px;
