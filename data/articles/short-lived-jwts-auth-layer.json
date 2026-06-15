@@ -1,0 +1,70 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://passr.net/#organization",
+      "name": "PASSR",
+      "url": "https://passr.net/"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/short-lived-jwts-auth-layer#article",
+      "headline": "Why We Moved Our Auth Layer to Short-Lived JWTs",
+      "alternativeHeadline": "Rotating tokens every fifteen minutes forced us to rethink session management — and fixed three production incidents in the process.",
+      "description": "Our session store was becoming a bottleneck. Moving to short-lived JWTs with silent refresh changed how we think about authentication at the edge.",
+      "abstract": "Our session store was becoming a bottleneck. Moving to short-lived JWTs with silent refresh changed how we think about authentication at the edge. Last November, our authentication service started showing up in every latency dashboard. Not because it was slow in isolation — it wasn't — but because nearly every API request touched it. We had built a classic session model: login, receive a session ID, store state server-side, validate on each request. The model worked for years.…",
+      "url": "https://passr.net/article/short-lived-jwts-auth-layer",
+      "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1400&q=80&auto=format",
+      "datePublished": "2026-06-08",
+      "dateModified": "2026-06-08",
+      "inLanguage": "en-US",
+      "articleSection": "Security",
+      "articleBody": "Last November, our authentication service started showing up in every latency dashboard. Not because it was slow in isolation — it wasn't — but because nearly every API request touched it. We had built a classic session model: login, receive a session ID, store state server-side, validate on each request. The model worked for years. Then our traffic tripled, our microservice count doubled, and the session store became a coordination point we couldn't scale horizontally without significant complexity. The shift to short-lived tokens We moved to JWT access tokens with a fifteen-minute expiry and opaque refresh tokens stored in HttpOnly cookies. The access token carries only what the edge needs: user ID, organization ID, and a small set of permission flags. Everything else stays in the database until a service explicitly asks for it. The controversial part was the refresh flow. We rejected the pattern of long-lived access tokens \"for convenience.\" Fifteen minutes means a stolen token has a narrow window. It also means services must handle token expiry gracefully — which exposed several client bugs we didn't know we had. Short token lifetimes don't eliminate risk. They change the shape of it — and force you to build refresh paths that actually work under load. What broke (and what we fixed) Three things failed immediately in staging. Mobile clients that cached tokens in memory lost sessions on background refresh. A batch job that reused a single token for six hours started failing at the fifteen-minute mark. And our GraphQL gateway wasn't forwarding the refreshed cookie correctly through its proxy layer. Each fix was straightforward once identified. The batch job now uses a service account with a separate credential flow. The gateway forwards Set-Cookie headers. Mobile clients implement a silent refresh interceptor that retries failed requests once after obtaining a new token. Operational wins Six months in, our auth service p99 dropped from 42ms to 8ms for token validation — because validation is now local signature verification, not a Redis round-trip. Revocation still happens through a blocklist checked only at refresh time, which keeps the hot path fast while preserving our ability to kill compromised sessions within fifteen minutes. If you're considering a similar migration, start by instrumenting how often your services actually call the session store. The number is usually higher than teams expect — and it's the best argument for change you'll have.",
+      "wordCount": 395,
+      "author": {
+        "@type": "Person",
+        "name": "Elena Vasquez",
+        "jobTitle": "Staff Engineer"
+      },
+      "publisher": {
+        "@id": "https://passr.net/#organization"
+      },
+      "isPartOf": {
+        "@id": "https://passr.net/#blog"
+      },
+      "keywords": [
+        "security",
+        "short",
+        "lived",
+        "jwts",
+        "auth",
+        "layer",
+        "moved"
+      ],
+      "timeRequired": "PT8M",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Security"
+        }
+      ]
+    }
+  ],
+  "llm": {
+    "version": 1,
+    "contentUrl": "https://passr.net/data/articles/short-lived-jwts-auth-layer.json",
+    "htmlUrl": "https://passr.net/article/short-lived-jwts-auth-layer",
+    "articleBodyHtml": "<p>Last November, our authentication service started showing up in every latency dashboard. Not because it was slow in isolation — it wasn't — but because nearly every API request touched it. We had built a classic session model: login, receive a session ID, store state server-side, validate on each request.</p>\n      <p>The model worked for years. Then our traffic tripled, our microservice count doubled, and the session store became a coordination point we couldn't scale horizontally without significant complexity.</p>\n\n      <h2>The shift to short-lived tokens</h2>\n      <p>We moved to JWT access tokens with a fifteen-minute expiry and opaque refresh tokens stored in HttpOnly cookies. The access token carries only what the edge needs: user ID, organization ID, and a small set of permission flags. Everything else stays in the database until a service explicitly asks for it.</p>\n      <p>The controversial part was the refresh flow. We rejected the pattern of long-lived access tokens \"for convenience.\" Fifteen minutes means a stolen token has a narrow window. It also means services must handle token expiry gracefully — which exposed several client bugs we didn't know we had.</p>\n\n      <blockquote>Short token lifetimes don't eliminate risk. They change the shape of it — and force you to build refresh paths that actually work under load.</blockquote>\n\n      <h2>What broke (and what we fixed)</h2>\n      <p>Three things failed immediately in staging. Mobile clients that cached tokens in memory lost sessions on background refresh. A batch job that reused a single token for six hours started failing at the fifteen-minute mark. And our GraphQL gateway wasn't forwarding the refreshed cookie correctly through its proxy layer.</p>\n      <p>Each fix was straightforward once identified. The batch job now uses a service account with a separate credential flow. The gateway forwards Set-Cookie headers. Mobile clients implement a silent refresh interceptor that retries failed requests once after obtaining a new token.</p>\n\n      <h2>Operational wins</h2>\n      <p>Six months in, our auth service p99 dropped from 42ms to 8ms for token validation — because validation is now local signature verification, not a Redis round-trip. Revocation still happens through a blocklist checked only at refresh time, which keeps the hot path fast while preserving our ability to kill compromised sessions within fifteen minutes.</p>\n      <p>If you're considering a similar migration, start by instrumenting how often your services actually call the session store. The number is usually higher than teams expect — and it's the best argument for change you'll have.</p>",
+    "articleBodyText": "Last November, our authentication service started showing up in every latency dashboard. Not because it was slow in isolation — it wasn't — but because nearly every API request touched it. We had built a classic session model: login, receive a session ID, store state server-side, validate on each request. The model worked for years. Then our traffic tripled, our microservice count doubled, and the session store became a coordination point we couldn't scale horizontally without significant complexity. The shift to short-lived tokens We moved to JWT access tokens with a fifteen-minute expiry and opaque refresh tokens stored in HttpOnly cookies. The access token carries only what the edge needs: user ID, organization ID, and a small set of permission flags. Everything else stays in the database until a service explicitly asks for it. The controversial part was the refresh flow. We rejected the pattern of long-lived access tokens \"for convenience.\" Fifteen minutes means a stolen token has a narrow window. It also means services must handle token expiry gracefully — which exposed several client bugs we didn't know we had. Short token lifetimes don't eliminate risk. They change the shape of it — and force you to build refresh paths that actually work under load. What broke (and what we fixed) Three things failed immediately in staging. Mobile clients that cached tokens in memory lost sessions on background refresh. A batch job that reused a single token for six hours started failing at the fifteen-minute mark. And our GraphQL gateway wasn't forwarding the refreshed cookie correctly through its proxy layer. Each fix was straightforward once identified. The batch job now uses a service account with a separate credential flow. The gateway forwards Set-Cookie headers. Mobile clients implement a silent refresh interceptor that retries failed requests once after obtaining a new token. Operational wins Six months in, our auth service p99 dropped from 42ms to 8ms for token validation — because validation is now local signature verification, not a Redis round-trip. Revocation still happens through a blocklist checked only at refresh time, which keeps the hot path fast while preserving our ability to kill compromised sessions within fifteen minutes. If you're considering a similar migration, start by instrumenting how often your services actually call the session store. The number is usually higher than teams expect — and it's the best argument for change you'll have.",
+    "outline": [
+      "The shift to short-lived tokens",
+      "What broke (and what we fixed)",
+      "Operational wins"
+    ],
+    "readingTimeMinutes": 8,
+    "excerpt": "Our session store was becoming a bottleneck. Moving to short-lived JWTs with silent refresh changed how we think about authentication at the edge.",
+    "category": "Security",
+    "author": "Elena Vasquez"
+  }
+}

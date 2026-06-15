@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Allow: /data/
+
+Sitemap: https://passr.net/sitemap.xml

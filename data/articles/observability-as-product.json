@@ -1,0 +1,66 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://passr.net/#organization",
+      "name": "PASSR",
+      "url": "https://passr.net/"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/observability-as-product#article",
+      "headline": "Observability Is a Product Feature",
+      "alternativeHeadline": "Customers notice when your status page goes red. They notice even more when it doesn't.",
+      "description": "We stopped treating metrics and traces as infrastructure plumbing and started treating them as part of what we sell: reliability you can see.",
+      "abstract": "We stopped treating metrics and traces as infrastructure plumbing and started treating them as part of what we sell: reliability you can see. Our sales team kept losing deals to competitors who showed prospects a real-time dashboard of system health. We had the same data internally — in Grafana, behind a VPN, visible only to engineers. The gap was obvious once someone said it out loud.…",
+      "url": "https://passr.net/article/observability-as-product",
+      "image": "https://images.unsplash.com/photo-1504639720780-fa0f0a36d0b2?w=1200&q=80&auto=format",
+      "datePublished": "2026-05-08",
+      "dateModified": "2026-05-08",
+      "inLanguage": "en-US",
+      "articleSection": "Infrastructure",
+      "articleBody": "Our sales team kept losing deals to competitors who showed prospects a real-time dashboard of system health. We had the same data internally — in Grafana, behind a VPN, visible only to engineers. The gap was obvious once someone said it out loud. External status is internal metrics, filtered We built a public status page fed directly from the same Prometheus metrics that trigger our alerts. Not a separate manual update process — an automated view with a human approval step before incidents are posted. When our error rate crosses a threshold, a draft incident appears in Slack. An on-call engineer confirms or dismisses it. Traces for support, not just engineering Support agents now have read-only access to request traces keyed by customer ID. When a user reports \"my export failed,\" support can see the exact error without escalating to engineering eighty percent of the time. That reduced our mean time to first response on billing issues from four hours to twenty minutes. Observability tooling is expensive. The alternative — flying blind while customers notice first — is more expensive. Treat dashboards as product surfaces, not engineering luxuries.",
+      "wordCount": 188,
+      "author": {
+        "@type": "Person",
+        "name": "Priya Sharma",
+        "jobTitle": "Engineering Manager"
+      },
+      "publisher": {
+        "@id": "https://passr.net/#organization"
+      },
+      "isPartOf": {
+        "@id": "https://passr.net/#blog"
+      },
+      "keywords": [
+        "infrastructure",
+        "observability",
+        "product",
+        "feature"
+      ],
+      "timeRequired": "PT6M",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Infrastructure"
+        }
+      ]
+    }
+  ],
+  "llm": {
+    "version": 1,
+    "contentUrl": "https://passr.net/data/articles/observability-as-product.json",
+    "htmlUrl": "https://passr.net/article/observability-as-product",
+    "articleBodyHtml": "<p>Our sales team kept losing deals to competitors who showed prospects a real-time dashboard of system health. We had the same data internally — in Grafana, behind a VPN, visible only to engineers. The gap was obvious once someone said it out loud.</p>\n\n      <h2>External status is internal metrics, filtered</h2>\n      <p>We built a public status page fed directly from the same Prometheus metrics that trigger our alerts. Not a separate manual update process — an automated view with a human approval step before incidents are posted. When our error rate crosses a threshold, a draft incident appears in Slack. An on-call engineer confirms or dismisses it.</p>\n\n      <h2>Traces for support, not just engineering</h2>\n      <p>Support agents now have read-only access to request traces keyed by customer ID. When a user reports \"my export failed,\" support can see the exact error without escalating to engineering eighty percent of the time. That reduced our mean time to first response on billing issues from four hours to twenty minutes.</p>\n\n      <p>Observability tooling is expensive. The alternative — flying blind while customers notice first — is more expensive. Treat dashboards as product surfaces, not engineering luxuries.</p>",
+    "articleBodyText": "Our sales team kept losing deals to competitors who showed prospects a real-time dashboard of system health. We had the same data internally — in Grafana, behind a VPN, visible only to engineers. The gap was obvious once someone said it out loud. External status is internal metrics, filtered We built a public status page fed directly from the same Prometheus metrics that trigger our alerts. Not a separate manual update process — an automated view with a human approval step before incidents are posted. When our error rate crosses a threshold, a draft incident appears in Slack. An on-call engineer confirms or dismisses it. Traces for support, not just engineering Support agents now have read-only access to request traces keyed by customer ID. When a user reports \"my export failed,\" support can see the exact error without escalating to engineering eighty percent of the time. That reduced our mean time to first response on billing issues from four hours to twenty minutes. Observability tooling is expensive. The alternative — flying blind while customers notice first — is more expensive. Treat dashboards as product surfaces, not engineering luxuries.",
+    "outline": [
+      "External status is internal metrics, filtered",
+      "Traces for support, not just engineering"
+    ],
+    "readingTimeMinutes": 6,
+    "excerpt": "We stopped treating metrics and traces as infrastructure plumbing and started treating them as part of what we sell: reliability you can see.",
+    "category": "Infrastructure",
+    "author": "Priya Sharma"
+  }
+}

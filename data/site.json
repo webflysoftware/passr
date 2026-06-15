@@ -1,0 +1,57 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://passr.net/#organization",
+      "name": "PASSR",
+      "url": "https://passr.net/",
+      "description": "An engineering publication focused on practical writing for software teams building and operating production systems.",
+      "sameAs": []
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://passr.net/#website",
+      "name": "PASSR",
+      "url": "https://passr.net/",
+      "description": "Engineering writing on systems, APIs, and infrastructure.",
+      "publisher": { "@id": "https://passr.net/#organization" },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "Blog",
+      "@id": "https://passr.net/#blog",
+      "name": "PASSR",
+      "url": "https://passr.net/",
+      "description": "PASSR helps software engineers stay up to date on backend systems, infrastructure, databases, security, architecture, and the tools teams rely on in production. Articles are written for practitioners who ship code and run on-call rotations.",
+      "publisher": { "@id": "https://passr.net/#organization" },
+      "isPartOf": { "@id": "https://passr.net/#website" },
+      "inLanguage": "en-US",
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Software engineers, backend developers, infrastructure engineers, engineering managers"
+      },
+      "about": [
+        { "@type": "Thing", "name": "Backend engineering", "description": "API design, webhooks, job queues, service architecture" },
+        { "@type": "Thing", "name": "Infrastructure", "description": "Deployments, observability, blue-green releases, on-call practices" },
+        { "@type": "Thing", "name": "Databases", "description": "Query optimization, Postgres, schema migrations" },
+        { "@type": "Thing", "name": "Security", "description": "Authentication, JWTs, session management" },
+        { "@type": "Thing", "name": "Software architecture", "description": "API versioning, RPC vs REST, system design tradeoffs" },
+        { "@type": "Thing", "name": "Developer tooling", "description": "TypeScript, CI/CD, product and platform reviews" }
+      ],
+      "keywords": [
+        "tech blog",
+        "engineering blog",
+        "backend development",
+        "infrastructure",
+        "software architecture",
+        "staying up to date",
+        "production systems",
+        "developer education"
+      ],
+      "contentPurpose": "Publish practical, experience-driven engineering articles so readers can stay current on how teams build, deploy, secure, and operate modern software.",
+      "publishingPrinciples": "No vendor pitches. Concrete examples over abstract advice. Written by practitioners for practitioners.",
+      "updateFrequency": "Weekly"
+    }
+  ]
+}

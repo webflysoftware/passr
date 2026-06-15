@@ -1,0 +1,67 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://passr.net/#organization",
+      "name": "PASSR",
+      "url": "https://passr.net/"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/hidden-cost-of-cron-jobs#article",
+      "headline": "The Hidden Cost of Cron Jobs",
+      "alternativeHeadline": "Scheduled tasks look free until they overlap, duplicate, and silently fail for six days.",
+      "description": "We replaced twelve cron jobs with a proper job queue. Latency improved, failures became visible, and we finally knew what ran when.",
+      "abstract": "We replaced twelve cron jobs with a proper job queue. Latency improved, failures became visible, and we finally knew what ran when. Cron is seductive. One line in crontab, a script that runs at 2 AM, no infrastructure required. We had twelve of them across three servers, installed by four different engineers over three years. Nobody had a complete list.…",
+      "url": "https://passr.net/article/hidden-cost-of-cron-jobs",
+      "image": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1200&q=80&auto=format",
+      "datePublished": "2026-05-01",
+      "dateModified": "2026-05-01",
+      "inLanguage": "en-US",
+      "articleSection": "Backend",
+      "articleBody": "Cron is seductive. One line in crontab, a script that runs at 2 AM, no infrastructure required. We had twelve of them across three servers, installed by four different engineers over three years. Nobody had a complete list. The failure modes we didn't see A nightly aggregation job silently failed for six days because the log file rotated and the error output went to a path that no longer existed. A weekly report job ran twice on one server because someone copied the crontab during a migration and forgot to remove the original. A job scheduled at midnight UTC overlapped with a deploy window and half-completed before being killed. What we moved to We consolidated into BullMQ with Redis. Every job is registered in code, version-controlled, and visible in a dashboard. Retries are configured per job. Failures alert Slack. Overlapping runs are prevented by job locks. Cron still has a place — for truly simple, idempotent, fast tasks on a single machine. But anything that touches the database, sends email, or takes more than thirty seconds belongs in a queue with observability built in.",
+      "wordCount": 184,
+      "author": {
+        "@type": "Person",
+        "name": "Marcus Chen",
+        "jobTitle": "Principal Engineer"
+      },
+      "publisher": {
+        "@id": "https://passr.net/#organization"
+      },
+      "isPartOf": {
+        "@id": "https://passr.net/#blog"
+      },
+      "keywords": [
+        "backend",
+        "hidden",
+        "cost",
+        "cron",
+        "jobs"
+      ],
+      "timeRequired": "PT5M",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Backend"
+        }
+      ]
+    }
+  ],
+  "llm": {
+    "version": 1,
+    "contentUrl": "https://passr.net/data/articles/hidden-cost-of-cron-jobs.json",
+    "htmlUrl": "https://passr.net/article/hidden-cost-of-cron-jobs",
+    "articleBodyHtml": "<p>Cron is seductive. One line in crontab, a script that runs at 2 AM, no infrastructure required. We had twelve of them across three servers, installed by four different engineers over three years. Nobody had a complete list.</p>\n\n      <h2>The failure modes we didn't see</h2>\n      <p>A nightly aggregation job silently failed for six days because the log file rotated and the error output went to a path that no longer existed. A weekly report job ran twice on one server because someone copied the crontab during a migration and forgot to remove the original. A job scheduled at midnight UTC overlapped with a deploy window and half-completed before being killed.</p>\n\n      <h2>What we moved to</h2>\n      <p>We consolidated into BullMQ with Redis. Every job is registered in code, version-controlled, and visible in a dashboard. Retries are configured per job. Failures alert Slack. Overlapping runs are prevented by job locks.</p>\n\n      <p>Cron still has a place — for truly simple, idempotent, fast tasks on a single machine. But anything that touches the database, sends email, or takes more than thirty seconds belongs in a queue with observability built in.</p>",
+    "articleBodyText": "Cron is seductive. One line in crontab, a script that runs at 2 AM, no infrastructure required. We had twelve of them across three servers, installed by four different engineers over three years. Nobody had a complete list. The failure modes we didn't see A nightly aggregation job silently failed for six days because the log file rotated and the error output went to a path that no longer existed. A weekly report job ran twice on one server because someone copied the crontab during a migration and forgot to remove the original. A job scheduled at midnight UTC overlapped with a deploy window and half-completed before being killed. What we moved to We consolidated into BullMQ with Redis. Every job is registered in code, version-controlled, and visible in a dashboard. Retries are configured per job. Failures alert Slack. Overlapping runs are prevented by job locks. Cron still has a place — for truly simple, idempotent, fast tasks on a single machine. But anything that touches the database, sends email, or takes more than thirty seconds belongs in a queue with observability built in.",
+    "outline": [
+      "The failure modes we didn't see",
+      "What we moved to"
+    ],
+    "readingTimeMinutes": 5,
+    "excerpt": "We replaced twelve cron jobs with a proper job queue. Latency improved, failures became visible, and we finally knew what ran when.",
+    "category": "Backend",
+    "author": "Marcus Chen"
+  }
+}

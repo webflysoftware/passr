@@ -1,0 +1,67 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://passr.net/#organization",
+      "name": "PASSR",
+      "url": "https://passr.net/"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/idempotent-webhooks#article",
+      "headline": "The Case for Idempotent Webhooks",
+      "alternativeHeadline": "Payment providers retry. Your handlers should not double-charge because of it.",
+      "description": "Webhook delivery guarantees are at-least-once, not exactly-once. Here is how we built handlers that survive duplicate deliveries without brittle deduplication logic.",
+      "abstract": "Webhook delivery guarantees are at-least-once, not exactly-once. Here is how we built handlers that survive duplicate deliveries without brittle deduplication logic. Stripe sends webhooks. Twilio sends webhooks. Your own internal services probably send webhooks too. Every provider documents the same thing in slightly different words: delivery is not guaranteed to happen exactly once. Expect retries. Expect duplicates. Expect events to arrive out of order.…",
+      "url": "https://passr.net/article/idempotent-webhooks",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&auto=format",
+      "datePublished": "2026-06-05",
+      "dateModified": "2026-06-05",
+      "inLanguage": "en-US",
+      "articleSection": "Backend",
+      "articleBody": "Stripe sends webhooks. Twilio sends webhooks. Your own internal services probably send webhooks too. Every provider documents the same thing in slightly different words: delivery is not guaranteed to happen exactly once. Expect retries. Expect duplicates. Expect events to arrive out of order. Most teams learn this the hard way — usually after a duplicate payment_intent.succeeded event creates a second subscription or sends two confirmation emails. Idempotency keys are not optional Every webhook handler we write now accepts an idempotency key derived from the provider's event ID. Before any side effect runs, we insert that key into a processed_events table with a unique constraint. If the insert fails, we return 200 and exit. The provider stops retrying; we avoid duplicating work. INSERT INTO processed_events (event_id, handler, processed_at) VALUES ($1, $2, NOW()) ON CONFLICT (event_id) DO NOTHING RETURNING event_id; If the RETURNING clause comes back empty, the event was already handled. Log it, return success, move on. Side effects belong in transactions The idempotency insert and the business logic must share a transaction. We learned this when a handler crashed after updating a user's plan but before recording the event ID. The retry upgraded them twice — which our billing system interpreted as two separate plan changes. Now the pattern is fixed: begin transaction, insert idempotency record, run business logic, commit. Any failure rolls back everything, and the provider's retry gets a clean slate. Ordering is a separate problem Idempotency solves duplicates. It does not solve subscription.updated arriving before subscription.created . For that, we version events and reject stale updates based on a monotonic timestamp from the provider. Document both problems separately — conflating them leads to handlers that are idempotent but still wrong.",
+      "wordCount": 283,
+      "author": {
+        "@type": "Person",
+        "name": "James Okonkwo",
+        "jobTitle": "Senior Backend Engineer"
+      },
+      "publisher": {
+        "@id": "https://passr.net/#organization"
+      },
+      "isPartOf": {
+        "@id": "https://passr.net/#blog"
+      },
+      "keywords": [
+        "backend",
+        "idempotent",
+        "webhooks",
+        "case"
+      ],
+      "timeRequired": "PT6M",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Backend"
+        }
+      ]
+    }
+  ],
+  "llm": {
+    "version": 1,
+    "contentUrl": "https://passr.net/data/articles/idempotent-webhooks.json",
+    "htmlUrl": "https://passr.net/article/idempotent-webhooks",
+    "articleBodyHtml": "<p>Stripe sends webhooks. Twilio sends webhooks. Your own internal services probably send webhooks too. Every provider documents the same thing in slightly different words: delivery is not guaranteed to happen exactly once. Expect retries. Expect duplicates. Expect events to arrive out of order.</p>\n      <p>Most teams learn this the hard way — usually after a duplicate <code>payment_intent.succeeded</code> event creates a second subscription or sends two confirmation emails.</p>\n\n      <h2>Idempotency keys are not optional</h2>\n      <p>Every webhook handler we write now accepts an idempotency key derived from the provider's event ID. Before any side effect runs, we insert that key into a processed_events table with a unique constraint. If the insert fails, we return 200 and exit. The provider stops retrying; we avoid duplicating work.</p>\n      <pre><code>INSERT INTO processed_events (event_id, handler, processed_at)\nVALUES ($1, $2, NOW())\nON CONFLICT (event_id) DO NOTHING\nRETURNING event_id;</code></pre>\n      <p>If the RETURNING clause comes back empty, the event was already handled. Log it, return success, move on.</p>\n\n      <h2>Side effects belong in transactions</h2>\n      <p>The idempotency insert and the business logic must share a transaction. We learned this when a handler crashed after updating a user's plan but before recording the event ID. The retry upgraded them twice — which our billing system interpreted as two separate plan changes.</p>\n      <p>Now the pattern is fixed: begin transaction, insert idempotency record, run business logic, commit. Any failure rolls back everything, and the provider's retry gets a clean slate.</p>\n\n      <h2>Ordering is a separate problem</h2>\n      <p>Idempotency solves duplicates. It does not solve <code>subscription.updated</code> arriving before <code>subscription.created</code>. For that, we version events and reject stale updates based on a monotonic timestamp from the provider. Document both problems separately — conflating them leads to handlers that are idempotent but still wrong.</p>",
+    "articleBodyText": "Stripe sends webhooks. Twilio sends webhooks. Your own internal services probably send webhooks too. Every provider documents the same thing in slightly different words: delivery is not guaranteed to happen exactly once. Expect retries. Expect duplicates. Expect events to arrive out of order. Most teams learn this the hard way — usually after a duplicate payment_intent.succeeded event creates a second subscription or sends two confirmation emails. Idempotency keys are not optional Every webhook handler we write now accepts an idempotency key derived from the provider's event ID. Before any side effect runs, we insert that key into a processed_events table with a unique constraint. If the insert fails, we return 200 and exit. The provider stops retrying; we avoid duplicating work. INSERT INTO processed_events (event_id, handler, processed_at) VALUES ($1, $2, NOW()) ON CONFLICT (event_id) DO NOTHING RETURNING event_id; If the RETURNING clause comes back empty, the event was already handled. Log it, return success, move on. Side effects belong in transactions The idempotency insert and the business logic must share a transaction. We learned this when a handler crashed after updating a user's plan but before recording the event ID. The retry upgraded them twice — which our billing system interpreted as two separate plan changes. Now the pattern is fixed: begin transaction, insert idempotency record, run business logic, commit. Any failure rolls back everything, and the provider's retry gets a clean slate. Ordering is a separate problem Idempotency solves duplicates. It does not solve subscription.updated arriving before subscription.created . For that, we version events and reject stale updates based on a monotonic timestamp from the provider. Document both problems separately — conflating them leads to handlers that are idempotent but still wrong.",
+    "outline": [
+      "Idempotency keys are not optional",
+      "Side effects belong in transactions",
+      "Ordering is a separate problem"
+    ],
+    "readingTimeMinutes": 6,
+    "excerpt": "Webhook delivery guarantees are at-least-once, not exactly-once. Here is how we built handlers that survive duplicate deliveries without brittle deduplication logic.",
+    "category": "Backend",
+    "author": "James Okonkwo"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "passrblog",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-ssg.js"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://passr.net/#organization",
+      "name": "PASSR",
+      "url": "https://passr.net/"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/blue-green-deploys-at-scale#article",
+      "headline": "What We Learned Running Blue-Green Deploys at Scale",
+      "alternativeHeadline": "Zero-downtime deploys sound simple until you have stateful connections and twelve services.",
+      "description": "Cutting over traffic between two identical environments taught us more about connection draining and database migrations than any runbook ever did.",
+      "abstract": "Cutting over traffic between two identical environments taught us more about connection draining and database migrations than any runbook ever did. Blue-green deployment is conceptually elegant: run two identical environments, switch traffic from one to the other, keep the old one warm in case you need to roll back. In practice, with WebSocket connections, long-polling clients, and a Postgres schema that changes every sprint, elegance erodes quickly.…",
+      "url": "https://passr.net/article/blue-green-deploys-at-scale",
+      "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80&auto=format",
+      "datePublished": "2026-05-28",
+      "dateModified": "2026-05-28",
+      "inLanguage": "en-US",
+      "articleSection": "Infrastructure",
+      "articleBody": "Blue-green deployment is conceptually elegant: run two identical environments, switch traffic from one to the other, keep the old one warm in case you need to roll back. In practice, with WebSocket connections, long-polling clients, and a Postgres schema that changes every sprint, elegance erodes quickly. Connection draining is the hard part When we flip the load balancer, active HTTP requests finish on the old environment. WebSocket connections do not. We now send a graceful shutdown signal to the blue environment, stop accepting new connections, and wait up to ninety seconds for existing sessions to close or reconnect to green. Clients that implement automatic reconnection with exponential backoff barely notice. Clients that don't — including one internal admin tool we forgot about — hard-fail and require a page refresh. Database migrations need their own strategy You cannot run a destructive migration and then cut over. We follow expand-contract: add new columns and tables first (both environments compatible), deploy code that writes to both, cut over, then remove old columns in a later release. Blue-green amplifies migration mistakes because both environments often share the same database. Rollback is not instant Keeping the blue environment running for thirty minutes post-cutover saved us twice. A memory leak in the green build only appeared under production load. Switching back took forty seconds — far better than rebuilding from a container image while customers reported errors.",
+      "wordCount": 231,
+      "author": {
+        "@type": "Person",
+        "name": "Priya Sharma",
+        "jobTitle": "Engineering Manager"
+      },
+      "publisher": {
+        "@id": "https://passr.net/#organization"
+      },
+      "isPartOf": {
+        "@id": "https://passr.net/#blog"
+      },
+      "keywords": [
+        "infrastructure",
+        "blue",
+        "green",
+        "deploys",
+        "scale",
+        "learned",
+        "running"
+      ],
+      "timeRequired": "PT7M",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Infrastructure"
+        }
+      ]
+    }
+  ],
+  "llm": {
+    "version": 1,
+    "contentUrl": "https://passr.net/data/articles/blue-green-deploys-at-scale.json",
+    "htmlUrl": "https://passr.net/article/blue-green-deploys-at-scale",
+    "articleBodyHtml": "<p>Blue-green deployment is conceptually elegant: run two identical environments, switch traffic from one to the other, keep the old one warm in case you need to roll back. In practice, with WebSocket connections, long-polling clients, and a Postgres schema that changes every sprint, elegance erodes quickly.</p>\n\n      <h2>Connection draining is the hard part</h2>\n      <p>When we flip the load balancer, active HTTP requests finish on the old environment. WebSocket connections do not. We now send a graceful shutdown signal to the blue environment, stop accepting new connections, and wait up to ninety seconds for existing sessions to close or reconnect to green.</p>\n      <p>Clients that implement automatic reconnection with exponential backoff barely notice. Clients that don't — including one internal admin tool we forgot about — hard-fail and require a page refresh.</p>\n\n      <h2>Database migrations need their own strategy</h2>\n      <p>You cannot run a destructive migration and then cut over. We follow expand-contract: add new columns and tables first (both environments compatible), deploy code that writes to both, cut over, then remove old columns in a later release. Blue-green amplifies migration mistakes because both environments often share the same database.</p>\n\n      <h2>Rollback is not instant</h2>\n      <p>Keeping the blue environment running for thirty minutes post-cutover saved us twice. A memory leak in the green build only appeared under production load. Switching back took forty seconds — far better than rebuilding from a container image while customers reported errors.</p>",
+    "articleBodyText": "Blue-green deployment is conceptually elegant: run two identical environments, switch traffic from one to the other, keep the old one warm in case you need to roll back. In practice, with WebSocket connections, long-polling clients, and a Postgres schema that changes every sprint, elegance erodes quickly. Connection draining is the hard part When we flip the load balancer, active HTTP requests finish on the old environment. WebSocket connections do not. We now send a graceful shutdown signal to the blue environment, stop accepting new connections, and wait up to ninety seconds for existing sessions to close or reconnect to green. Clients that implement automatic reconnection with exponential backoff barely notice. Clients that don't — including one internal admin tool we forgot about — hard-fail and require a page refresh. Database migrations need their own strategy You cannot run a destructive migration and then cut over. We follow expand-contract: add new columns and tables first (both environments compatible), deploy code that writes to both, cut over, then remove old columns in a later release. Blue-green amplifies migration mistakes because both environments often share the same database. Rollback is not instant Keeping the blue environment running for thirty minutes post-cutover saved us twice. A memory leak in the green build only appeared under production load. Switching back took forty seconds — far better than rebuilding from a container image while customers reported errors.",
+    "outline": [
+      "Connection draining is the hard part",
+      "Database migrations need their own strategy",
+      "Rollback is not instant"
+    ],
+    "readingTimeMinutes": 7,
+    "excerpt": "Cutting over traffic between two identical environments taught us more about connection draining and database migrations than any runbook ever did.",
+    "category": "Infrastructure",
+    "author": "Priya Sharma"
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "PASSR Articles",
+  "url": "https://passr.net/data/articles/",
+  "description": "Machine-readable catalog of PASSR engineering articles with JSON sidecars for each post.",
+  "isPartOf": {
+    "@id": "https://passr.net/#blog"
+  },
+  "numberOfItems": 21,
+  "hasPart": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/end-of-vibe-coding#article",
+      "headline": "The End of Vibe Coding",
+      "url": "https://passr.net/article/end-of-vibe-coding",
+      "datePublished": "2026-06-13",
+      "articleSection": "Engineering",
+      "contentUrl": "https://passr.net/data/articles/end-of-vibe-coding.json"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/microsoft-206-patches-symptom#article",
+      "headline": "Microsoft's 206-Patch Tuesday Is a Structural Problem, Not a Patch Problem",
+      "url": "https://passr.net/article/microsoft-206-patches-symptom",
+      "datePublished": "2026-06-13",
+      "articleSection": "Security",
+      "contentUrl": "https://passr.net/data/articles/microsoft-206-patches-symptom.json"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/recessive-technology#article",
+      "headline": "The Case for Building Software That Disappears",
+      "url": "https://passr.net/article/recessive-technology",
+      "datePublished": "2026-06-13",
+      "articleSection": "Engineering",
+      "contentUrl": "https://passr.net/data/articles/recessive-technology.json"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/spacex-2-trillion-debut#article",
+      "headline": "SpaceX Hit $2 Trillion on Day One. That Is Not the Story.",
+      "url": "https://passr.net/article/spacex-2-trillion-debut",
+      "datePublished": "2026-06-13",
+      "articleSection": "Engineering",
+      "contentUrl": "https://passr.net/data/articles/spacex-2-trillion-debut.json"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/bezos-prometheus-artificial-general-engineer#article",
+      "headline": "Bezos Just Bet $41 Billion on the 'Artificial General Engineer'. Nobody Is Asking the Right Questions.",
+      "url": "https://passr.net/article/bezos-prometheus-artificial-general-engineer",
+      "datePublished": "2026-06-13",
+      "articleSection": "Infrastructure",
+      "contentUrl": "https://passr.net/data/articles/bezos-prometheus-artificial-general-engineer.json"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/visa-chatgpt-spending-your-money#article",
+      "headline": "Visa Let ChatGPT Spend Your Money. We Are So Unprepared for What That Actually Means.",
+      "url": "https://passr.net/article/visa-chatgpt-spending-your-money",
+      "datePublished": "2026-06-13",
+      "articleSection": "Security",
+      "contentUrl": "https://passr.net/data/articles/visa-chatgpt-spending-your-money.json"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/meta-ai-overcorrection-admission#article",
+      "headline": "Zuckerberg Finally Said What Every Tech CEO Was Thinking. Then Nobody Noticed.",
+      "url": "https://passr.net/article/meta-ai-overcorrection-admission",
+      "datePublished": "2026-06-13",
+      "articleSection": "Engineering",
+      "contentUrl": "https://passr.net/data/articles/meta-ai-overcorrection-admission.json"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/top-digital-voting-platforms-2026#article",
+      "headline": "Top Digital Voting Platforms of 2026",
+      "url": "https://passr.net/article/top-digital-voting-platforms-2026",
+      "datePublished": "2026-06-12",
+      "articleSection": "Reviews",
+      "contentUrl": "https://passr.net/data/articles/top-digital-voting-platforms-2026.json"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/wwdc-2026-apple-ai-strategy#article",
+      "headline": "WWDC 2026: Apple Is Being Boring on Purpose, and That Is the Strategy",
+      "url": "https://passr.net/article/wwdc-2026-apple-ai-strategy",
+      "datePublished": "2026-06-12",
+      "articleSection": "Engineering",
+      "contentUrl": "https://passr.net/data/articles/wwdc-2026-apple-ai-strategy.json"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/ai-industry-expensive-phase#article",
+      "headline": "The AI Industry's 'Harder Phase' Is Just the Hangover",
+      "url": "https://passr.net/article/ai-industry-expensive-phase",
+      "datePublished": "2026-06-12",
+      "articleSection": "Infrastructure",
+      "contentUrl": "https://passr.net/data/articles/ai-industry-expensive-phase.json"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/top-trivia-hosting-platforms-2026#article",
+      "headline": "Top Trivia Hosting Platforms of 2026",
+      "url": "https://passr.net/article/top-trivia-hosting-platforms-2026",
+      "datePublished": "2026-06-11",
+      "articleSection": "Reviews",
+      "contentUrl": "https://passr.net/data/articles/top-trivia-hosting-platforms-2026.json"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/baidu-robotaxi-switzerland#article",
+      "headline": "Baidu's Robotaxi in Switzerland Is the Story Nobody Is Covering",
+      "url": "https://passr.net/article/baidu-robotaxi-switzerland",
+      "datePublished": "2026-06-11",
+      "articleSection": "Engineering",
+      "contentUrl": "https://passr.net/data/articles/baidu-robotaxi-switzerland.json"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/short-lived-jwts-auth-layer#article",
+      "headline": "Why We Moved Our Auth Layer to Short-Lived JWTs",
+      "url": "https://passr.net/article/short-lived-jwts-auth-layer",
+      "datePublished": "2026-06-08",
+      "articleSection": "Security",
+      "contentUrl": "https://passr.net/data/articles/short-lived-jwts-auth-layer.json"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/idempotent-webhooks#article",
+      "headline": "The Case for Idempotent Webhooks",
+      "url": "https://passr.net/article/idempotent-webhooks",
+      "datePublished": "2026-06-05",
+      "articleSection": "Backend",
+      "contentUrl": "https://passr.net/data/articles/idempotent-webhooks.json"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/postgres-query-plans#article",
+      "headline": "Reading Postgres Query Plans Without Losing Your Mind",
+      "url": "https://passr.net/article/postgres-query-plans",
+      "datePublished": "2026-06-02",
+      "articleSection": "Databases",
+      "contentUrl": "https://passr.net/data/articles/postgres-query-plans.json"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/blue-green-deploys-at-scale#article",
+      "headline": "What We Learned Running Blue-Green Deploys at Scale",
+      "url": "https://passr.net/article/blue-green-deploys-at-scale",
+      "datePublished": "2026-05-28",
+      "articleSection": "Infrastructure",
+      "contentUrl": "https://passr.net/data/articles/blue-green-deploys-at-scale.json"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/typescript-strict-mode#article",
+      "headline": "TypeScript Strict Mode Is Worth the Argument",
+      "url": "https://passr.net/article/typescript-strict-mode",
+      "datePublished": "2026-05-22",
+      "articleSection": "Engineering",
+      "contentUrl": "https://passr.net/data/articles/typescript-strict-mode.json"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/apis-that-survive-version-3#article",
+      "headline": "Designing APIs That Survive Version 3",
+      "url": "https://passr.net/article/apis-that-survive-version-3",
+      "datePublished": "2026-05-15",
+      "articleSection": "Architecture",
+      "contentUrl": "https://passr.net/data/articles/apis-that-survive-version-3.json"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/observability-as-product#article",
+      "headline": "Observability Is a Product Feature",
+      "url": "https://passr.net/article/observability-as-product",
+      "datePublished": "2026-05-08",
+      "articleSection": "Infrastructure",
+      "contentUrl": "https://passr.net/data/articles/observability-as-product.json"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/hidden-cost-of-cron-jobs#article",
+      "headline": "The Hidden Cost of Cron Jobs",
+      "url": "https://passr.net/article/hidden-cost-of-cron-jobs",
+      "datePublished": "2026-05-01",
+      "articleSection": "Backend",
+      "contentUrl": "https://passr.net/data/articles/hidden-cost-of-cron-jobs.json"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/rpc-vs-rest-2026#article",
+      "headline": "RPC vs REST in 2026: A Practical Take",
+      "url": "https://passr.net/article/rpc-vs-rest-2026",
+      "datePublished": "2026-04-24",
+      "articleSection": "Architecture",
+      "contentUrl": "https://passr.net/data/articles/rpc-vs-rest-2026.json"
+    }
+  ]
+}

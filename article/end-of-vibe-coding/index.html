@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17592266250"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17592266250');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The End of Vibe Coding — PASSR</title>
+  <meta name="description" content="A 60-person company fired twelve engineers, tried to replace them with AI prompts, hired us back six weeks later, then fired twelve different people. Somewhere in there is a lesson about vibe coding." />
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Kevin Tan">
+  <meta name="theme-color" content="#1c1c1c">
+  <link rel="canonical" href="https://passr.net/article/end-of-vibe-coding">
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="PASSR">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="The End of Vibe Coding">
+  <meta property="og:description" content="A 60-person company fired twelve engineers, tried to replace them with AI prompts, hired us back six weeks later, then fired twelve different people. Somewhere in there is a lesson about vibe coding.">
+  <meta property="og:url" content="https://passr.net/article/end-of-vibe-coding">
+  <meta property="og:image" content="https://passr.net/images/vibe-coding.jpg">
+  <meta property="article:published_time" content="2026-06-13">
+  <meta property="article:author" content="Kevin Tan">
+  <meta property="article:section" content="Engineering">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The End of Vibe Coding">
+  <meta name="twitter:description" content="A 60-person company fired twelve engineers, tried to replace them with AI prompts, hired us back six weeks later, then fired twelve different people. Somewhere in there is a lesson about vibe coding.">
+  <meta name="twitter:image" content="https://passr.net/images/vibe-coding.jpg">
+  <link rel="alternate" type="application/json" href="/data/articles/end-of-vibe-coding.json" title="Article structured data for machines">
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://passr.net/#organization",
+      "name": "PASSR",
+      "url": "https://passr.net/"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/end-of-vibe-coding#article",
+      "headline": "The End of Vibe Coding",
+      "alternativeHeadline": "I got my job back last month. That is not the heartwarming part of this story.",
+      "description": "A 60-person company fired twelve engineers, tried to replace them with AI prompts, hired us back six weeks later, then fired twelve different people. Somewhere in there is a lesson about vibe coding.",
+      "url": "https://passr.net/article/end-of-vibe-coding",
+      "image": "https://passr.net/images/vibe-coding.jpg",
+      "datePublished": "2026-06-13",
+      "dateModified": "2026-06-13",
+      "inLanguage": "en-US",
+      "articleSection": "Engineering",
+      "author": {
+        "@type": "Person",
+        "name": "Kevin Tan",
+        "jobTitle": "Software Engineer"
+      },
+      "publisher": {
+        "@id": "https://passr.net/#organization"
+      },
+      "isPartOf": {
+        "@id": "https://passr.net/#blog"
+      },
+      "keywords": [
+        "vibe coding",
+        "AI coding",
+        "software engineering",
+        "engineering management",
+        "AI replacement",
+        "tech layoffs",
+        "developer productivity",
+        "Copilot",
+        "engineering judgment"
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css?v=20260614j">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="logo">PASS<span>R</span></a>
+      <nav class="site-nav">
+        <a href="/" data-nav="home">Home</a>
+        <a href="/topic.html" data-nav="topics">Topics</a>
+        <a href="/about.html" data-nav="about">About</a>
+        <a href="/contact" data-nav="contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="btn btn-primary subscribe-trigger">Subscribe</button>
+        <button class="menu-toggle" aria-label="Open menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav-header">
+      <a href="/" class="logo">PASS<span>R</span></a>
+      <button class="mobile-nav-close" aria-label="Close menu">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="/">Home</a>
+      <a href="/topic.html">Topics</a>
+      <a href="/about.html">About</a>
+      <a href="/contact">Contact</a>
+      <button type="button" class="mobile-nav-subscribe subscribe-trigger">Subscribe</button>
+    </div>
+  </nav>
+
+  <main id="article-content">
+    <article class="article-page">
+      <div class="container-narrow" id="article-inner" data-ssg-prerendered="true">
+        <header class="article-header">
+              <a href="/topic.html?category=engineering" class="tag">Engineering</a>
+              <h1>The End of Vibe Coding</h1>
+              <p class="subtitle">I got my job back last month. That is not the heartwarming part of this story.</p>
+              
+            <div class="article-meta">
+              <span class="author">
+                <img class="author-avatar" src="https://images.unsplash.com/photo-1599566150163-9eaeffa65746?w=120&h=120&fit=crop&crop=face" alt="Kevin Tan" width="28" height="28">
+                Kevin Tan
+              </span>
+              <span class="meta-dot">Jun 13, 2026</span>
+              <span>7 min read</span>
+            </div>
+          
+            </header>
+            <figure class="hero-image">
+              <img src="/images/vibe-coding.jpg" alt="Developer at a laptop with AI-generated code on screen" width="1200" height="640">
+            </figure>
+            <div class="article-body"><p>A month ago something positive happened: I got my job back. That is not positive because I love my old desk chair. It is positive because it quietly proved something about the trajectory of the "vibe coder" role. The idea that engineers are expensive middlemen between a product vision and an AI that already knows how to code.</p>
+              <p>Turns out the middlemen were doing more than typing.</p>
+
+              <h2>The first round of firings</h2>
+              <p>The company had about sixty people. Leadership fired twelve engineers in one sweep. The reasoning, as best we could reconstruct it from all-hands slides and hallway rumors, went like this: code was appearing at lightning speed. Humans were sitting at keyboards. Why pay six-figure salaries to prompt a bot that can already write the code?</p>
+              <p>Remove the middleman. Keep the output. Save the budget. Ship faster. If you squint hard enough at a demo, this almost sounds logical.</p>
+
+              <h2>Six weeks of reality</h2>
+              <p>Six weeks later, many of us were asked to come back. Not all. Enough. The product had started doing something you rarely see in tech press releases: it had begun to fall over in ways that are hard to explain to a board deck.</p>
+              <p>Features existed. Some of them even worked, in the narrow sense that something rendered on a screen. What did not exist was enough people to hold the thing together while new decisions piled up on top of old ones.</p>
+              <p>Was one product manager supposed to supervise twelve AI sessions at once? Who was going to think through the business logic while pouring coffee? Who decides what the user sees first on the next screen? Who watches how it all connects when the third "quick fix" touches the same database column as the first?</p>
+              <p>No one, apparently. That was the plan.</p>
+
+              <h2>The second round of firings</h2>
+              <p>After many of us returned, leadership fired a different twelve people. Wrong diagnosis, different victims. Classic move. Like burning down the kitchen and firing the plumber.</p>
+              <p>What they still had not figured out was where the weak links actually were. They saw execution happening fast and assumed the humans slowing it down were the problem. They did not see the humans preventing the product from becoming a pile of confident nonsense.</p>
+
+              <h2>Execution was always cheap</h2>
+              <p>We already knew execution could be treated as cheap. Companies outsourced it for years. There is a whole industry built on the idea that typing is the easy part. Offshore teams. Contract shops. "Just build what is in the ticket."</p>
+              <p>AI did not invent that mistake. It just made it easier for people who never understood the job to feel smart about making it.</p>
+              <p>It is like a publishing company firing all its authors because the printing press works really fast now. The pages come out quickly. The words on them are garbage. Everyone congratulates themselves on the throughput until someone tries to read the book.</p>
+
+              <h2>What engineers were actually doing</h2>
+              <p>When leadership looked at engineers, they saw prompts and commits. What they did not see was everything around that:</p>
+              <ul>
+                <li>Deciding which problem is worth solving before anyone writes a function</li>
+                <li>Saying "no, that will break billing" before it breaks billing</li>
+                <li>Translating "make it pop" into something a user can actually use</li>
+                <li>Remembering that the edge case from last quarter still exists</li>
+                <li>Owning the mess when the demo code meets production traffic</li>
+              </ul>
+              <p>AI can generate code. It cannot yet carry the accountability for what that code does to real users, real money, and real on-call rotations at 2 AM.</p>
+
+              <h2>An extreme case, not an isolated one</h2>
+              <p>Yes, this was an extreme version of the story. A deeply non-technical leader. A company small enough that one bad decision hits every surface at once. You could dismiss it as one weird shop doing one dumb thing.</p>
+              <p>But the thinking behind it is not rare. It shows up in quieter forms every week: the meeting where someone asks why engineering headcount cannot drop now that Copilot exists, the roadmap that assumes "AI will handle the backend," the budget line that treats judgment as overhead.</p>
+              <p>Vibe coding was never a job title. It was a fantasy that the expensive part of software was keystrokes. The fantasy is ending not because the tools got worse, but because enough companies are learning what happens when you remove the people who know which prompts should never ship.</p>
+
+              <h2>So what now?</h2>
+              <p>Tools will keep getting better. Engineers should use them. That part is obvious.</p>
+              <p>The less obvious part, and the one leadership keeps relearning the hard way: speed without judgment is just a faster way to build things you will pay someone else to untangle later. Sometimes that someone is the same engineer you fired. Sometimes they ask for a raise.</p>
+              <p>I got my job back. The vibe coding era, at least in its purest form, did not survive contact with production. Shocking, I know.</p></div>
+            <footer class="article-footer">
+              <div class="author-bio">
+                <img class="author-avatar" src="https://images.unsplash.com/photo-1599566150163-9eaeffa65746?w=120&h=120&fit=crop&crop=face" alt="Kevin Tan" width="56" height="56">
+                <div>
+                  <h4>Kevin Tan</h4>
+                  <p>Kevin writes about AI tooling, shipping software, and the gap between demo code and production.</p>
+                </div>
+              </div>
+              
+            <div class="article-share" data-share-root>
+              <button type="button" class="share-toggle" aria-expanded="false" aria-controls="article-share-panel">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8.59 13.51 15.42 17.49M15.41 6.51 8.59 10.49M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z"/></svg>
+                Share
+              </button>
+              <div class="share-panel" id="article-share-panel" hidden>
+                <div class="share-actions">
+                  <button type="button" class="share-action" data-share="copy">Copy link</button>
+                  <button type="button" class="share-action" data-share="email">Email</button>
+                  <button type="button" class="share-action" data-share="native" hidden>Share…</button>
+                  <a class="share-action" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fpassr.net%2Farticle%2Fend-of-vibe-coding" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                  <a class="share-action" href="https://twitter.com/intent/tweet?text=The%20End%20of%20Vibe%20Coding&url=https%3A%2F%2Fpassr.net%2Farticle%2Fend-of-vibe-coding" target="_blank" rel="noopener noreferrer">X</a>
+                  <a class="share-action" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fpassr.net%2Farticle%2Fend-of-vibe-coding" target="_blank" rel="noopener noreferrer">Facebook</a>
+                  <button type="button" class="share-action" data-share="embed">Embed</button>
+                </div>
+                <div class="share-embed-panel" hidden>
+                  <label class="share-embed-label" for="share-embed-code">Embed this article</label>
+                  <textarea id="share-embed-code" class="share-embed-code" readonly rows="3"></textarea>
+                  <button type="button" class="share-action share-action-secondary" data-share="copy-embed">Copy embed code</button>
+                </div>
+                <p class="share-feedback" hidden aria-live="polite"></p>
+              </div>
+            </div>
+          
+            </footer>
+      </div>
+
+      <div class="container-narrow" id="comments-container">
+        <section class="comments-section" id="comments-section">
+          <h3>Discussion<span class="comment-count" id="comment-count"></span></h3>
+          <div class="comment-form-wrapper">
+            <form class="comment-form" id="comment-form" onsubmit="return false;">
+              <textarea id="comment-body" placeholder="Share your thoughts…" maxlength="2000"></textarea>
+              <div class="comment-form-footer">
+                <span class="char-count" id="comment-char-count">0 / 2000</span>
+                <button type="button" class="comment-submit-btn" id="comment-submit-btn">Post Comment</button>
+              </div>
+            </form>
+          </div>
+          <div id="comments-list" class="comments-list"></div>
+        </section>
+      </div>
+    </article>
+    <section class="related" id="related-section" hidden>
+      <div class="container">
+        <div class="section-header">
+          <h2>More in this topic</h2>
+        </div>
+        <div class="article-grid" id="related-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo">PASS<span>R</span></a>
+          <p>Practical engineering writing for teams building reliable systems.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Topics</h4>
+          <ul id="footer-topics"></ul>
+        </div>
+        <div class="footer-col">
+          <h4>Publication</h4>
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="#">Write for PASSR</a></li>
+            <li><a href="#">RSS Feed</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; 2026 PASSR. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="auth-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <div id="modal-login-view">
+        <h2 class="modal-title" id="modal-title">Sign in to comment</h2>
+        <p class="modal-subtitle">Join the discussion — your email is only used for verification and will not be published.</p>
+        <form class="modal-form" id="modal-login-form" onsubmit="return false;">
+          <input type="email" id="login-email" placeholder="Email address" autocomplete="email" required>
+          <input type="password" id="login-password" placeholder="Password" autocomplete="current-password" required>
+          <div id="login-error" class="error-msg" style="display:none;"></div>
+          <button type="submit" class="modal-submit" id="login-submit-btn">Sign in</button>
+        </form>
+        <p class="modal-switch">Don't have an account? <a id="show-register">Create one</a></p>
+      </div>
+      <div id="modal-register-view" style="display:none;">
+        <h2 class="modal-title">Create an account</h2>
+        <p class="modal-subtitle">Register to join the discussion. We'll send a verification link to confirm your email.</p>
+        <form class="modal-form" id="modal-register-form" onsubmit="return false;">
+          <input type="text" id="register-name" placeholder="Your name" autocomplete="name" required>
+          <input type="email" id="register-email" placeholder="Email address" autocomplete="email" required>
+          <input type="password" id="register-password" placeholder="Password (min 8 chars, letter + number)" autocomplete="new-password" required>
+          <div id="register-error" class="error-msg" style="display:none;"></div>
+          <div id="register-success" class="success-msg" style="display:none;"></div>
+          <button type="submit" class="modal-submit" id="register-submit-btn">Create account</button>
+        </form>
+        <p class="modal-switch">Already have an account? <a id="show-login">Sign in</a></p>
+      </div>
+      <div id="modal-verify-view" style="display:none;">
+        <h2 class="modal-title">Check your email</h2>
+        <p class="modal-subtitle" id="verify-email-addr">We've sent a verification link to your email. Click the link to activate your account, then sign in.</p>
+        <p class="modal-switch">Didn't get it? <a id="resend-verification" href="#">Resend</a></p>
+        <p class="modal-switch">Back to <a id="verify-back-login">sign in</a></p>
+      </div>
+    </div>
+  </div>
+  <script src="/js/articles.js?v=20260614j"></script>
+  <script src="/js/seo.js?v=20260614j"></script>
+  <script src="/js/api.js?v=20260614j"></script>
+  <script src="/js/main.js?v=20260614j"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      mountArticlePage("end-of-vibe-coding", {
+        heroAlt: "Developer at a laptop with AI-generated code on screen",
+      });
+    });
+  </script>
+</body>
+</html>

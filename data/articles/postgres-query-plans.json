@@ -1,0 +1,72 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://passr.net/#organization",
+      "name": "PASSR",
+      "url": "https://passr.net/"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/postgres-query-plans#article",
+      "headline": "Reading Postgres Query Plans Without Losing Your Mind",
+      "alternativeHeadline": "EXPLAIN ANALYZE output is dense. A structured approach makes it readable.",
+      "description": "Most slow queries aren't mysterious — they're sequential scans on columns you forgot to index. Here is the checklist we use before touching query text.",
+      "abstract": "Most slow queries aren't mysterious — they're sequential scans on columns you forgot to index. Here is the checklist we use before touching query text. Every backend engineer has stared at an EXPLAIN ANALYZE output and felt the slow creep of confusion. Seq Scan, Bitmap Heap Scan, Nested Loop — the vocabulary is unfamiliar, the numbers are tiny, and the query is blocking production traffic. We treat query plan analysis as a checklist, not an art form. It takes ten minutes and catches ninety percent of problems.…",
+      "url": "https://passr.net/article/postgres-query-plans",
+      "image": "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=1200&q=80&auto=format",
+      "datePublished": "2026-06-02",
+      "dateModified": "2026-06-02",
+      "inLanguage": "en-US",
+      "articleSection": "Databases",
+      "articleBody": "Every backend engineer has stared at an EXPLAIN ANALYZE output and felt the slow creep of confusion. Seq Scan, Bitmap Heap Scan, Nested Loop — the vocabulary is unfamiliar, the numbers are tiny, and the query is blocking production traffic. We treat query plan analysis as a checklist, not an art form. It takes ten minutes and catches ninety percent of problems. Start with actual vs. estimated rows The first thing we look at is the ratio between estimated and actual row counts at each node. If Postgres estimated 50 rows and scanned 500,000, the planner chose the wrong strategy — usually a nested loop where a hash join would have been appropriate. Bad estimates often trace back to stale statistics. Run ANALYZE on the table before rewriting the query. Find the expensive node Look for the node with the highest \"actual time\" in the plan. That's where your milliseconds are going. A seq scan on a large table is the most common culprit. A seq scan on a small table is often fine — don't index reflexively. Index selection is a tradeoff, not a fix Adding an index speeds reads and slows writes. Before creating one, we check whether the query runs often enough to matter and whether a partial index — say, on WHERE status = 'active' — covers the access pattern without bloating the index size. The goal is not a perfect plan. The goal is a plan that is good enough at the scale you actually operate at today. When to rewrite the query Sometimes the plan is correct and still slow because the query is wrong. Correlated subqueries, SELECT * on wide tables, and OR conditions across different columns are frequent offenders. Rewriting to a JOIN or splitting into two simpler queries often beats index whack-a-mole.",
+      "wordCount": 301,
+      "author": {
+        "@type": "Person",
+        "name": "Marcus Chen",
+        "jobTitle": "Principal Engineer"
+      },
+      "publisher": {
+        "@id": "https://passr.net/#organization"
+      },
+      "isPartOf": {
+        "@id": "https://passr.net/#blog"
+      },
+      "keywords": [
+        "databases",
+        "postgres",
+        "query",
+        "plans",
+        "reading",
+        "without",
+        "losing",
+        "mind"
+      ],
+      "timeRequired": "PT10M",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Databases"
+        }
+      ]
+    }
+  ],
+  "llm": {
+    "version": 1,
+    "contentUrl": "https://passr.net/data/articles/postgres-query-plans.json",
+    "htmlUrl": "https://passr.net/article/postgres-query-plans",
+    "articleBodyHtml": "<p>Every backend engineer has stared at an EXPLAIN ANALYZE output and felt the slow creep of confusion. Seq Scan, Bitmap Heap Scan, Nested Loop — the vocabulary is unfamiliar, the numbers are tiny, and the query is blocking production traffic.</p>\n      <p>We treat query plan analysis as a checklist, not an art form. It takes ten minutes and catches ninety percent of problems.</p>\n\n      <h2>Start with actual vs. estimated rows</h2>\n      <p>The first thing we look at is the ratio between estimated and actual row counts at each node. If Postgres estimated 50 rows and scanned 500,000, the planner chose the wrong strategy — usually a nested loop where a hash join would have been appropriate. Bad estimates often trace back to stale statistics. Run ANALYZE on the table before rewriting the query.</p>\n\n      <h2>Find the expensive node</h2>\n      <p>Look for the node with the highest \"actual time\" in the plan. That's where your milliseconds are going. A seq scan on a large table is the most common culprit. A seq scan on a small table is often fine — don't index reflexively.</p>\n\n      <h2>Index selection is a tradeoff, not a fix</h2>\n      <p>Adding an index speeds reads and slows writes. Before creating one, we check whether the query runs often enough to matter and whether a partial index — say, on <code>WHERE status = 'active'</code> — covers the access pattern without bloating the index size.</p>\n\n      <blockquote>The goal is not a perfect plan. The goal is a plan that is good enough at the scale you actually operate at today.</blockquote>\n\n      <h2>When to rewrite the query</h2>\n      <p>Sometimes the plan is correct and still slow because the query is wrong. Correlated subqueries, SELECT * on wide tables, and OR conditions across different columns are frequent offenders. Rewriting to a JOIN or splitting into two simpler queries often beats index whack-a-mole.</p>",
+    "articleBodyText": "Every backend engineer has stared at an EXPLAIN ANALYZE output and felt the slow creep of confusion. Seq Scan, Bitmap Heap Scan, Nested Loop — the vocabulary is unfamiliar, the numbers are tiny, and the query is blocking production traffic. We treat query plan analysis as a checklist, not an art form. It takes ten minutes and catches ninety percent of problems. Start with actual vs. estimated rows The first thing we look at is the ratio between estimated and actual row counts at each node. If Postgres estimated 50 rows and scanned 500,000, the planner chose the wrong strategy — usually a nested loop where a hash join would have been appropriate. Bad estimates often trace back to stale statistics. Run ANALYZE on the table before rewriting the query. Find the expensive node Look for the node with the highest \"actual time\" in the plan. That's where your milliseconds are going. A seq scan on a large table is the most common culprit. A seq scan on a small table is often fine — don't index reflexively. Index selection is a tradeoff, not a fix Adding an index speeds reads and slows writes. Before creating one, we check whether the query runs often enough to matter and whether a partial index — say, on WHERE status = 'active' — covers the access pattern without bloating the index size. The goal is not a perfect plan. The goal is a plan that is good enough at the scale you actually operate at today. When to rewrite the query Sometimes the plan is correct and still slow because the query is wrong. Correlated subqueries, SELECT * on wide tables, and OR conditions across different columns are frequent offenders. Rewriting to a JOIN or splitting into two simpler queries often beats index whack-a-mole.",
+    "outline": [
+      "Start with actual vs. estimated rows",
+      "Find the expensive node",
+      "Index selection is a tradeoff, not a fix",
+      "When to rewrite the query"
+    ],
+    "readingTimeMinutes": 10,
+    "excerpt": "Most slow queries aren't mysterious — they're sequential scans on columns you forgot to index. Here is the checklist we use before touching query text.",
+    "category": "Databases",
+    "author": "Marcus Chen"
+  }
+}

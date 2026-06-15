@@ -1,0 +1,69 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://passr.net/#organization",
+      "name": "PASSR",
+      "url": "https://passr.net/"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/apis-that-survive-version-3#article",
+      "headline": "Designing APIs That Survive Version 3",
+      "alternativeHeadline": "Breaking changes are a failure of design, not an inevitable part of growth.",
+      "description": "We have shipped three major API versions in eight years. Here are the constraints we use to avoid a fourth.",
+      "abstract": "We have shipped three major API versions in eight years. Here are the constraints we use to avoid a fourth. API versioning is often treated as a versioning problem. It is actually a product design problem. If your v2 exists because v1 had the wrong abstractions, no versioning scheme will save v2 from becoming v3. Resources, not actions We moved from RPC-style endpoints — POST /cancelSubscription — to resource-oriented paths — DELETE /subscriptions/:id — and stopped needing new endpoints for every new operation.…",
+      "url": "https://passr.net/article/apis-that-survive-version-3",
+      "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80&auto=format",
+      "datePublished": "2026-05-15",
+      "dateModified": "2026-05-15",
+      "inLanguage": "en-US",
+      "articleSection": "Architecture",
+      "articleBody": "API versioning is often treated as a versioning problem. It is actually a product design problem. If your v2 exists because v1 had the wrong abstractions, no versioning scheme will save v2 from becoming v3. Resources, not actions We moved from RPC-style endpoints — POST /cancelSubscription — to resource-oriented paths — DELETE /subscriptions/:id — and stopped needing new endpoints for every new operation. New behavior became new fields on existing resources, which clients can ignore until they're ready. Additive changes only New fields are added with defaults. Fields are never removed — they're deprecated, documented, and eventually stop appearing in new responses while old clients continue to receive them. Renaming a field means adding the new name and populating both for eighteen months. Version in the URL, negotiate in headers Our public API uses /v1/ in the path for major breaking changes — which we have avoided. Minor additions ship without a version bump. Clients opt into new response shapes via the Accept-Version header, which lets us test new formats with early adopters before general release. The best API version is the one you never have to ship because you got the model right the first time. The second best is the one you can migrate to without breaking a single integration.",
+      "wordCount": 212,
+      "author": {
+        "@type": "Person",
+        "name": "James Okonkwo",
+        "jobTitle": "Senior Backend Engineer"
+      },
+      "publisher": {
+        "@id": "https://passr.net/#organization"
+      },
+      "isPartOf": {
+        "@id": "https://passr.net/#blog"
+      },
+      "keywords": [
+        "architecture",
+        "apis",
+        "that",
+        "survive",
+        "version",
+        "designing"
+      ],
+      "timeRequired": "PT9M",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Architecture"
+        }
+      ]
+    }
+  ],
+  "llm": {
+    "version": 1,
+    "contentUrl": "https://passr.net/data/articles/apis-that-survive-version-3.json",
+    "htmlUrl": "https://passr.net/article/apis-that-survive-version-3",
+    "articleBodyHtml": "<p>API versioning is often treated as a versioning problem. It is actually a product design problem. If your v2 exists because v1 had the wrong abstractions, no versioning scheme will save v2 from becoming v3.</p>\n\n      <h2>Resources, not actions</h2>\n      <p>We moved from RPC-style endpoints — <code>POST /cancelSubscription</code> — to resource-oriented paths — <code>DELETE /subscriptions/:id</code> — and stopped needing new endpoints for every new operation. New behavior became new fields on existing resources, which clients can ignore until they're ready.</p>\n\n      <h2>Additive changes only</h2>\n      <p>New fields are added with defaults. Fields are never removed — they're deprecated, documented, and eventually stop appearing in new responses while old clients continue to receive them. Renaming a field means adding the new name and populating both for eighteen months.</p>\n\n      <h2>Version in the URL, negotiate in headers</h2>\n      <p>Our public API uses <code>/v1/</code> in the path for major breaking changes — which we have avoided. Minor additions ship without a version bump. Clients opt into new response shapes via the <code>Accept-Version</code> header, which lets us test new formats with early adopters before general release.</p>\n\n      <blockquote>The best API version is the one you never have to ship because you got the model right the first time. The second best is the one you can migrate to without breaking a single integration.</blockquote>",
+    "articleBodyText": "API versioning is often treated as a versioning problem. It is actually a product design problem. If your v2 exists because v1 had the wrong abstractions, no versioning scheme will save v2 from becoming v3. Resources, not actions We moved from RPC-style endpoints — POST /cancelSubscription — to resource-oriented paths — DELETE /subscriptions/:id — and stopped needing new endpoints for every new operation. New behavior became new fields on existing resources, which clients can ignore until they're ready. Additive changes only New fields are added with defaults. Fields are never removed — they're deprecated, documented, and eventually stop appearing in new responses while old clients continue to receive them. Renaming a field means adding the new name and populating both for eighteen months. Version in the URL, negotiate in headers Our public API uses /v1/ in the path for major breaking changes — which we have avoided. Minor additions ship without a version bump. Clients opt into new response shapes via the Accept-Version header, which lets us test new formats with early adopters before general release. The best API version is the one you never have to ship because you got the model right the first time. The second best is the one you can migrate to without breaking a single integration.",
+    "outline": [
+      "Resources, not actions",
+      "Additive changes only",
+      "Version in the URL, negotiate in headers"
+    ],
+    "readingTimeMinutes": 9,
+    "excerpt": "We have shipped three major API versions in eight years. Here are the constraints we use to avoid a fourth.",
+    "category": "Architecture",
+    "author": "James Okonkwo"
+  }
+}

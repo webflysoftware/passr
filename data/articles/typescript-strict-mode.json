@@ -1,0 +1,68 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://passr.net/#organization",
+      "name": "PASSR",
+      "url": "https://passr.net/"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/typescript-strict-mode#article",
+      "headline": "TypeScript Strict Mode Is Worth the Argument",
+      "alternativeHeadline": "The upfront cost of enabling strict pays back every time someone refactors without fear.",
+      "description": "We flipped strict mode on a 200,000-line codebase. It took three weeks. Two years later, nobody wants to turn it off.",
+      "abstract": "We flipped strict mode on a 200,000-line codebase. It took three weeks. Two years later, nobody wants to turn it off. Strict mode in TypeScript is a compile-time investment that compounds. strictNullChecks alone eliminated an entire category of production errors for us — the undefined property access that only shows up when a user clears their profile photo and the avatar URL becomes null. The migration strategy that worked We didn't enable all strict flags at once.…",
+      "url": "https://passr.net/article/typescript-strict-mode",
+      "image": "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=1200&q=80&auto=format",
+      "datePublished": "2026-05-22",
+      "dateModified": "2026-05-22",
+      "inLanguage": "en-US",
+      "articleSection": "Engineering",
+      "articleBody": "Strict mode in TypeScript is a compile-time investment that compounds. strictNullChecks alone eliminated an entire category of production errors for us — the undefined property access that only shows up when a user clears their profile photo and the avatar URL becomes null. The migration strategy that worked We didn't enable all strict flags at once. Week one: strictNullChecks with a temporary @ts-expect-error budget tracked in CI. Week two: noImplicitAny . Week three: the remaining flags. Each week, the budget had to shrink by twenty percent or the PR didn't merge. What we gained Refactors became faster because the compiler caught broken call sites. New engineers onboarded with fewer \"why is this undefined?\" Slack messages. Code review shifted from catching type mistakes to discussing design — which is what review should be for. The argument against strict mode is always velocity. Our experience: velocity drops for three weeks, then increases permanently. The teams that skip it pay the cost continuously, one runtime error at a time.",
+      "wordCount": 166,
+      "author": {
+        "@type": "Person",
+        "name": "Elena Vasquez",
+        "jobTitle": "Staff Engineer"
+      },
+      "publisher": {
+        "@id": "https://passr.net/#organization"
+      },
+      "isPartOf": {
+        "@id": "https://passr.net/#blog"
+      },
+      "keywords": [
+        "engineering",
+        "typescript",
+        "strict",
+        "mode",
+        "worth",
+        "argument"
+      ],
+      "timeRequired": "PT5M",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Engineering"
+        }
+      ]
+    }
+  ],
+  "llm": {
+    "version": 1,
+    "contentUrl": "https://passr.net/data/articles/typescript-strict-mode.json",
+    "htmlUrl": "https://passr.net/article/typescript-strict-mode",
+    "articleBodyHtml": "<p>Strict mode in TypeScript is a compile-time investment that compounds. <code>strictNullChecks</code> alone eliminated an entire category of production errors for us — the undefined property access that only shows up when a user clears their profile photo and the avatar URL becomes null.</p>\n\n      <h2>The migration strategy that worked</h2>\n      <p>We didn't enable all strict flags at once. Week one: <code>strictNullChecks</code> with a temporary <code>@ts-expect-error</code> budget tracked in CI. Week two: <code>noImplicitAny</code>. Week three: the remaining flags. Each week, the budget had to shrink by twenty percent or the PR didn't merge.</p>\n\n      <h2>What we gained</h2>\n      <p>Refactors became faster because the compiler caught broken call sites. New engineers onboarded with fewer \"why is this undefined?\" Slack messages. Code review shifted from catching type mistakes to discussing design — which is what review should be for.</p>\n\n      <p>The argument against strict mode is always velocity. Our experience: velocity drops for three weeks, then increases permanently. The teams that skip it pay the cost continuously, one runtime error at a time.</p>",
+    "articleBodyText": "Strict mode in TypeScript is a compile-time investment that compounds. strictNullChecks alone eliminated an entire category of production errors for us — the undefined property access that only shows up when a user clears their profile photo and the avatar URL becomes null. The migration strategy that worked We didn't enable all strict flags at once. Week one: strictNullChecks with a temporary @ts-expect-error budget tracked in CI. Week two: noImplicitAny . Week three: the remaining flags. Each week, the budget had to shrink by twenty percent or the PR didn't merge. What we gained Refactors became faster because the compiler caught broken call sites. New engineers onboarded with fewer \"why is this undefined?\" Slack messages. Code review shifted from catching type mistakes to discussing design — which is what review should be for. The argument against strict mode is always velocity. Our experience: velocity drops for three weeks, then increases permanently. The teams that skip it pay the cost continuously, one runtime error at a time.",
+    "outline": [
+      "The migration strategy that worked",
+      "What we gained"
+    ],
+    "readingTimeMinutes": 5,
+    "excerpt": "We flipped strict mode on a 200,000-line codebase. It took three weeks. Two years later, nobody wants to turn it off.",
+    "category": "Engineering",
+    "author": "Elena Vasquez"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://passr.net/#organization",
+      "name": "PASSR",
+      "url": "https://passr.net/"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/rpc-vs-rest-2026#article",
+      "headline": "RPC vs REST in 2026: A Practical Take",
+      "alternativeHeadline": "gRPC is faster. REST is easier to debug. The answer depends on who consumes the API.",
+      "description": "We run both in production. Here is how we decide which protocol a new service gets — and when we regret the choice.",
+      "abstract": "We run both in production. Here is how we decide which protocol a new service gets — and when we regret the choice. The RPC vs REST debate has been running for fifteen years. In 2026, the honest answer is that most organizations need both — and the mistake is choosing based on benchmark numbers rather than on who will consume the API and how they'll debug it at 2 AM. When we choose gRPC Internal service-to-service calls where both sides are under our control.…",
+      "url": "https://passr.net/article/rpc-vs-rest-2026",
+      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=80&auto=format",
+      "datePublished": "2026-04-24",
+      "dateModified": "2026-04-24",
+      "inLanguage": "en-US",
+      "articleSection": "Architecture",
+      "articleBody": "The RPC vs REST debate has been running for fifteen years. In 2026, the honest answer is that most organizations need both — and the mistake is choosing based on benchmark numbers rather than on who will consume the API and how they'll debug it at 2 AM. When we choose gRPC Internal service-to-service calls where both sides are under our control. Typed contracts via protobuf, binary serialization, streaming support for large payloads. Our billing service talks to our ledger via gRPC because latency matters and both teams share the same repo. When we choose REST Anything external-facing, anything a frontend consumes directly, anything a customer integrates with. REST over HTTPS is universally understood. You can curl it, log it, and paste the response into a support ticket. gRPC requires tooling most partners don't have. The hybrid pattern Our most common architecture: gRPC internally, REST at the gateway. The gateway translates, handles auth, rate limiting, and request logging. Services stay fast and typed; the outside world stays simple. Protocol choice is an organizational decision disguised as a technical one. Optimize for the team that owns the on-call rotation, not the team that owns the benchmark.",
+      "wordCount": 195,
+      "author": {
+        "@type": "Person",
+        "name": "James Okonkwo",
+        "jobTitle": "Senior Backend Engineer"
+      },
+      "publisher": {
+        "@id": "https://passr.net/#organization"
+      },
+      "isPartOf": {
+        "@id": "https://passr.net/#blog"
+      },
+      "keywords": [
+        "architecture",
+        "rpc",
+        "rest",
+        "2026",
+        "practical",
+        "take"
+      ],
+      "timeRequired": "PT8M",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Architecture"
+        }
+      ]
+    }
+  ],
+  "llm": {
+    "version": 1,
+    "contentUrl": "https://passr.net/data/articles/rpc-vs-rest-2026.json",
+    "htmlUrl": "https://passr.net/article/rpc-vs-rest-2026",
+    "articleBodyHtml": "<p>The RPC vs REST debate has been running for fifteen years. In 2026, the honest answer is that most organizations need both — and the mistake is choosing based on benchmark numbers rather than on who will consume the API and how they'll debug it at 2 AM.</p>\n\n      <h2>When we choose gRPC</h2>\n      <p>Internal service-to-service calls where both sides are under our control. Typed contracts via protobuf, binary serialization, streaming support for large payloads. Our billing service talks to our ledger via gRPC because latency matters and both teams share the same repo.</p>\n\n      <h2>When we choose REST</h2>\n      <p>Anything external-facing, anything a frontend consumes directly, anything a customer integrates with. REST over HTTPS is universally understood. You can curl it, log it, and paste the response into a support ticket. gRPC requires tooling most partners don't have.</p>\n\n      <h2>The hybrid pattern</h2>\n      <p>Our most common architecture: gRPC internally, REST at the gateway. The gateway translates, handles auth, rate limiting, and request logging. Services stay fast and typed; the outside world stays simple.</p>\n\n      <blockquote>Protocol choice is an organizational decision disguised as a technical one. Optimize for the team that owns the on-call rotation, not the team that owns the benchmark.</blockquote>",
+    "articleBodyText": "The RPC vs REST debate has been running for fifteen years. In 2026, the honest answer is that most organizations need both — and the mistake is choosing based on benchmark numbers rather than on who will consume the API and how they'll debug it at 2 AM. When we choose gRPC Internal service-to-service calls where both sides are under our control. Typed contracts via protobuf, binary serialization, streaming support for large payloads. Our billing service talks to our ledger via gRPC because latency matters and both teams share the same repo. When we choose REST Anything external-facing, anything a frontend consumes directly, anything a customer integrates with. REST over HTTPS is universally understood. You can curl it, log it, and paste the response into a support ticket. gRPC requires tooling most partners don't have. The hybrid pattern Our most common architecture: gRPC internally, REST at the gateway. The gateway translates, handles auth, rate limiting, and request logging. Services stay fast and typed; the outside world stays simple. Protocol choice is an organizational decision disguised as a technical one. Optimize for the team that owns the on-call rotation, not the team that owns the benchmark.",
+    "outline": [
+      "When we choose gRPC",
+      "When we choose REST",
+      "The hybrid pattern"
+    ],
+    "readingTimeMinutes": 8,
+    "excerpt": "We run both in production. Here is how we decide which protocol a new service gets — and when we regret the choice.",
+    "category": "Architecture",
+    "author": "James Okonkwo"
+  }
+}

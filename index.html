@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17592266250"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17592266250');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PASSR — Engineering writing on systems, APIs, and infrastructure</title>
+  <meta name="description" content="PASSR publishes practical engineering writing on backend systems, databases, security, infrastructure, and product reviews for technical teams." />
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="PASSR">
+  <meta name="theme-color" content="#1c1c1c">
+  <link rel="canonical" href="https://passr.net/">
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PASSR">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="PASSR — Engineering writing on systems, APIs, and infrastructure">
+  <meta property="og:description" content="Practical engineering writing on backend systems, databases, security, infrastructure, and the tools teams use in production.">
+  <meta property="og:url" content="https://passr.net/">
+  <meta property="og:image" content="https://passr.net/images/top-5-trivia.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PASSR — Engineering writing on systems, APIs, and infrastructure">
+  <meta name="twitter:description" content="Practical engineering writing on backend systems, databases, security, infrastructure, and the tools teams use in production.">
+  <meta name="twitter:image" content="https://passr.net/images/top-5-trivia.jpg">
+  <link rel="alternate" type="application/json" href="/data/site.json" title="PASSR structured data for machines">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://passr.net/#organization",
+        "name": "PASSR",
+        "url": "https://passr.net/",
+        "description": "An engineering publication focused on practical writing for software teams building and operating production systems."
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://passr.net/#website",
+        "name": "PASSR",
+        "url": "https://passr.net/",
+        "description": "Engineering writing on systems, APIs, and infrastructure.",
+        "publisher": { "@id": "https://passr.net/#organization" },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "Blog",
+        "@id": "https://passr.net/#blog",
+        "name": "PASSR",
+        "url": "https://passr.net/",
+        "description": "PASSR helps software engineers stay up to date on backend systems, infrastructure, databases, security, architecture, and the tools teams rely on in production.",
+        "publisher": { "@id": "https://passr.net/#organization" },
+        "isPartOf": { "@id": "https://passr.net/#website" },
+        "inLanguage": "en-US",
+        "audience": {
+          "@type": "Audience",
+          "audienceType": "Software engineers, backend developers, infrastructure engineers, engineering managers"
+        },
+        "about": [
+          { "@type": "Thing", "name": "Backend engineering", "description": "API design, webhooks, job queues, service architecture" },
+          { "@type": "Thing", "name": "Infrastructure", "description": "Deployments, observability, blue-green releases, on-call practices" },
+          { "@type": "Thing", "name": "Databases", "description": "Query optimization, Postgres, schema migrations" },
+          { "@type": "Thing", "name": "Security", "description": "Authentication, JWTs, session management" },
+          { "@type": "Thing", "name": "Software architecture", "description": "API versioning, RPC vs REST, system design tradeoffs" },
+          { "@type": "Thing", "name": "Developer tooling", "description": "TypeScript, CI/CD, product and platform reviews" }
+        ],
+        "keywords": [
+          "tech blog",
+          "engineering blog",
+          "backend development",
+          "infrastructure",
+          "software architecture",
+          "staying up to date",
+          "production systems",
+          "developer education"
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css?v=20260613e">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="logo">PASS<span>R</span></a>
+      <nav class="site-nav">
+        <a href="/" data-nav="home" class="active">Home</a>
+        <a href="/topic.html" data-nav="topics">Topics</a>
+        <a href="/about.html" data-nav="about">About</a>
+        <a href="/contact" data-nav="contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="btn btn-primary subscribe-trigger">Subscribe</button>
+        <button class="menu-toggle" aria-label="Open menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav-header">
+      <a href="/" class="logo">PASS<span>R</span></a>
+      <button class="mobile-nav-close" aria-label="Close menu">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="/">Home</a>
+      <a href="/topic.html">Topics</a>
+      <a href="/about.html">About</a>
+      <a href="/contact">Contact</a>
+      <button type="button" class="mobile-nav-subscribe subscribe-trigger">Subscribe</button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="hero-label">Featured</p>
+        <div class="featured-article" id="featured-article"></div>
+      </div>
+    </section>
+
+    <section class="categories">
+      <div class="container">
+        <div class="category-list" id="category-filters">
+          <button class="category-pill active" data-category="">All</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="section-header">
+        <h2>Latest</h2>
+      </div>
+      <div class="article-grid" data-articles-grid id="article-grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo">PASS<span>R</span></a>
+          <p>Practical engineering writing for teams building reliable systems. Published on passr.net.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Topics</h4>
+          <ul id="footer-topics"></ul>
+        </div>
+        <div class="footer-col">
+          <h4>Publication</h4>
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="#">Write for PASSR</a></li>
+            <li><a href="#">RSS Feed</a></li>
+            <li><a href="#">Privacy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; 2026 PASSR. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="/js/articles.js?v=20260613e"></script>
+  <script src="/js/api.js?v=20260613e"></script>
+  <script src="/js/main.js?v=20260613e"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const featured = getFeaturedArticle();
+      const author = AUTHORS[featured.author];
+
+      document.getElementById("featured-article").innerHTML = `
+        <div class="article-image">
+          <a href="${articleUrl(featured.slug)}">
+            <img src="${featured.image}" alt="" width="700" height="525">
+          </a>
+        </div>
+        <div>
+          <span class="tag" style="display:inline-block;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;">${getCategoryLabel(featured.category)}</span>
+          <h1><a href="${articleUrl(featured.slug)}">${featured.title}</a></h1>
+          <p class="excerpt">${featured.excerpt}</p>
+          ${renderArticleMeta(featured)}
+        </div>
+      `;
+
+      document.getElementById("category-filters").innerHTML =
+        '<button class="category-pill active" data-category="">All</button>' +
+        CATEGORIES.map((c) => `<button class="category-pill" data-category="${c.slug}">${c.label}</button>`).join("");
+
+      document.getElementById("article-grid").innerHTML = ARTICLES.map(renderArticleCard).join("");
+
+      document.getElementById("footer-topics").innerHTML = CATEGORIES.map(
+        (c) => `<li><a href="/topic.html?category=${c.slug}">${c.label}</a></li>`
+      ).join("");
+
+      initCategoryFilters("#category-filters");
+    });
+  </script>
+</body>
+</html>

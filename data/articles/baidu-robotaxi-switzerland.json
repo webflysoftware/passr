@@ -1,0 +1,71 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://passr.net/#organization",
+      "name": "PASSR",
+      "url": "https://passr.net/"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/baidu-robotaxi-switzerland#article",
+      "headline": "Baidu's Robotaxi in Switzerland Is the Story Nobody Is Covering",
+      "alternativeHeadline": "Everyone is watching Elon and Waymo. Baidu is quietly running commercial robotaxi service in Switzerland while the west argues about regulations.",
+      "description": "Baidu and PostBus got regulatory approval for commercial robotaxi service in eastern Switzerland. This is being reported as a footnote. It should be the lead.",
+      "abstract": "Baidu and PostBus got regulatory approval for commercial robotaxi service in eastern Switzerland. This is being reported as a footnote. It should be the lead. Baidu got regulatory approval to run commercial robotaxi service in Switzerland. The Reuters story ran on a Tuesday afternoon, between a story about India's self-driving car regulations and a quarterly earnings preview. It got twelve hours of attention and disappeared. This should not have been a between-stories story.…",
+      "url": "https://passr.net/article/baidu-robotaxi-switzerland",
+      "image": "https://passr.net/images/robotaxi.jpg",
+      "datePublished": "2026-06-11",
+      "dateModified": "2026-06-11",
+      "inLanguage": "en-US",
+      "articleSection": "Engineering",
+      "articleBody": "Baidu got regulatory approval to run commercial robotaxi service in Switzerland. The Reuters story ran on a Tuesday afternoon, between a story about India's self-driving car regulations and a quarterly earnings preview. It got twelve hours of attention and disappeared. This should not have been a between-stories story. This is a signal event in the global autonomous vehicle race, and it is being covered like a regulatory footnote. Why Switzerland specifically Switzerland has some of the strictest vehicle certification standards in Europe. Getting a government robotaxi permit there — alongside PostBus, a state-adjacent operator with deep regulatory relationships — is not a trivial regulatory lift. It means the technology met a high bar and a skeptical public transit authority signed off on it. This is not Baidu running a demo in a special economic zone where rules are flexible. This is Baidu clearing a genuinely difficult regulatory jurisdiction in one of the most demanding regulatory environments on earth. That is being treated as background noise. The Western blind spot on Baidu In the US and much of Europe, \"autonomous vehicle\" conversation is dominated by Tesla's FSD trajectory, Waymo's expansion in Phoenix and San Francisco, and Cruise's ongoing rebuild after the 2023 incident. The narrative is: the US leads, China is years behind, and regulations will determine the pace. That narrative is wrong. Baidu's Apollo Go service has been operating commercially in Chinese cities for over two years. They have millions of rides logged. They have driven more autonomous miles in more diverse road conditions than any western competitor except possibly Waymo. The Apollo ecosystem — the software stack, the HD maps, the sensor fusion — is among the most mature autonomous driving systems in the world. What \"international expansion\" actually means Baidu operating in Switzerland is not just about Switzerland. It is about proving the stack works in European regulatory contexts, European road conditions, and European public acceptance environments. It is a beachhead. The next deployments will be faster because this one exists. Meanwhile, Tesla's FSD is still technically a Level 2 driver assist system in Europe, requiring constant driver supervision. Waymo is cleared in specific US cities but faces a long regulatory process in most of Europe. Baidu just went ahead and did it. The autonomous vehicle race is not over. The US is not clearly winning it. And the company most likely to define what global robotaxi infrastructure looks like in 2030 might be the one nobody in the western tech press is paying attention to. The question nobody is asking If Baidu can clear Swiss regulations, what happens when they enter the European market at scale? When the cost structure of a Baidu-built robotaxi — backed by China's manufacturing scale, a mature software stack, and operational experience from millions of rides — meets European labor costs? The competitive threat to Waymo and Cruise is not hypothetical. It is in Switzerland. Pay attention to the footnotes. That is where the future tends to arrive — quietly, on a Tuesday afternoon, between bigger headlines.",
+      "wordCount": 505,
+      "author": {
+        "@type": "Person",
+        "name": "Marcus Chen",
+        "jobTitle": "Principal Engineer"
+      },
+      "publisher": {
+        "@id": "https://passr.net/#organization"
+      },
+      "isPartOf": {
+        "@id": "https://passr.net/#blog"
+      },
+      "keywords": [
+        "engineering",
+        "baidu",
+        "robotaxi",
+        "switzerland",
+        "story",
+        "nobody",
+        "covering"
+      ],
+      "timeRequired": "PT5M",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Engineering"
+        }
+      ]
+    }
+  ],
+  "llm": {
+    "version": 1,
+    "contentUrl": "https://passr.net/data/articles/baidu-robotaxi-switzerland.json",
+    "htmlUrl": "https://passr.net/article/baidu-robotaxi-switzerland",
+    "articleBodyHtml": "<p>Baidu got regulatory approval to run commercial robotaxi service in Switzerland. The Reuters story ran on a Tuesday afternoon, between a story about India's self-driving car regulations and a quarterly earnings preview. It got twelve hours of attention and disappeared.</p>\n      <p>This should not have been a between-stories story. This is a signal event in the global autonomous vehicle race, and it is being covered like a regulatory footnote.</p>\n\n      <h2>Why Switzerland specifically</h2>\n      <p>Switzerland has some of the strictest vehicle certification standards in Europe. Getting a government robotaxi permit there — alongside PostBus, a state-adjacent operator with deep regulatory relationships — is not a trivial regulatory lift. It means the technology met a high bar and a skeptical public transit authority signed off on it.</p>\n      <p>This is not Baidu running a demo in a special economic zone where rules are flexible. This is Baidu clearing a genuinely difficult regulatory jurisdiction in one of the most demanding regulatory environments on earth. That is being treated as background noise.</p>\n\n      <h2>The Western blind spot on Baidu</h2>\n      <p>In the US and much of Europe, \"autonomous vehicle\" conversation is dominated by Tesla's FSD trajectory, Waymo's expansion in Phoenix and San Francisco, and Cruise's ongoing rebuild after the 2023 incident. The narrative is: the US leads, China is years behind, and regulations will determine the pace.</p>\n      <p>That narrative is wrong. Baidu's Apollo Go service has been operating commercially in Chinese cities for over two years. They have millions of rides logged. They have driven more autonomous miles in more diverse road conditions than any western competitor except possibly Waymo. The Apollo ecosystem — the software stack, the HD maps, the sensor fusion — is among the most mature autonomous driving systems in the world.</p>\n\n      <h2>What \"international expansion\" actually means</h2>\n      <p>Baidu operating in Switzerland is not just about Switzerland. It is about proving the stack works in European regulatory contexts, European road conditions, and European public acceptance environments. It is a beachhead. The next deployments will be faster because this one exists.</p>\n      <p>Meanwhile, Tesla's FSD is still technically a Level 2 driver assist system in Europe, requiring constant driver supervision. Waymo is cleared in specific US cities but faces a long regulatory process in most of Europe. Baidu just went ahead and did it.</p>\n\n      <blockquote>The autonomous vehicle race is not over. The US is not clearly winning it. And the company most likely to define what global robotaxi infrastructure looks like in 2030 might be the one nobody in the western tech press is paying attention to.</blockquote>\n\n      <h2>The question nobody is asking</h2>\n      <p>If Baidu can clear Swiss regulations, what happens when they enter the European market at scale? When the cost structure of a Baidu-built robotaxi — backed by China's manufacturing scale, a mature software stack, and operational experience from millions of rides — meets European labor costs? The competitive threat to Waymo and Cruise is not hypothetical. It is in Switzerland.</p>\n      <p>Pay attention to the footnotes. That is where the future tends to arrive — quietly, on a Tuesday afternoon, between bigger headlines.</p>",
+    "articleBodyText": "Baidu got regulatory approval to run commercial robotaxi service in Switzerland. The Reuters story ran on a Tuesday afternoon, between a story about India's self-driving car regulations and a quarterly earnings preview. It got twelve hours of attention and disappeared. This should not have been a between-stories story. This is a signal event in the global autonomous vehicle race, and it is being covered like a regulatory footnote. Why Switzerland specifically Switzerland has some of the strictest vehicle certification standards in Europe. Getting a government robotaxi permit there — alongside PostBus, a state-adjacent operator with deep regulatory relationships — is not a trivial regulatory lift. It means the technology met a high bar and a skeptical public transit authority signed off on it. This is not Baidu running a demo in a special economic zone where rules are flexible. This is Baidu clearing a genuinely difficult regulatory jurisdiction in one of the most demanding regulatory environments on earth. That is being treated as background noise. The Western blind spot on Baidu In the US and much of Europe, \"autonomous vehicle\" conversation is dominated by Tesla's FSD trajectory, Waymo's expansion in Phoenix and San Francisco, and Cruise's ongoing rebuild after the 2023 incident. The narrative is: the US leads, China is years behind, and regulations will determine the pace. That narrative is wrong. Baidu's Apollo Go service has been operating commercially in Chinese cities for over two years. They have millions of rides logged. They have driven more autonomous miles in more diverse road conditions than any western competitor except possibly Waymo. The Apollo ecosystem — the software stack, the HD maps, the sensor fusion — is among the most mature autonomous driving systems in the world. What \"international expansion\" actually means Baidu operating in Switzerland is not just about Switzerland. It is about proving the stack works in European regulatory contexts, European road conditions, and European public acceptance environments. It is a beachhead. The next deployments will be faster because this one exists. Meanwhile, Tesla's FSD is still technically a Level 2 driver assist system in Europe, requiring constant driver supervision. Waymo is cleared in specific US cities but faces a long regulatory process in most of Europe. Baidu just went ahead and did it. The autonomous vehicle race is not over. The US is not clearly winning it. And the company most likely to define what global robotaxi infrastructure looks like in 2030 might be the one nobody in the western tech press is paying attention to. The question nobody is asking If Baidu can clear Swiss regulations, what happens when they enter the European market at scale? When the cost structure of a Baidu-built robotaxi — backed by China's manufacturing scale, a mature software stack, and operational experience from millions of rides — meets European labor costs? The competitive threat to Waymo and Cruise is not hypothetical. It is in Switzerland. Pay attention to the footnotes. That is where the future tends to arrive — quietly, on a Tuesday afternoon, between bigger headlines.",
+    "outline": [
+      "Why Switzerland specifically",
+      "The Western blind spot on Baidu",
+      "What \"international expansion\" actually means",
+      "The question nobody is asking"
+    ],
+    "readingTimeMinutes": 5,
+    "excerpt": "Baidu and PostBus got regulatory approval for commercial robotaxi service in eastern Switzerland. This is being reported as a footnote. It should be the lead.",
+    "category": "Engineering",
+    "author": "Marcus Chen"
+  }
+}
