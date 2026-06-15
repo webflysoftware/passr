@@ -520,6 +520,30 @@ button {
   margin-top: 1.25rem;
 }
 
+.article-body .platform-entry-banner-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+  padding: 36px 24px;
+  background: linear-gradient(180deg, var(--bg-subtle) 0%, var(--bg-muted) 100%);
+}
+
+.article-body .platform-entry-banner-logo img {
+  width: auto;
+  max-width: min(320px, 72%);
+  max-height: 64px;
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.article-body .platform-entry-title .platform-byline {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
 .article-body .platform-entry-banner .platform-rank {
   position: absolute;
   top: 14px;

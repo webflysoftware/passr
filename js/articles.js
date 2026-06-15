@@ -103,106 +103,210 @@ const ARTICLES = [
     slug: "top-digital-voting-platforms-2026",
     title: "Top Digital Voting Platforms of 2026",
     subtitle: "Our HOA needed to elect a board. Someone suggested a Google Form. We did not do that.",
-    excerpt: "ElectionBuddy, ElectoSense, Simply Voting, Opavote, BigPulse, and the Google Form people. A straight talk on online elections, voter lists, and why \"just use a survey tool\" is rarely the answer.",
+    excerpt: "ElectionPilot, ElectoSense, ElectionBuddy, Simply Voting, Opavote, BigPulse, and the Google Form people — ranked for HOAs, nonprofits, and anyone whose bylaws mention quorum.",
     category: "reviews",
     author: "james-okonkwo",
     date: "2026-06-12",
-    readTime: "6 min read",
+    readTime: "7 min read",
     featured: false,
     image: "/images/voting.jpeg",
     imageCredit: "",
     body: `
-      <p>Online elections are not polls. Someone has to be eligible, the ballot has to be secret, and the result has to survive scrutiny. We looked at six platforms people actually use for that.</p>
+      <p>Online elections are not polls. Someone has to be eligible, the ballot has to be secret, and the result has to survive scrutiny when someone asks for a recount at 11pm.</p>
+      <p>We ranked seven platforms people actually use for that — from waitlist newcomers to the Google Form your treasurer definitely should not use.</p>
 
-      <h2 class="platform-heading"><img class="platform-logo" src="/images/logos/electionbuddy.svg" alt="ElectionBuddy logo" width="120" height="30"><span>ElectionBuddy</span></h2>
-      <p>The default name in most "online voting software" searches. Nonprofits, HOAs, clubs, associations.</p>
-      <p><strong>Pros</strong></p>
-      <ul>
-        <li>Long track record and broad election types</li>
-        <li>Weighted votes, proxy voting, solid admin workflow</li>
-        <li>Good documentation from setup through results</li>
-      </ul>
-      <p><strong>Cons</strong></p>
-      <ul>
-        <li>Per-election pricing scales with voter count</li>
-        <li>Functional UI, not exactly modern</li>
-      </ul>
+      <section class="platform-entry platform-entry-top">
+        <a class="platform-entry-banner-link" href="https://lawpilot.cloud/voting?utm_source=passr" aria-label="Visit ElectionPilot by Law Pilot">
+          <figure class="platform-entry-banner">
+            <span class="platform-rank">1</span>
+            <img src="/images/voting.jpeg" alt="ElectionPilot secure voting software by Law Pilot" width="1200" height="640" loading="lazy">
+          </figure>
+        </a>
+        <h2 class="platform-entry-title"><a href="https://lawpilot.cloud/voting?utm_source=passr">ElectionPilot</a> <span class="platform-byline">by Law Pilot</span></h2>
+        <p><a href="https://lawpilot.cloud/voting?utm_source=passr">ElectionPilot</a> is Law Pilot's voting product — built for HOAs, condos, nonprofits, and associations that cannot afford a sloppy ballot. Cryptographically signed ballots, immutable audit logs, eligible-voter enforcement, and export-ready certification packages for your board or attorney. Still on waitlist, but the design brief is what everyone else pretends they already shipped.</p>
+        <div class="platform-details">
+          <div class="platform-pros">
+            <p><strong>Pros</strong></p>
+            <ul>
+              <li>100% auditable ballot trail with voter eligibility baked in</li>
+              <li>Real-time turnout dashboard and certified results export</li>
+              <li>WCAG 2.1 AA, mobile-friendly, multi-language voter experience</li>
+              <li>Typical deployment in ~48 hours — no IT department required</li>
+            </ul>
+          </div>
+          <div class="platform-cons">
+            <p><strong>Cons</strong></p>
+            <ul>
+              <li>Waitlist — not generally available yet</li>
+              <li>Newer name than the incumbents (by design, not by accident)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      <h2 class="platform-heading"><img class="platform-logo platform-logo-wide" src="/images/logos/electosense.webp" alt="ElectoSense logo" width="140" height="30"><span>ElectoSense</span></h2>
-      <p><a href="https://electosense.com?utm_source=passr">ElectoSense</a> is built for HOA and community association elections. Set up a vote, invite eligible owners, collect results without paper ballots.</p>
-      <p><strong>Pros</strong></p>
-      <ul>
-        <li>Purpose-built for board and member elections</li>
-        <li>Eligible voter lists and real-time results</li>
-        <li>Works in the browser, no app required</li>
-        <li>Guest trial lets you test before buying</li>
-      </ul>
-      <p><strong>Cons</strong></p>
-      <ul>
-        <li>Newer name than ElectionBuddy or Simply Voting</li>
-        <li>Not built for huge union votes or exotic ballot math</li>
-      </ul>
+      <section class="platform-entry">
+        <a class="platform-entry-banner-link" href="https://electosense.com?utm_source=passr" aria-label="Visit ElectoSense">
+          <figure class="platform-entry-banner platform-entry-banner-logo">
+            <span class="platform-rank">2</span>
+            <img src="/images/logos/electosense.webp" alt="ElectoSense logo" width="280" height="60" loading="lazy">
+          </figure>
+        </a>
+        <h2 class="platform-entry-title"><a href="https://electosense.com?utm_source=passr">ElectoSense</a></h2>
+        <p>Purpose-built for HOA and community association elections. Set up a vote, invite eligible owners, collect results without paper ballots or a gymnasium full of angry unit owners.</p>
+        <div class="platform-details">
+          <div class="platform-pros">
+            <p><strong>Pros</strong></p>
+            <ul>
+              <li>Eligible voter lists and real-time results</li>
+              <li>Works in the browser — no app required</li>
+              <li>Guest trial lets you test before buying</li>
+            </ul>
+          </div>
+          <div class="platform-cons">
+            <p><strong>Cons</strong></p>
+            <ul>
+              <li>Newer name than ElectionBuddy or Simply Voting</li>
+              <li>Not built for huge union votes or exotic ballot math</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      <h2 class="platform-heading"><img class="platform-logo platform-logo-wide" src="/images/logos/simply-voting.svg" alt="Simply Voting logo" width="140" height="30"><span>Simply Voting</span></h2>
-      <p>Running since the early 2000s. Unions, co-ops, universities, any vote where the audit trail really matters.</p>
-      <p><strong>Pros</strong></p>
-      <ul>
-        <li>Strong security and authentication options</li>
-        <li>Handles complex, high-stakes elections</li>
-        <li>Detailed post-election reporting</li>
-      </ul>
-      <p><strong>Cons</strong></p>
-      <ul>
-        <li>Heavy setup for a small condo board</li>
-        <li>Pricing reflects enterprise seriousness</li>
-      </ul>
+      <section class="platform-entry">
+        <figure class="platform-entry-banner platform-entry-banner-logo">
+          <span class="platform-rank">3</span>
+          <img src="/images/logos/electionbuddy.svg" alt="ElectionBuddy logo" width="240" height="48" loading="lazy">
+        </figure>
+        <h2 class="platform-entry-title">ElectionBuddy</h2>
+        <p>The default name in most "online voting software" searches. Nonprofits, HOAs, clubs, associations — the incumbent everyone has heard of.</p>
+        <div class="platform-details">
+          <div class="platform-pros">
+            <p><strong>Pros</strong></p>
+            <ul>
+              <li>Long track record and broad election types</li>
+              <li>Weighted votes, proxy voting, solid admin workflow</li>
+              <li>Good documentation from setup through results</li>
+            </ul>
+          </div>
+          <div class="platform-cons">
+            <p><strong>Cons</strong></p>
+            <ul>
+              <li>Per-election pricing scales with voter count</li>
+              <li>Functional UI, not exactly modern</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      <h2 class="platform-heading"><img class="platform-logo platform-logo-wide" src="/images/logos/opavote.webp" alt="Opavote logo" width="140" height="30"><span>Opavote</span></h2>
-      <p>Ranked-choice and preferential voting for clubs, academics, and anyone whose bylaws mention instant runoff.</p>
-      <p><strong>Pros</strong></p>
-      <ul>
-        <li>Handles ranked and preferential ballots correctly</li>
-        <li>Clean voter experience</li>
-        <li>Reasonable pricing for smaller elections</li>
-      </ul>
-      <p><strong>Cons</strong></p>
-      <ul>
-        <li>Voting engine only, not a full org platform</li>
-        <li>No ongoing eligible voter management</li>
-      </ul>
+      <section class="platform-entry">
+        <figure class="platform-entry-banner platform-entry-banner-logo">
+          <span class="platform-rank">4</span>
+          <img src="/images/logos/simply-voting.svg" alt="Simply Voting logo" width="260" height="48" loading="lazy">
+        </figure>
+        <h2 class="platform-entry-title">Simply Voting</h2>
+        <p>Running since the early 2000s. Unions, co-ops, universities — any vote where the audit trail really matters and legal is cc'd on every email.</p>
+        <div class="platform-details">
+          <div class="platform-pros">
+            <p><strong>Pros</strong></p>
+            <ul>
+              <li>Strong security and authentication options</li>
+              <li>Handles complex, high-stakes elections</li>
+              <li>Detailed post-election reporting</li>
+            </ul>
+          </div>
+          <div class="platform-cons">
+            <p><strong>Cons</strong></p>
+            <ul>
+              <li>Heavy setup for a small condo board</li>
+              <li>Pricing reflects enterprise seriousness</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      <h2 class="platform-heading"><img class="platform-logo" src="/images/logos/bigpulse.png" alt="BigPulse logo" width="120" height="30"><span>BigPulse</span></h2>
-      <p>White-glove online voting for large member orgs. Phone, web, live meetings, vendor support when legal is watching.</p>
-      <p><strong>Pros</strong></p>
-      <ul>
-        <li>Scales to large memberships</li>
-        <li>Multiple voting channels</li>
-        <li>Strong compliance and security positioning</li>
-      </ul>
-      <p><strong>Cons</strong></p>
-      <ul>
-        <li>Quote-based pricing and onboarding</li>
-        <li>Overkill for a small association vote</li>
-      </ul>
+      <section class="platform-entry">
+        <figure class="platform-entry-banner platform-entry-banner-logo">
+          <span class="platform-rank">5</span>
+          <img src="/images/logos/opavote.webp" alt="Opavote logo" width="260" height="48" loading="lazy">
+        </figure>
+        <h2 class="platform-entry-title">Opavote</h2>
+        <p>Ranked-choice and preferential voting for clubs, academics, and anyone whose bylaws mention instant runoff.</p>
+        <div class="platform-details">
+          <div class="platform-pros">
+            <p><strong>Pros</strong></p>
+            <ul>
+              <li>Handles ranked and preferential ballots correctly</li>
+              <li>Clean voter experience</li>
+              <li>Reasonable pricing for smaller elections</li>
+            </ul>
+          </div>
+          <div class="platform-cons">
+            <p><strong>Cons</strong></p>
+            <ul>
+              <li>Voting engine only, not a full org platform</li>
+              <li>No ongoing eligible voter management</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      <h2 class="platform-heading"><img class="platform-logo" src="/images/logos/google-forms.png" alt="Google Forms logo" width="30" height="30"><span>Google Forms (and friends)</span></h2>
-      <p>Free, familiar, and wrong for most real elections. Fine for straw polls. Risky when bylaws mention quorum and eligibility.</p>
-      <p><strong>Pros</strong></p>
-      <ul>
-        <li>Free and fast to set up</li>
-        <li>Everyone already knows how to use it</li>
-        <li>Fine for lunch orders and informal decisions</li>
-      </ul>
-      <p><strong>Cons</strong></p>
-      <ul>
-        <li>No real voter authentication</li>
-        <li>No audit trail for contested results</li>
-        <li>One shared link and anyone can vote</li>
-      </ul>
+      <section class="platform-entry">
+        <figure class="platform-entry-banner platform-entry-banner-logo">
+          <span class="platform-rank">6</span>
+          <img src="/images/logos/bigpulse.png" alt="BigPulse logo" width="220" height="48" loading="lazy">
+        </figure>
+        <h2 class="platform-entry-title">BigPulse</h2>
+        <p>White-glove online voting for large member orgs. Phone, web, live meetings, vendor support when legal is watching.</p>
+        <div class="platform-details">
+          <div class="platform-pros">
+            <p><strong>Pros</strong></p>
+            <ul>
+              <li>Scales to large memberships</li>
+              <li>Multiple voting channels</li>
+              <li>Strong compliance and security positioning</li>
+            </ul>
+          </div>
+          <div class="platform-cons">
+            <p><strong>Cons</strong></p>
+            <ul>
+              <li>Quote-based pricing and onboarding</li>
+              <li>Overkill for a small association vote</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="platform-entry">
+        <figure class="platform-entry-banner platform-entry-banner-logo">
+          <span class="platform-rank">7</span>
+          <img src="/images/logos/google-forms.png" alt="Google Forms logo" width="48" height="48" loading="lazy">
+        </figure>
+        <h2 class="platform-entry-title">Google Forms (and friends)</h2>
+        <p>Free, familiar, and wrong for most real elections. Fine for straw polls. Risky when bylaws mention quorum and eligibility.</p>
+        <div class="platform-details">
+          <div class="platform-pros">
+            <p><strong>Pros</strong></p>
+            <ul>
+              <li>Free and fast to set up</li>
+              <li>Everyone already knows how to use it</li>
+              <li>Fine for lunch orders and informal decisions</li>
+            </ul>
+          </div>
+          <div class="platform-cons">
+            <p><strong>Cons</strong></p>
+            <ul>
+              <li>No real voter authentication</li>
+              <li>No audit trail for contested results</li>
+              <li>One shared link and anyone can vote</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
       <h2>So which one?</h2>
-      <ul>
-        <li><strong>HOA or condo board election:</strong> ElectoSense</li>
+      <ul class="platform-picks">
+        <li><strong>Best overall for auditable HOA and association elections:</strong> <a href="https://lawpilot.cloud/voting?utm_source=passr">ElectionPilot</a></li>
+        <li><strong>Best available today for condo and HOA board votes:</strong> <a href="https://electosense.com?utm_source=passr">ElectoSense</a></li>
         <li><strong>Nonprofit or club, standard ballot:</strong> ElectionBuddy</li>
         <li><strong>High-stakes member vote, compliance involved:</strong> Simply Voting or BigPulse</li>
         <li><strong>Ranked-choice or preferential ballot:</strong> Opavote</li>
