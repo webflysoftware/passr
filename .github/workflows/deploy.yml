@@ -10,6 +10,13 @@ concurrency:
   group: production-deploy
   cancel-in-progress: true
 
+env:
+  # Origin VPS IP — NOT passr.net (Cloudflare does not accept SSH).
+  # Example Hostinger VPS: 187.124.74.217
+  DEPLOY_PORT: "22"
+  DEPLOY_USER: "root"
+  PASSR_API_PORT: "3011"
+
 jobs:
   deploy:
     name: Build and deploy passr.net
@@ -39,6 +46,18 @@ jobs:
             fi
           done
 
+      - name: Verify deploy target is reachable
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER || env.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ secrets.DEPLOY_PORT || env.DEPLOY_PORT }}
+          script: |
+            set -euo pipefail
+            echo "Connected to $(hostname) as $(whoami)"
+            test "$(hostname -I | tr ' ' '\n' | grep -c .)" -ge 1
+
       - name: Deploy static site via rsync
         uses: burnett01/rsync-deployments@7.0.2
         with:
@@ -46,9 +65,9 @@ jobs:
           path: ./
           remote_path: /var/www/passr.net/
           remote_host: ${{ secrets.DEPLOY_HOST }}
-          remote_user: 'root'
+          remote_user: ${{ secrets.DEPLOY_USER || env.DEPLOY_USER }}
           remote_key: ${{ secrets.DEPLOY_SSH_KEY }}
-          remote_port: 22
+          remote_port: ${{ secrets.DEPLOY_PORT || env.DEPLOY_PORT }}
           exclude: |
             .git/
             .github/
@@ -67,30 +86,44 @@ jobs:
           path: server/
           remote_path: /opt/passr-api/
           remote_host: ${{ secrets.DEPLOY_HOST }}
-          remote_user: 'root'
+          remote_user: ${{ secrets.DEPLOY_USER || env.DEPLOY_USER }}
           remote_key: ${{ secrets.DEPLOY_SSH_KEY }}
-          remote_port: 22
+          remote_port: ${{ secrets.DEPLOY_PORT || env.DEPLOY_PORT }}
           exclude: |
             node_modules/
             .env
 
-      - name: Install dependencies and restart API
+      - name: Deploy nginx config via rsync
+        uses: burnett01/rsync-deployments@7.0.2
+        with:
+          switches: -avzr
+          path: nginx/passr.net.conf
+          remote_path: /etc/nginx/sites-available/passr.net
+          remote_host: ${{ secrets.DEPLOY_HOST }}
+          remote_user: ${{ secrets.DEPLOY_USER || env.DEPLOY_USER }}
+          remote_key: ${{ secrets.DEPLOY_SSH_KEY }}
+          remote_port: ${{ secrets.DEPLOY_PORT || env.DEPLOY_PORT }}
+
+      - name: Install dependencies, update nginx, restart API
         uses: appleboy/ssh-action@v1.2.0
         env:
           PASSR_MONGODB_URI: ${{ secrets.PASSR_MONGODB_URI }}
           PASSR_JWT_SECRET: ${{ secrets.PASSR_JWT_SECRET }}
           PASSR_SUPER_ADMIN_EMAILS: ${{ secrets.PASSR_SUPER_ADMIN_EMAILS }}
+          PASSR_API_PORT: ${{ env.PASSR_API_PORT }}
         with:
           host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
+          username: ${{ secrets.DEPLOY_USER || env.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
-          port: ${{ secrets.DEPLOY_PORT || 22 }}
-          envs: PASSR_MONGODB_URI,PASSR_JWT_SECRET,PASSR_SUPER_ADMIN_EMAILS
+          port: ${{ secrets.DEPLOY_PORT || env.DEPLOY_PORT }}
+          envs: PASSR_MONGODB_URI,PASSR_JWT_SECRET,PASSR_SUPER_ADMIN_EMAILS,PASSR_API_PORT
+          script_stop: true
           script: |
             set -euo pipefail
+
             cat > /opt/passr-api/.env <<EOF
             NODE_ENV=production
-            PORT=3010
+            PORT=${PASSR_API_PORT}
             HOST=127.0.0.1
             MONGODB_URI=${PASSR_MONGODB_URI}
             JWT_SECRET=${PASSR_JWT_SECRET}
@@ -98,20 +131,29 @@ jobs:
             PASSR_SUPER_ADMIN_DOMAINS=passr.net,webfly.io
             AUTO_VERIFY_EMAIL=false
             EOF
+
             cd /opt/passr-api
             npm ci --omit=dev
             pm2 startOrReload /opt/passr-api/ecosystem.config.cjs --env production
             pm2 save
-            curl -sf http://127.0.0.1:3010/health
+
+            nginx -t
+            systemctl reload nginx
+
+            curl -sf "http://127.0.0.1:${PASSR_API_PORT}/health"
 
       - name: Verify deployment
         uses: appleboy/ssh-action@v1.2.0
+        env:
+          PASSR_API_PORT: ${{ env.PASSR_API_PORT }}
         with:
           host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
+          username: ${{ secrets.DEPLOY_USER || env.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
-          port: ${{ secrets.DEPLOY_PORT || 22 }}
+          port: ${{ secrets.DEPLOY_PORT || env.DEPLOY_PORT }}
+          envs: PASSR_API_PORT
           script: |
+            set -euo pipefail
             test -f /var/www/passr.net/index.html
-            curl -sf http://127.0.0.1:3010/health
+            curl -sf "http://127.0.0.1:${PASSR_API_PORT}/health"
             echo "passr.net deployed (static build ${{ env.BUILD_VERSION }})"
