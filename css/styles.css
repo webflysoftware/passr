@@ -456,6 +456,140 @@ button {
   max-width: 160px;
 }
 
+/* Ranked platform reviews (banner screenshots) */
+.article-body .platform-entry {
+  margin-top: 3.5rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border);
+}
+
+.article-body .platform-entry:first-of-type {
+  margin-top: 2.5rem;
+  padding-top: 0;
+  border-top: none;
+}
+
+.article-body .platform-entry-top {
+  margin-top: 2.5rem;
+}
+
+.article-body .platform-entry-banner {
+  position: relative;
+  margin: 0 0 1.25rem;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg-muted);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.article-body .platform-entry-banner img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.article-body .platform-entry-banner .platform-rank {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  padding: 0 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+
+.article-body .platform-entry-top .platform-entry-banner .platform-rank {
+  background: var(--accent);
+  color: #fff;
+}
+
+.article-body .platform-entry-title {
+  font-family: var(--sans);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.85rem;
+}
+
+.article-body .platform-entry-title a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.article-body .platform-entry-title a:hover {
+  color: var(--accent);
+}
+
+.article-body .platform-entry > p {
+  margin-top: 0;
+}
+
+.article-body .platform-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 32px;
+  margin-top: 1.5rem;
+  padding: 20px 22px;
+  border-radius: 6px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+}
+
+.article-body .platform-details p {
+  margin: 0 0 0.5rem;
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.article-body .platform-pros ul,
+.article-body .platform-cons ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  font-size: 1.0625rem;
+}
+
+.article-body .platform-pros li::marker {
+  color: #047857;
+}
+
+.article-body .platform-cons li::marker {
+  color: #b45309;
+}
+
+.article-body .platform-picks {
+  padding: 18px 22px;
+  border-radius: 6px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  font-size: 1.0625rem;
+}
+
+.article-body .platform-picks li + li {
+  margin-top: 0.65rem;
+}
+
 .article-body h3 {
   font-family: var(--sans);
   font-size: 1.125rem;
@@ -1510,6 +1644,20 @@ button.comment-author {
 
   .article-body {
     font-size: 1.0625rem;
+  }
+
+  .article-body .platform-details {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 16px 18px;
+  }
+
+  .article-body .platform-entry-banner .platform-rank {
+    top: 10px;
+    left: 10px;
+    min-width: 2rem;
+    height: 2rem;
+    font-size: 0.9375rem;
   }
 
   .share-actions {
