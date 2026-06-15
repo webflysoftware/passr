@@ -121,16 +121,21 @@ jobs:
           script: |
             set -euo pipefail
 
-            cat > /opt/passr-api/.env <<EOF
-            NODE_ENV=production
-            PORT=${PASSR_API_PORT}
-            HOST=127.0.0.1
-            MONGODB_URI=${PASSR_MONGODB_URI}
-            JWT_SECRET=${PASSR_JWT_SECRET}
-            PASSR_SUPER_ADMIN_EMAILS=${PASSR_SUPER_ADMIN_EMAILS}
-            PASSR_SUPER_ADMIN_DOMAINS=passr.net,webfly.io
-            AUTO_VERIFY_EMAIL=false
-            EOF
+            if [ -z "${PASSR_MONGODB_URI:-}" ] || [ -z "${PASSR_JWT_SECRET:-}" ]; then
+              echo "PASSR_MONGODB_URI and PASSR_JWT_SECRET must be set in GitHub secrets" >&2
+              exit 1
+            fi
+
+            printf '%s\n' \
+              "NODE_ENV=production" \
+              "PORT=${PASSR_API_PORT}" \
+              "HOST=127.0.0.1" \
+              "MONGODB_URI=${PASSR_MONGODB_URI}" \
+              "JWT_SECRET=${PASSR_JWT_SECRET}" \
+              "PASSR_SUPER_ADMIN_EMAILS=${PASSR_SUPER_ADMIN_EMAILS}" \
+              "PASSR_SUPER_ADMIN_DOMAINS=passr.net,webfly.io" \
+              "AUTO_VERIFY_EMAIL=false" \
+              > /opt/passr-api/.env
 
             cd /opt/passr-api
             npm ci --omit=dev

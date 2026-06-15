@@ -358,7 +358,7 @@ function renderSubscribeModal() {
   document.body.insertAdjacentHTML(
     "beforeend",
     `
-    <div class="modal-overlay" id="subscribe-modal" hidden>
+    <div class="modal-overlay" id="subscribe-modal">
       <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="subscribe-modal-title">
         <button type="button" class="modal-close" aria-label="Close subscribe dialog">&times;</button>
         <h2 id="subscribe-modal-title">Subscribe to PASSR</h2>
@@ -386,7 +386,7 @@ function initSubscribe() {
   if (!modal || !form) return;
 
   const openModal = () => {
-    modal.hidden = false;
+    modal.classList.add("open");
     document.body.classList.add("modal-open");
     form.reset();
     feedback.hidden = true;
@@ -394,7 +394,7 @@ function initSubscribe() {
   };
 
   const closeModal = () => {
-    modal.hidden = true;
+    modal.classList.remove("open");
     document.body.classList.remove("modal-open");
   };
 
