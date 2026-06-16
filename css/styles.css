@@ -1577,7 +1577,7 @@ body.modal-open {
   display: grid;
   gap: 4px;
   margin-top: 8px;
-  max-height: 200px;
+  max-height: 280px;
   overflow: auto;
 }
 

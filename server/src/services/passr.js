@@ -153,6 +153,10 @@ export async function updateCommentAdmin(commentId, payload, actor) {
     updatedAt: new Date(),
   };
 
+  if (payload.createdAt) {
+    update.createdAt = new Date(payload.createdAt);
+  }
+
   if (payload.userId) {
     const user = await db.collection("users").findOne({ _id: new ObjectId(payload.userId) });
     if (!user) {

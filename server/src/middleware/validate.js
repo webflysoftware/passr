@@ -70,6 +70,7 @@ export const updateCommentSchema = Joi.object({
   userId: Joi.string().trim().allow(null).optional(),
   authorName: Joi.string().trim().max(80).optional(),
   authorEmail: Joi.string().trim().email().optional(),
+  createdAt: Joi.date().iso().optional(),
 });
 
 export const adminCreateUserSchema = Joi.object({

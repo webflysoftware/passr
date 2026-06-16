@@ -910,6 +910,10 @@ function renderAdminModals() {
             <textarea id="admin-comment-body" maxlength="2000" rows="5"></textarea>
           </label>
           <label class="form-field">
+            <span class="form-label">Posted at</span>
+            <input type="datetime-local" id="admin-comment-created-at" step="60">
+          </label>
+          <label class="form-field">
             <span class="form-label">Assigned user</span>
             <input type="search" id="admin-comment-user-search" placeholder="Search users by name or email" autocomplete="off">
             <div id="admin-comment-user-results" class="admin-user-results"></div>
@@ -940,7 +944,9 @@ function initAdminModals() {
     _adminSelectedUser = null;
     updateAdminCommentUserUI();
   });
+  document.getElementById("admin-comment-user-search")?.addEventListener("focus", scheduleAdminUserBrowse);
   document.getElementById("admin-comment-user-search")?.addEventListener("input", (e) => {
+    window.clearTimeout(_adminBrowseTimer);
     window.clearTimeout(_adminSearchTimer);
     _adminSearchTimer = window.setTimeout(() => searchAdminUsers(e.target.value.trim()), 250);
   });
@@ -948,18 +954,32 @@ function initAdminModals() {
 }
 
 let _adminSearchTimer = null;
+let _adminBrowseTimer = null;
+
+function toDatetimeLocalValue(iso) {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "";
+  const pad = (value) => String(value).padStart(2, "0");
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
+}
+
+function scheduleAdminUserBrowse() {
+  window.clearTimeout(_adminBrowseTimer);
+  _adminBrowseTimer = window.setTimeout(() => {
+    const searchEl = document.getElementById("admin-comment-user-search");
+    if (!searchEl || searchEl.value.trim()) return;
+    searchAdminUsers("");
+  }, 1000);
+}
 
 async function searchAdminUsers(query) {
   const resultsEl = document.getElementById("admin-comment-user-results");
   if (!resultsEl) return;
 
-  if (!query) {
-    resultsEl.innerHTML = "";
-    return;
-  }
+  const limit = query ? 8 : 25;
 
   try {
-    const { users } = await adminSearchUsers(query, 8);
+    const { users } = await adminSearchUsers(query, limit);
     if (!users.length) {
       resultsEl.innerHTML = '<p class="admin-user-empty">No users found.</p>';
       return;
@@ -1021,16 +1041,22 @@ function showAdminCommentModal(commentId) {
     : null;
 
   const bodyEl = document.getElementById("admin-comment-body");
+  const createdAtEl = document.getElementById("admin-comment-created-at");
   const nameEl = document.getElementById("admin-comment-author-name");
   const emailEl = document.getElementById("admin-comment-author-email");
   const feedback = document.getElementById("admin-comment-feedback");
   const resultsEl = document.getElementById("admin-comment-user-results");
+  const searchEl = document.getElementById("admin-comment-user-search");
 
   if (bodyEl) bodyEl.value = comment.body || "";
+  if (createdAtEl) createdAtEl.value = toDatetimeLocalValue(comment.createdAt);
   if (nameEl) nameEl.value = comment.authorName || "";
   if (emailEl) emailEl.value = comment.authorEmail || "";
+  if (searchEl) searchEl.value = "";
   if (feedback) feedback.hidden = true;
   if (resultsEl) resultsEl.innerHTML = "";
+  window.clearTimeout(_adminBrowseTimer);
+  window.clearTimeout(_adminSearchTimer);
 
   updateAdminCommentUserUI();
   document.getElementById("admin-comment-modal")?.classList.add("open");
@@ -1039,6 +1065,8 @@ function showAdminCommentModal(commentId) {
 function hideAdminCommentModal() {
   _adminEditingCommentId = null;
   _adminSelectedUser = null;
+  window.clearTimeout(_adminBrowseTimer);
+  window.clearTimeout(_adminSearchTimer);
   document.getElementById("admin-comment-modal")?.classList.remove("open");
 }
 
@@ -1059,7 +1087,27 @@ async function handleAdminCommentSave(e) {
     return;
   }
 
-  const payload = { body };
+  const createdAtValue = document.getElementById("admin-comment-created-at")?.value;
+  if (!createdAtValue) {
+    if (feedback) {
+      feedback.textContent = "Posted date and time are required.";
+      feedback.className = "form-feedback form-feedback-error";
+      feedback.hidden = false;
+    }
+    return;
+  }
+
+  const createdAt = new Date(createdAtValue);
+  if (Number.isNaN(createdAt.getTime())) {
+    if (feedback) {
+      feedback.textContent = "Posted date and time are invalid.";
+      feedback.className = "form-feedback form-feedback-error";
+      feedback.hidden = false;
+    }
+    return;
+  }
+
+  const payload = { body, createdAt: createdAt.toISOString() };
   if (_adminSelectedUser) {
     payload.userId = _adminSelectedUser.id;
   } else {
