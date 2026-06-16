@@ -75,7 +75,37 @@ function authHeaders(extra = {}) {
   return headers;
 }
 
-async function authRequest(path, options = {}) {
+let _refreshPromise = null;
+
+async function refreshAccessToken() {
+  const refreshToken = getRefreshToken();
+  if (!refreshToken) {
+    throw new Error("Session expired");
+  }
+
+  if (!_refreshPromise) {
+    _refreshPromise = (async () => {
+      const response = await fetch(`${AUTH_API_BASE}/refresh`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ refreshToken }),
+      });
+      const data = await parseJsonResponse(response);
+      if (!response.ok) {
+        clearAuthSession();
+        throw new Error(data.message || "Session expired");
+      }
+      storeAuthSession(data);
+      return data;
+    })().finally(() => {
+      _refreshPromise = null;
+    });
+  }
+
+  return _refreshPromise;
+}
+
+async function authRequest(path, options = {}, retry = true) {
   const response = await fetch(`${AUTH_API_BASE}${path}`, {
     ...options,
     headers: authHeaders({
@@ -84,6 +114,15 @@ async function authRequest(path, options = {}) {
     }),
     body: options.body !== undefined ? JSON.stringify(options.body) : undefined,
   });
+
+  if (response.status === 401 && retry && getRefreshToken() && path !== "/refresh") {
+    try {
+      await refreshAccessToken();
+      return authRequest(path, options, false);
+    } catch (_) {
+      clearAuthSession();
+    }
+  }
 
   const data = await parseJsonResponse(response);
   if (!response.ok) {
@@ -176,6 +215,20 @@ async function getCurrentUser() {
   const user = await authRequest("/me", { method: "GET" });
   setStoredUser(user);
   return user;
+}
+
+async function requestPasswordReset(email) {
+  return authRequest("/forgot-password", {
+    method: "POST",
+    body: { email },
+  });
+}
+
+async function resetPassword({ token, password }) {
+  return authRequest("/reset-password", {
+    method: "POST",
+    body: { token, password },
+  });
 }
 
 function subscribeToPassr(email) {

@@ -37,6 +37,22 @@ function articleUrl(slug) {
   return `/article/${slug}`;
 }
 
+function buildLoginUrl(redirect) {
+  const url = new URL("/login", window.location.origin);
+  const target = redirect || `${window.location.pathname}${window.location.search}`;
+  if (target && !target.startsWith("/login")) {
+    url.searchParams.set("redirect", target);
+  }
+  return `${url.pathname}${url.search}`;
+}
+
+function redirectToLogin(redirect, options = {}) {
+  if (options.pendingReply) {
+    sessionStorage.setItem("passr_pending_reply", options.pendingReply);
+  }
+  window.location.href = buildLoginUrl(redirect);
+}
+
 function getArticleSlugFromPath() {
   return window.location.pathname.match(/^\/article\/([^/]+)\/?$/)?.[1] || null;
 }
@@ -277,7 +293,6 @@ function mountArticlePage(slug, options) {
   }
 
   initComments(slug);
-  initAuthModal();
 
   return article;
 }
@@ -347,7 +362,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initConversionLinks();
   initSubscribe();
   initContactForm();
-  initProfileModals();
+  initProfileFeatures();
   initAdminFeatures();
   initSessionUI();
 });
@@ -521,6 +536,12 @@ async function initComments(slug) {
   }
 
   await refreshComments(slug);
+
+  const pendingReply = sessionStorage.getItem("passr_pending_reply");
+  if (pendingReply && _currentUser) {
+    sessionStorage.removeItem("passr_pending_reply");
+    openReplyForm(pendingReply);
+  }
 }
 
 function updateCharCount(textarea, counterEl) {
@@ -645,12 +666,7 @@ function bindCommentInteractions(listEl) {
       const parentId = btn.dataset.parentId;
       if (!_currentUser) {
         _pendingReplyParentId = parentId;
-        showAuthModal(() => {
-          if (_pendingReplyParentId) {
-            openReplyForm(_pendingReplyParentId);
-            _pendingReplyParentId = null;
-          }
-        });
+        redirectToLogin(undefined, { pendingReply: parentId });
         return;
       }
       openReplyForm(parentId);
@@ -725,7 +741,7 @@ async function handleCommentSubmit(slug) {
     submitBtn,
     defaultLabel: "Post Comment",
     loadingLabel: "Posting…",
-    requireAuthCallback: () => showAuthModal(() => handleCommentSubmit(slug)),
+    requireAuthCallback: () => redirectToLogin(),
   });
 }
 
@@ -738,10 +754,7 @@ async function handleReplySubmit(slug, parentId, form, textarea, submitBtn) {
     submitBtn,
     defaultLabel: "Post Reply",
     loadingLabel: "Posting…",
-    requireAuthCallback: () => {
-      _pendingReplyParentId = parentId;
-      showAuthModal(() => handleReplySubmit(slug, parentId, form, textarea, submitBtn));
-    },
+    requireAuthCallback: () => redirectToLogin(undefined, { pendingReply: parentId }),
   });
 }
 
@@ -1180,44 +1193,12 @@ function renderCommentAuthorHtml(comment) {
   return `<span class="comment-author">${escapeHtml(name)}</span>`;
 }
 
-function renderProfileModals() {
-  if (document.getElementById("profile-modal")) return;
+function renderPublicProfileModal() {
+  if (document.getElementById("public-profile-modal")) return;
 
   document.body.insertAdjacentHTML(
     "beforeend",
     `
-    <div class="modal-overlay" id="profile-modal" role="dialog" aria-modal="true" aria-labelledby="profile-modal-title">
-      <div class="modal-box profile-modal-box">
-        <button type="button" class="modal-close" id="profile-modal-close" aria-label="Close">&times;</button>
-        <h2 class="modal-title" id="profile-modal-title">My Profile</h2>
-        <p class="modal-subtitle">This is how you appear in article discussions.</p>
-        <form class="profile-form" id="profile-form" onsubmit="return false;">
-          <div class="profile-avatar-field">
-            <div class="profile-avatar-preview" id="profile-avatar-preview"></div>
-            <div class="profile-avatar-actions">
-              <label class="btn btn-ghost profile-upload-label">
-                Upload photo
-                <input type="file" id="profile-avatar-input" accept="image/jpeg,image/png,image/webp,image/gif" hidden>
-              </label>
-              <button type="button" class="comment-reply-cancel" id="profile-remove-avatar" hidden>Remove photo</button>
-            </div>
-          </div>
-          <label class="form-field">
-            <span class="form-label">Display name</span>
-            <input type="text" id="profile-display-name" maxlength="80" required placeholder="Your name">
-          </label>
-          <label class="form-field">
-            <span class="form-label">Bio</span>
-            <textarea id="profile-bio" maxlength="280" rows="4" placeholder="A short intro for readers who click your name in comments…"></textarea>
-            <span class="char-count" id="profile-bio-count">0 / 280</span>
-          </label>
-          <p class="form-feedback" id="profile-feedback" hidden aria-live="polite"></p>
-          <button type="submit" class="modal-submit" id="profile-save-btn">Save profile</button>
-          <button type="button" class="comment-reply-cancel profile-sign-out-btn" id="profile-sign-out-btn">Sign out</button>
-        </form>
-      </div>
-    </div>
-
     <div class="modal-overlay" id="public-profile-modal" role="dialog" aria-modal="true" aria-labelledby="public-profile-name">
       <div class="modal-box profile-view-box">
         <button type="button" class="modal-close" id="public-profile-close" aria-label="Close">&times;</button>
@@ -1238,18 +1219,21 @@ function renderProfileModals() {
 let _profileAvatarDataUrl = null;
 let _profileRemoveAvatar = false;
 
-function initProfileModals() {
-  renderProfileModals();
-
-  document.getElementById("profile-modal-close")?.addEventListener("click", hideProfileModal);
-  document.getElementById("profile-modal")?.addEventListener("click", (e) => {
-    if (e.target.id === "profile-modal") hideProfileModal();
-  });
+function initProfileFeatures() {
+  renderPublicProfileModal();
 
   document.getElementById("public-profile-close")?.addEventListener("click", hidePublicProfileModal);
   document.getElementById("public-profile-modal")?.addEventListener("click", (e) => {
     if (e.target.id === "public-profile-modal") hidePublicProfileModal();
   });
+
+  initProfileFormEvents();
+}
+
+function initProfileFormEvents() {
+  const form = document.getElementById("profile-form");
+  if (!form || form.dataset.bound === "true") return;
+  form.dataset.bound = "true";
 
   document.getElementById("profile-avatar-input")?.addEventListener("change", handleProfileAvatarSelect);
   document.getElementById("profile-remove-avatar")?.addEventListener("click", () => {
@@ -1265,8 +1249,31 @@ function initProfileModals() {
     if (bioCount) bioCount.textContent = `${bioEl.value.length} / 280`;
   });
 
-  document.getElementById("profile-form")?.addEventListener("submit", handleProfileSave);
+  form.addEventListener("submit", handleProfileSave);
   document.getElementById("profile-sign-out-btn")?.addEventListener("click", handleSignOut);
+}
+
+function populateProfileForm(user) {
+  _currentUser = user;
+  _profileAvatarDataUrl = null;
+  _profileRemoveAvatar = false;
+
+  const displayNameEl = document.getElementById("profile-display-name");
+  const bioEl = document.getElementById("profile-bio");
+  const feedback = document.getElementById("profile-feedback");
+  const removeBtn = document.getElementById("profile-remove-avatar");
+
+  if (displayNameEl) displayNameEl.value = getUserDisplayName(user);
+  if (bioEl) {
+    bioEl.value = (user.passrProfile?.bio || "").trim();
+    const bioCount = document.getElementById("profile-bio-count");
+    if (bioCount) bioCount.textContent = `${bioEl.value.length} / 280`;
+  }
+  if (feedback) feedback.hidden = true;
+  if (removeBtn) removeBtn.hidden = !getUserAvatarUrl(user);
+
+  renderProfileAvatarPreview(user);
+  updateAdminProfileSectionVisibility();
 }
 
 function renderProfileAvatarPreview(user, previewUrl) {
@@ -1285,35 +1292,7 @@ function renderProfileAvatarPreview(user, previewUrl) {
 }
 
 function showProfileModal() {
-  if (!_currentUser) {
-    showAuthModal(() => showProfileModal());
-    return;
-  }
-
-  _profileAvatarDataUrl = null;
-  _profileRemoveAvatar = false;
-
-  const displayNameEl = document.getElementById("profile-display-name");
-  const bioEl = document.getElementById("profile-bio");
-  const feedback = document.getElementById("profile-feedback");
-  const removeBtn = document.getElementById("profile-remove-avatar");
-
-  if (displayNameEl) displayNameEl.value = getUserDisplayName(_currentUser);
-  if (bioEl) {
-    bioEl.value = (_currentUser.passrProfile?.bio || "").trim();
-    const bioCount = document.getElementById("profile-bio-count");
-    if (bioCount) bioCount.textContent = `${bioEl.value.length} / 280`;
-  }
-  if (feedback) feedback.hidden = true;
-  if (removeBtn) removeBtn.hidden = !getUserAvatarUrl(_currentUser);
-
-  renderProfileAvatarPreview(_currentUser);
-  updateAdminProfileSectionVisibility();
-  document.getElementById("profile-modal")?.classList.add("open");
-}
-
-function hideProfileModal() {
-  document.getElementById("profile-modal")?.classList.remove("open");
+  window.location.href = "/profile";
 }
 
 async function showPublicProfileModal(userId) {
@@ -1420,7 +1399,6 @@ async function handleProfileSave(e) {
       feedback.className = "form-feedback form-feedback-success";
       feedback.hidden = false;
     }
-    window.setTimeout(hideProfileModal, 700);
   } catch (err) {
     if (feedback) {
       feedback.textContent = err.message || "Could not save profile.";
@@ -1438,7 +1416,10 @@ async function handleProfileSave(e) {
 async function handleSignOut() {
   await logoutUser();
   _currentUser = null;
-  hideProfileModal();
+  if (document.body.dataset.page === "profile") {
+    window.location.href = "/";
+    return;
+  }
   await refreshSessionUI();
   if (_currentSlug) await refreshComments(_currentSlug);
 }
@@ -1460,6 +1441,7 @@ async function refreshSessionUI() {
 
   document.getElementById("header-auth-slot")?.remove();
   document.getElementById("mobile-profile-link")?.remove();
+  document.getElementById("mobile-sign-in-link")?.remove();
 
   if (user) {
     const slot = document.createElement("div");
@@ -1471,23 +1453,21 @@ async function refreshSessionUI() {
       ? `<img src="${escapeHtml(avatarUrl)}" alt="" class="header-profile-avatar">`
       : `<span class="header-profile-initial">${escapeHtml(name[0].toUpperCase())}</span>`;
     slot.innerHTML = `
-      <button type="button" class="header-profile-btn" id="header-profile-btn">
+      <a href="/profile" class="header-profile-btn" id="header-profile-btn">
         ${avatarMarkup}
         <span class="header-profile-label">My Profile</span>
-      </button>
+      </a>
     `;
     headerActions.insertBefore(slot, headerActions.firstChild);
-    document.getElementById("header-profile-btn")?.addEventListener("click", showProfileModal);
 
     if (mobileLinks) {
-      const mobileProfile = document.createElement("button");
-      mobileProfile.type = "button";
+      const mobileProfile = document.createElement("a");
+      mobileProfile.href = "/profile";
       mobileProfile.id = "mobile-profile-link";
       mobileProfile.className = "mobile-nav-profile";
       mobileProfile.textContent = "My Profile";
       mobileProfile.addEventListener("click", () => {
         document.querySelector(".mobile-nav")?.classList.remove("open");
-        showProfileModal();
       });
       mobileLinks.insertBefore(mobileProfile, mobileLinks.firstChild);
     }
@@ -1495,9 +1475,20 @@ async function refreshSessionUI() {
     const slot = document.createElement("div");
     slot.id = "header-auth-slot";
     slot.className = "header-auth-slot";
-    slot.innerHTML = `<button type="button" class="btn btn-ghost header-sign-in-btn">Sign in</button>`;
+    slot.innerHTML = `<a href="/login" class="btn btn-ghost header-sign-in-btn">Sign in</a>`;
     headerActions.insertBefore(slot, headerActions.firstChild);
-    slot.querySelector(".header-sign-in-btn")?.addEventListener("click", () => showAuthModal());
+
+    if (mobileLinks) {
+      const mobileSignIn = document.createElement("a");
+      mobileSignIn.href = "/login";
+      mobileSignIn.id = "mobile-sign-in-link";
+      mobileSignIn.className = "mobile-nav-sign-in";
+      mobileSignIn.textContent = "Sign in";
+      mobileSignIn.addEventListener("click", () => {
+        document.querySelector(".mobile-nav")?.classList.remove("open");
+      });
+      mobileLinks.insertBefore(mobileSignIn, mobileLinks.firstChild);
+    }
   }
 
   updateCommentForm();
@@ -1509,157 +1500,4 @@ async function refreshSessionUI() {
 
 async function initSessionUI() {
   await refreshSessionUI();
-}
-
-// ── Auth Modal ──────────────────────────────────────────────────────────────
-
-let _authModalSubmitCallback = null;
-
-function initAuthModal() {
-  const overlay = document.getElementById("auth-modal");
-  const closeBtn = document.getElementById("modal-close");
-
-  if (closeBtn) {
-    closeBtn.addEventListener("click", hideAuthModal);
-  }
-
-  if (overlay) {
-    overlay.addEventListener("click", (e) => {
-      if (e.target === overlay) hideAuthModal();
-    });
-  }
-
-  document.getElementById("show-register")?.addEventListener("click", showRegisterView);
-  document.getElementById("show-login")?.addEventListener("click", showLoginView);
-  document.getElementById("verify-back-login")?.addEventListener("click", showLoginView);
-
-  document.getElementById("modal-login-form")?.addEventListener("submit", handleLoginSubmit);
-  document.getElementById("modal-register-form")?.addEventListener("submit", handleRegisterSubmit);
-
-  document.getElementById("resend-verification")?.addEventListener("click", async (e) => {
-    e.preventDefault();
-    const email = document.getElementById("register-email")?.value;
-    if (email) {
-      try {
-        const { email: e2 } = await authRequest("/send-verification-email", { method: "POST" });
-        alert("Verification email resent.");
-      } catch (_) {
-        alert("Could not resend. Please try again.");
-      }
-    }
-  });
-}
-
-function showAuthModal(onsubmit) {
-  _authModalSubmitCallback = onsubmit || null;
-  const overlay = document.getElementById("auth-modal");
-  if (overlay) {
-    overlay.classList.add("open");
-    showLoginView();
-  }
-}
-
-function hideAuthModal() {
-  const overlay = document.getElementById("auth-modal");
-  if (overlay) overlay.classList.remove("open");
-  clearModalErrors();
-}
-
-function showLoginView() {
-  document.getElementById("modal-login-view")?.style.removeProperty("display");
-  document.getElementById("modal-register-view")?.style.setProperty("display", "none");
-  document.getElementById("modal-verify-view")?.style.setProperty("display", "none");
-  clearModalErrors();
-}
-
-function showRegisterView() {
-  document.getElementById("modal-login-view")?.style.setProperty("display", "none");
-  document.getElementById("modal-register-view")?.style.removeProperty("display");
-  document.getElementById("modal-verify-view")?.style.setProperty("display", "none");
-  clearModalErrors();
-}
-
-function showVerifyView(email) {
-  document.getElementById("modal-login-view")?.style.setProperty("display", "none");
-  document.getElementById("modal-register-view")?.style.setProperty("display", "none");
-  document.getElementById("modal-verify-view")?.style.removeProperty("display");
-  const addrEl = document.getElementById("verify-email-addr");
-  if (addrEl) addrEl.textContent = `We've sent a verification link to ${email}. Click the link in your inbox to activate your account, then sign in here.`;
-  clearModalErrors();
-}
-
-function clearModalErrors() {
-  const errEl = document.getElementById("login-error");
-  if (errEl) { errEl.style.display = "none"; errEl.textContent = ""; }
-  const regErr = document.getElementById("register-error");
-  if (regErr) { regErr.style.display = "none"; regErr.textContent = ""; }
-  const regSucc = document.getElementById("register-success");
-  if (regSucc) { regSucc.style.display = "none"; regSucc.textContent = ""; }
-}
-
-function setLoginLoading(loading) {
-  const btn = document.getElementById("login-submit-btn");
-  if (btn) { btn.disabled = loading; btn.textContent = loading ? "Signing in…" : "Sign in"; }
-}
-
-function setRegisterLoading(loading) {
-  const btn = document.getElementById("register-submit-btn");
-  if (btn) { btn.disabled = loading; btn.textContent = loading ? "Creating account…" : "Create account"; }
-}
-
-async function handleLoginSubmit() {
-  const email = document.getElementById("login-email")?.value.trim();
-  const password = document.getElementById("login-password")?.value;
-  const errEl = document.getElementById("login-error");
-
-  if (!email || !password) { errEl.textContent = "Please fill in all fields."; errEl.style.display = "block"; return; }
-
-  setLoginLoading(true);
-  try {
-    await loginUser({ email, password });
-    _currentUser = getStoredUser();
-    refreshSessionUI();
-    hideAuthModal();
-    if (_authModalSubmitCallback) {
-      setTimeout(_authModalSubmitCallback, 100);
-      _authModalSubmitCallback = null;
-    }
-  } catch (err) {
-    errEl.textContent = err.message || "Sign in failed. Check your email and password.";
-    errEl.style.display = "block";
-  } finally {
-    setLoginLoading(false);
-  }
-}
-
-async function handleRegisterSubmit() {
-  const name = document.getElementById("register-name")?.value.trim();
-  const email = document.getElementById("register-email")?.value.trim();
-  const password = document.getElementById("register-password")?.value;
-  const errEl = document.getElementById("register-error");
-  const succEl = document.getElementById("register-success");
-
-  if (!name || !email || !password) { errEl.textContent = "Please fill in all fields."; errEl.style.display = "block"; return; }
-  if (password.length < 8) { errEl.textContent = "Password must be at least 8 characters."; errEl.style.display = "block"; return; }
-
-  setRegisterLoading(true);
-  try {
-    await registerUser({ name, email, password });
-    _currentUser = getStoredUser();
-    if (_currentUser?.isEmailVerified || isPassrSuperAdmin(_currentUser)) {
-      refreshSessionUI();
-      hideAuthModal();
-      if (_authModalSubmitCallback) {
-        setTimeout(_authModalSubmitCallback, 100);
-        _authModalSubmitCallback = null;
-      }
-    } else {
-      showVerifyView(email);
-    }
-  } catch (err) {
-    errEl.textContent = err.message || "Registration failed. This email may already be in use.";
-    errEl.style.display = "block";
-  } finally {
-    setRegisterLoading(false);
-  }
 }

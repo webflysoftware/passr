@@ -260,41 +260,6 @@
     </div>
   </footer>
 
-  <div class="modal-overlay" id="auth-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <div class="modal-box">
-      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
-      <div id="modal-login-view">
-        <h2 class="modal-title" id="modal-title">Sign in to comment</h2>
-        <p class="modal-subtitle">Join the discussion — your email is only used for verification and will not be published.</p>
-        <form class="modal-form" id="modal-login-form" onsubmit="return false;">
-          <input type="email" id="login-email" placeholder="Email address" autocomplete="email" required>
-          <input type="password" id="login-password" placeholder="Password" autocomplete="current-password" required>
-          <div id="login-error" class="error-msg" style="display:none;"></div>
-          <button type="submit" class="modal-submit" id="login-submit-btn">Sign in</button>
-        </form>
-        <p class="modal-switch">Don't have an account? <a id="show-register">Create one</a></p>
-      </div>
-      <div id="modal-register-view" style="display:none;">
-        <h2 class="modal-title">Create an account</h2>
-        <p class="modal-subtitle">Register to join the discussion. We'll send a verification link to confirm your email.</p>
-        <form class="modal-form" id="modal-register-form" onsubmit="return false;">
-          <input type="text" id="register-name" placeholder="Your name" autocomplete="name" required>
-          <input type="email" id="register-email" placeholder="Email address" autocomplete="email" required>
-          <input type="password" id="register-password" placeholder="Password (min 8 chars, letter + number)" autocomplete="new-password" required>
-          <div id="register-error" class="error-msg" style="display:none;"></div>
-          <div id="register-success" class="success-msg" style="display:none;"></div>
-          <button type="submit" class="modal-submit" id="register-submit-btn">Create account</button>
-        </form>
-        <p class="modal-switch">Already have an account? <a id="show-login">Sign in</a></p>
-      </div>
-      <div id="modal-verify-view" style="display:none;">
-        <h2 class="modal-title">Check your email</h2>
-        <p class="modal-subtitle" id="verify-email-addr">We've sent a verification link to your email. Click the link to activate your account, then sign in.</p>
-        <p class="modal-switch">Didn't get it? <a id="resend-verification" href="#">Resend</a></p>
-        <p class="modal-switch">Back to <a id="verify-back-login">sign in</a></p>
-      </div>
-    </div>
-  </div>
   <script src="/js/articles.js?v=20260614j"></script>
   <script src="/js/seo.js?v=20260614j"></script>
   <script src="/js/api.js?v=20260614j"></script>

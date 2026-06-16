@@ -32,6 +32,19 @@ export const logoutSchema = Joi.object({
   refreshToken: Joi.string().required(),
 });
 
+export const refreshSchema = Joi.object({
+  refreshToken: Joi.string().required(),
+});
+
+export const forgotPasswordSchema = Joi.object({
+  email: Joi.string().trim().email().required(),
+});
+
+export const resetPasswordSchema = Joi.object({
+  token: Joi.string().trim().min(32).max(128).required(),
+  password: Joi.string().min(8).max(128).required(),
+});
+
 export const subscribeSchema = Joi.object({
   email: Joi.string().trim().email().required(),
 });

@@ -3,18 +3,23 @@ import {
   loginUser,
   logoutUser,
   registerUser,
+  refreshAuthSession,
   sendVerificationEmail,
   updatePassrProfile,
   getPublicProfile,
   adminCreateUser,
   adminSearchUsers,
 } from "../services/auth.js";
+import { requestPasswordReset, resetPasswordWithToken } from "../services/passwordReset.js";
 import { requireAuth, requireSuperAdmin } from "../middleware/auth.js";
 import {
   adminCreateUserSchema,
+  forgotPasswordSchema,
   loginSchema,
   logoutSchema,
+  refreshSchema,
   registerSchema,
+  resetPasswordSchema,
   updateProfileSchema,
   validateBody,
 } from "../middleware/validate.js";
@@ -43,6 +48,33 @@ router.post("/logout", validateBody(logoutSchema), async (req, res, next) => {
   try {
     await logoutUser(req.body.refreshToken);
     res.status(204).send();
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/refresh", validateBody(refreshSchema), async (req, res, next) => {
+  try {
+    const result = await refreshAuthSession(req.body.refreshToken);
+    res.json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/forgot-password", validateBody(forgotPasswordSchema), async (req, res, next) => {
+  try {
+    const result = await requestPasswordReset(req.body.email);
+    res.json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/reset-password", validateBody(resetPasswordSchema), async (req, res, next) => {
+  try {
+    const result = await resetPasswordWithToken(req.body);
+    res.json(result);
   } catch (err) {
     next(err);
   }

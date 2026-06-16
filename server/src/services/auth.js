@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import { ObjectId } from "mongodb";
 import { config, isSuperAdminEmail, isSuperAdminDomain } from "../config.js";
 import { getDb } from "../db.js";
-import { issueTokens, revokeRefreshToken, serializeUser } from "./tokens.js";
+import { issueTokens, revokeRefreshToken, serializeUser, verifyRefreshToken } from "./tokens.js";
 import { compressAvatarDataUrl } from "./avatars.js";
 
 const SALT_ROUNDS = 12;
@@ -73,6 +73,28 @@ export async function loginUser({ email, password }) {
 
 export async function logoutUser(refreshToken) {
   await revokeRefreshToken(refreshToken);
+}
+
+export async function refreshAuthSession(refreshToken) {
+  let payload;
+  try {
+    payload = await verifyRefreshToken(refreshToken);
+  } catch (err) {
+    err.status = 401;
+    throw err;
+  }
+
+  await revokeRefreshToken(refreshToken);
+
+  const user = await getUserById(payload.sub);
+  if (!user) {
+    const error = new Error("User not found");
+    error.status = 401;
+    throw error;
+  }
+
+  const tokens = await issueTokens(String(user.id));
+  return { user, tokens };
 }
 
 export async function getUserById(userId) {
