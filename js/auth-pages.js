@@ -122,7 +122,7 @@ function initLoginPage() {
       } else {
         setFormFeedback(
           registerFeedback,
-          "Account created. Check your email to verify your address, then sign in.",
+          "Account created. Check your email to activate your account, then sign in.",
           "success"
         );
         document.querySelector('[data-auth-tab="login"]')?.click();
@@ -262,10 +262,37 @@ async function loadProfilePage() {
   }
 }
 
+function initVerifyEmailPage() {
+  const statusEl = document.getElementById("verify-email-status");
+  const feedback = document.getElementById("verify-email-feedback");
+  const actions = document.getElementById("verify-email-actions");
+  const token = new URLSearchParams(window.location.search).get("token") || "";
+
+  if (!token) {
+    if (statusEl) statusEl.hidden = true;
+    setFormFeedback(feedback, "This verification link is invalid. Try signing in to request a new one.");
+    if (actions) actions.hidden = false;
+    return;
+  }
+
+  verifyEmail(token)
+    .then((result) => {
+      if (statusEl) statusEl.hidden = true;
+      setFormFeedback(feedback, result.message || "Email verified. You can sign in now.", "success");
+      if (actions) actions.hidden = false;
+    })
+    .catch((err) => {
+      if (statusEl) statusEl.hidden = true;
+      setFormFeedback(feedback, err.message || "Could not verify this email.");
+      if (actions) actions.hidden = false;
+    });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const page = document.body.dataset.page;
   if (page === "login") initLoginPage();
   else if (page === "forgot-password") initForgotPasswordPage();
   else if (page === "reset-password") initResetPasswordPage();
+  else if (page === "verify-email") initVerifyEmailPage();
   else if (page === "profile") initProfilePage();
 });

@@ -3,6 +3,10 @@
   "private": true,
   "version": "1.2.1",
   "scripts": {
-    "build": "node scripts/build-ssg.js"
+    "build": "node scripts/build-ssg.js",
+    "dev": "pm2 start ecosystem.config.cjs",
+    "dev:stop": "pm2 delete passr-fe passr-be || true",
+    "dev:restart": "pm2 restart ecosystem.config.cjs",
+    "dev:logs": "pm2 logs passr-fe passr-be"
   }
 }

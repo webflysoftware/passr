@@ -110,13 +110,15 @@ jobs:
           PASSR_MONGODB_URI: ${{ secrets.PASSR_MONGODB_URI }}
           PASSR_JWT_SECRET: ${{ secrets.PASSR_JWT_SECRET }}
           PASSR_SUPER_ADMIN_EMAILS: ${{ secrets.PASSR_SUPER_ADMIN_EMAILS }}
+          POSTMARK_API_TOKEN: ${{ secrets.POSTMARK_API_TOKEN }}
+          POSTMARK_FROM: ${{ secrets.POSTMARK_FROM }}
           PASSR_API_PORT: ${{ env.PASSR_API_PORT }}
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER || env.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ secrets.DEPLOY_PORT || env.DEPLOY_PORT }}
-          envs: PASSR_MONGODB_URI,PASSR_JWT_SECRET,PASSR_SUPER_ADMIN_EMAILS,PASSR_API_PORT
+          envs: PASSR_MONGODB_URI,PASSR_JWT_SECRET,PASSR_SUPER_ADMIN_EMAILS,POSTMARK_API_TOKEN,POSTMARK_FROM,PASSR_API_PORT
           script_stop: true
           script: |
             set -euo pipefail
@@ -135,6 +137,9 @@ jobs:
               "PASSR_SUPER_ADMIN_EMAILS=${PASSR_SUPER_ADMIN_EMAILS}" \
               "PASSR_SUPER_ADMIN_DOMAINS=passr.net,webfly.io" \
               "AUTO_VERIFY_EMAIL=false" \
+              "SITE_URL=https://passr.net" \
+              "POSTMARK_API_TOKEN=${POSTMARK_API_TOKEN:-}" \
+              "POSTMARK_FROM=${POSTMARK_FROM:-PASSR <hello@passr.net>}" \
               > /opt/passr-api/.env
 
             cd /opt/passr-api

@@ -11,6 +11,7 @@ import {
   adminSearchUsers,
 } from "../services/auth.js";
 import { requestPasswordReset, resetPasswordWithToken } from "../services/passwordReset.js";
+import { verifyEmailWithToken } from "../services/emailVerification.js";
 import { requireAuth, requireSuperAdmin } from "../middleware/auth.js";
 import {
   adminCreateUserSchema,
@@ -20,6 +21,7 @@ import {
   refreshSchema,
   registerSchema,
   resetPasswordSchema,
+  verifyEmailSchema,
   updateProfileSchema,
   validateBody,
 } from "../middleware/validate.js";
@@ -80,14 +82,23 @@ router.post("/reset-password", validateBody(resetPasswordSchema), async (req, re
   }
 });
 
+router.post("/verify-email", validateBody(verifyEmailSchema), async (req, res, next) => {
+  try {
+    const result = await verifyEmailWithToken(req.body.token);
+    res.json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get("/me", requireAuth, async (req, res) => {
   res.json(req.user);
 });
 
 router.post("/send-verification-email", requireAuth, async (req, res, next) => {
   try {
-    await sendVerificationEmail(req.user.id);
-    res.status(204).send();
+    const result = await sendVerificationEmail(req.user.id);
+    res.json(result);
   } catch (err) {
     next(err);
   }

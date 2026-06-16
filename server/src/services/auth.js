@@ -4,6 +4,7 @@ import { config, isSuperAdminEmail, isSuperAdminDomain } from "../config.js";
 import { getDb } from "../db.js";
 import { issueTokens, revokeRefreshToken, serializeUser, verifyRefreshToken } from "./tokens.js";
 import { compressAvatarDataUrl } from "./avatars.js";
+import { sendRegistrationWelcomeEmail, sendVerificationEmailForUser } from "./emailVerification.js";
 
 const SALT_ROUNDS = 12;
 
@@ -43,6 +44,13 @@ export async function registerUser({ name, email, password }) {
 
   const result = await db.collection("users").insertOne(userDoc);
   const user = { ...userDoc, _id: result.insertedId };
+
+  try {
+    await sendRegistrationWelcomeEmail(user);
+  } catch (mailErr) {
+    console.error("[register]", JSON.stringify({ event: "welcome_email_failed", email: user.email, error: mailErr.message }));
+  }
+
   const tokens = await issueTokens(String(user._id));
 
   return { user: serializeUser(user), tokens };
@@ -56,6 +64,12 @@ export async function loginUser({ email, password }) {
   if (!user || !(await bcrypt.compare(password, user.passwordHash))) {
     const error = new Error("Incorrect email or password");
     error.status = 401;
+    throw error;
+  }
+
+  if (!user.isEmailVerified && !config.autoVerifyEmail && !isSuperAdminEmail(normalizedEmail) && !isSuperAdminDomain(normalizedEmail)) {
+    const error = new Error("Please verify your email before signing in.");
+    error.status = 403;
     throw error;
   }
 
@@ -232,18 +246,5 @@ export async function adminSearchUsers(query, limit, actor) {
 }
 
 export async function sendVerificationEmail(userId) {
-  const db = getDb();
-  const user = await db.collection("users").findOne({ _id: new ObjectId(userId) });
-  if (!user) {
-    const error = new Error("User not found");
-    error.status = 404;
-    throw error;
-  }
-
-  if (user.isEmailVerified) {
-    return { email: user.email, message: "Email already verified" };
-  }
-
-  // Verification email delivery can be wired to SMTP later.
-  return { email: user.email, message: "Verification email queued" };
+  return sendVerificationEmailForUser(userId);
 }

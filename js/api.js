@@ -193,7 +193,11 @@ async function registerUser({ name, email, password }) {
     method: "POST",
     body: { name, email, password },
   });
-  storeAuthSession(result);
+  if (result.user?.isEmailVerified) {
+    storeAuthSession(result);
+  } else {
+    clearAuthSession();
+  }
   return result.user;
 }
 
@@ -228,6 +232,13 @@ async function resetPassword({ token, password }) {
   return authRequest("/reset-password", {
     method: "POST",
     body: { token, password },
+  });
+}
+
+async function verifyEmail(token) {
+  return authRequest("/verify-email", {
+    method: "POST",
+    body: { token },
   });
 }
 

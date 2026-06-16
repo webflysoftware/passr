@@ -18,8 +18,11 @@ export async function requestPasswordReset(email) {
   const user = await db.collection("users").findOne({ email: normalizedEmail });
 
   if (!user) {
+    console.info("[password-reset]", JSON.stringify({ event: "no_account", email: normalizedEmail, emailSent: false }));
     return { message: "If that email is registered, we sent a reset link." };
   }
+
+  console.info("[password-reset]", JSON.stringify({ event: "reset_requested", email: normalizedEmail, emailSent: true }));
 
   const rawToken = createResetToken();
   const expiresAt = new Date(Date.now() + config.passwordResetMinutes * 60 * 1000);
@@ -33,12 +36,15 @@ export async function requestPasswordReset(email) {
   });
 
   const resetUrl = `${config.siteUrl}/reset-password?token=${encodeURIComponent(rawToken)}`;
-  const { subject, text } = buildPasswordResetEmail({ resetUrl });
+  const { subject, text, html, tag } = buildPasswordResetEmail({ resetUrl });
 
   try {
-    await sendEmail({ to: user.email, subject, text });
+    const result = await sendEmail({ to: user.email, subject, text, html, tag });
+    if (!result.delivered) {
+      throw new Error("Mail provider not configured");
+    }
   } catch (err) {
-    console.error("[password-reset] Failed to send email:", err);
+    console.error("[password-reset]", JSON.stringify({ event: "reset_email_failed", email: user.email, error: err.message }));
     const error = new Error("Could not send reset email. Please try again later.");
     error.status = 503;
     throw error;

@@ -1,5 +1,7 @@
 import { ObjectId } from "mongodb";
+import { config } from "../config.js";
 import { getDb } from "../db.js";
+import { buildSubscribeWelcomeEmail, sendEmail } from "./email.js";
 
 function serializeComment(comment, profileByUserId) {
   const userId = comment.userId ? String(comment.userId) : null;
@@ -200,16 +202,31 @@ export async function subscribeEmail(email) {
   const db = getDb();
   const normalizedEmail = email.trim().toLowerCase();
 
+  let isNewSubscriber = false;
+
   try {
     await db.collection("subscribers").insertOne({
       email: normalizedEmail,
       createdAt: new Date(),
     });
+    isNewSubscriber = true;
   } catch (err) {
     if (err.code === 11000) {
+      console.info("[subscribe]", JSON.stringify({ event: "duplicate", email: normalizedEmail, emailSent: false }));
       return { message: "Subscribed successfully" };
     }
     throw err;
+  }
+
+  console.info("[subscribe]", JSON.stringify({ event: "new_subscriber", email: normalizedEmail, emailSent: true }));
+
+  if (isNewSubscriber) {
+    const { subject, text, html, tag } = buildSubscribeWelcomeEmail({ siteUrl: config.siteUrl });
+    try {
+      await sendEmail({ to: normalizedEmail, subject, text, html, tag });
+    } catch (mailErr) {
+      console.error("[subscribe]", JSON.stringify({ event: "welcome_email_failed", email: normalizedEmail, error: mailErr.message }));
+    }
   }
 
   return { message: "Subscribed successfully" };

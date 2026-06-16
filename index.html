@@ -15,7 +15,7 @@
   <meta name="description" content="PASSR publishes practical engineering writing on backend systems, databases, security, infrastructure, and product reviews for technical teams." />
   <meta name="robots" content="index, follow">
   <meta name="author" content="PASSR">
-  <meta name="theme-color" content="#1c1c1c">
+  <meta name="theme-color" content="#0a0f1a">
   <link rel="canonical" href="https://passr.net/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/images/favicon-32.png" sizes="32x32" type="image/png">
@@ -91,9 +91,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/styles.css?v=20260613e">
+  <link rel="stylesheet" href="/css/styles.css?v=20260616a">
 </head>
-<body>
+<body class="home">
   <header class="site-header">
     <div class="container">
       <a href="/" class="logo">PASS<span>R</span></a>
@@ -130,8 +130,40 @@
 
   <main>
     <section class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <p class="hero-eyebrow">Engineering publication</p>
+          <h1 class="hero-title">
+            <span class="hero-title-rotator" data-hero-title-rotator aria-live="polite">
+              <span class="hero-title-text is-active">Honest writing about the software your team actually uses.</span>
+              <span class="hero-title-text" aria-hidden="true"></span>
+            </span>
+          </h1>
+          <p class="hero-lead">Practical articles from practitioners who ship and operate backend systems.</p>
+        </div>
+        <div class="hero-subscribe">
+          <h2 class="hero-subscribe-title">Subscribe</h2>
+          <p class="hero-subscribe-lead">New articles by email. No digests, no sponsored content.</p>
+          <form id="hero-subscribe-form" class="hero-subscribe-form passr-form" novalidate>
+            <div class="hero-subscribe-row">
+              <label class="form-field hero-email-field">
+                <span class="visually-hidden">Email address</span>
+                <input type="email" name="email" autocomplete="email" required placeholder="you@company.com">
+              </label>
+              <button type="submit" class="btn btn-hero-subscribe">Subscribe</button>
+            </div>
+            <p class="form-feedback" id="hero-subscribe-feedback" hidden aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured">
       <div class="container">
-        <p class="hero-label">Featured</p>
+        <div class="section-header">
+          <h2>Featured</h2>
+        </div>
         <div class="featured-article" id="featured-article"></div>
       </div>
     </section>
@@ -178,9 +210,9 @@
     </div>
   </footer>
 
-  <script src="/js/articles.js?v=20260613e"></script>
-  <script src="/js/api.js?v=20260613e"></script>
-  <script src="/js/main.js?v=20260613e"></script>
+  <script src="/js/articles.js?v=20260616a"></script>
+  <script src="/js/api.js?v=20260616a"></script>
+  <script src="/js/main.js?v=20260616a"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const featured = getFeaturedArticle();

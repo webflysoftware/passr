@@ -40,6 +40,7 @@ const STATIC_PAGES = [
   "login.html",
   "forgot-password.html",
   "reset-password.html",
+  "verify-email.html",
   "profile.html",
 ];
 const FOOTER_BOTTOM_RE = /<div class="footer-bottom">&copy; 2026 PASSR\. All rights reserved\.(?:\s*<span class="site-version">v[^<]+<\/span>)?<\/div>/;

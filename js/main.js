@@ -1,4 +1,9 @@
-function gtag_report_conversion(url) {
+const CONVERSION_LINKS = [
+  { host: "triviarat.com", sendTo: "AW-17592266250/mGZbCOz21KAbEIrc0sRB" },
+  { host: "electosense.com", sendTo: "AW-17592266250/Y3lTCPjZjMAcEIrc0sRB" },
+];
+
+function gtag_report_conversion(url, sendTo) {
   var callback = function () {
     if (typeof url !== "undefined") {
       window.location = url;
@@ -11,7 +16,7 @@ function gtag_report_conversion(url) {
   }
 
   gtag("event", "conversion", {
-    send_to: "AW-17592266250/mGZbCOz21KAbEIrc0sRB",
+    send_to: sendTo,
     value: 1.0,
     currency: "CAD",
     event_callback: callback,
@@ -25,12 +30,65 @@ function initConversionLinks() {
       return;
     }
 
-    const link = e.target.closest('.article-body a[href*="triviarat.com"]');
+    const link = e.target.closest(".article-body a[href]");
     if (!link) return;
 
+    const href = link.href || "";
+    const rule = CONVERSION_LINKS.find(({ host }) => href.includes(host));
+    if (!rule) return;
+
     e.preventDefault();
-    gtag_report_conversion(link.href);
+    gtag_report_conversion(link.href, rule.sendTo);
   });
+}
+
+const HERO_HEADLINES = [
+  "Honest writing about the software your team actually uses.",
+  "Reviews and recommendations you can bring to your next meeting.",
+  "What's worth trying — and what's just marketing with a login page.",
+  "Clear takes on tools, tradeoffs, and the stuff that breaks in real life.",
+  "Tech writing for people who read the fine print.",
+];
+
+function initHeroHeadlines() {
+  const rotator = document.querySelector("[data-hero-title-rotator]");
+  if (!rotator) return;
+
+  const lines = rotator.querySelectorAll(".hero-title-text");
+  if (lines.length < 2) return;
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  lines[0].textContent = HERO_HEADLINES[0];
+  lines[0].classList.add("is-active");
+
+  if (reducedMotion) {
+    lines[1].remove();
+    return;
+  }
+
+  let index = 0;
+  let active = 0;
+  let idle = 1;
+
+  window.setInterval(() => {
+    index = (index + 1) % HERO_HEADLINES.length;
+    const activeLine = lines[active];
+    const idleLine = lines[idle];
+
+    idleLine.textContent = HERO_HEADLINES[index];
+    idleLine.removeAttribute("aria-hidden");
+    activeLine.setAttribute("aria-hidden", "true");
+
+    activeLine.classList.remove("is-active");
+    activeLine.classList.add("is-leaving");
+    idleLine.classList.remove("is-leaving");
+    idleLine.classList.add("is-active");
+
+    window.setTimeout(() => {
+      activeLine.classList.remove("is-leaving");
+      [active, idle] = [idle, active];
+    }, 650);
+  }, 5200);
 }
 
 function articleUrl(slug) {
@@ -360,6 +418,7 @@ function initCategoryFilters(containerSelector) {
 document.addEventListener("DOMContentLoaded", () => {
   initMobileNav();
   initConversionLinks();
+  initHeroHeadlines();
   initSubscribe();
   initContactForm();
   initProfileFeatures();
@@ -392,13 +451,63 @@ function renderSubscribeModal() {
   );
 }
 
+function bindSubscribeForm(form, feedbackEl) {
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (feedbackEl) feedbackEl.hidden = true;
+
+    const emailInput = form.querySelector('input[name="email"]');
+    const email = emailInput?.value.trim();
+    if (!email) {
+      if (feedbackEl) {
+        feedbackEl.textContent = "Please enter your email address.";
+        feedbackEl.className = "form-feedback form-feedback-error";
+        feedbackEl.hidden = false;
+      }
+      return;
+    }
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const defaultLabel = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Subscribing…";
+
+    try {
+      await subscribeToPassr(email);
+      if (feedbackEl) {
+        feedbackEl.textContent = "You are subscribed. Watch your inbox for the next article.";
+        feedbackEl.className = "form-feedback form-feedback-success";
+        feedbackEl.hidden = false;
+      }
+      form.reset();
+    } catch (err) {
+      if (feedbackEl) {
+        feedbackEl.textContent = err.message || "Could not subscribe. Please try again.";
+        feedbackEl.className = "form-feedback form-feedback-error";
+        feedbackEl.hidden = false;
+      }
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = defaultLabel;
+    }
+  });
+}
+
 function initSubscribe() {
   renderSubscribeModal();
 
   const modal = document.getElementById("subscribe-modal");
   const form = document.getElementById("subscribe-form");
   const feedback = document.getElementById("subscribe-feedback");
-  if (!modal || !form) return;
+  const heroForm = document.getElementById("hero-subscribe-form");
+  const heroFeedback = document.getElementById("hero-subscribe-feedback");
+
+  bindSubscribeForm(form, feedback);
+  bindSubscribeForm(heroForm, heroFeedback);
+
+  if (!modal) return;
 
   const openModal = () => {
     modal.classList.add("open");
@@ -426,39 +535,6 @@ function initSubscribe() {
   });
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && !modal.hidden) closeModal();
-  });
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    feedback.hidden = true;
-
-    const emailInput = form.querySelector('input[name="email"]');
-    const email = emailInput?.value.trim();
-    if (!email) {
-      feedback.textContent = "Please enter your email address.";
-      feedback.className = "form-feedback form-feedback-error";
-      feedback.hidden = false;
-      return;
-    }
-
-    const submitBtn = form.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Subscribing…";
-
-    try {
-      await subscribeToPassr(email);
-      feedback.textContent = "You are subscribed. Watch your inbox for the next article.";
-      feedback.className = "form-feedback form-feedback-success";
-      feedback.hidden = false;
-      form.reset();
-    } catch (err) {
-      feedback.textContent = err.message || "Could not subscribe. Please try again.";
-      feedback.className = "form-feedback form-feedback-error";
-      feedback.hidden = false;
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Subscribe";
-    }
   });
 }
 

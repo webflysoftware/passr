@@ -45,6 +45,10 @@ export const resetPasswordSchema = Joi.object({
   password: Joi.string().min(8).max(128).required(),
 });
 
+export const verifyEmailSchema = Joi.object({
+  token: Joi.string().trim().min(32).max(128).required(),
+});
+
 export const subscribeSchema = Joi.object({
   email: Joi.string().trim().email().required(),
 });

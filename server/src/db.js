@@ -20,6 +20,8 @@ export async function connectDb() {
     db.collection("refresh_tokens").createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 }),
     db.collection("password_reset_tokens").createIndex({ tokenHash: 1 }, { unique: true }),
     db.collection("password_reset_tokens").createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 }),
+    db.collection("email_verification_tokens").createIndex({ tokenHash: 1 }, { unique: true }),
+    db.collection("email_verification_tokens").createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 }),
   ]);
 
   return db;
