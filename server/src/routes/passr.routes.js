@@ -6,6 +6,7 @@ const router = Router();
 
 router.post("/subscribe", validateBody(subscribeSchema), async (req, res, next) => {
   try {
+    console.info("[subscribe]", JSON.stringify({ event: "request", email: req.body.email }));
     const result = await subscribeEmail(req.body.email);
     res.json(result);
   } catch (err) {

@@ -8,7 +8,16 @@ async function start() {
   await connectDb();
 
   const server = app.listen(config.port, config.host, () => {
-    console.log(`passr-api listening on http://${config.host}:${config.port}`);
+    console.info(
+      "[passr-api] listening",
+      JSON.stringify({
+        url: `http://${config.host}:${config.port}`,
+        pid: process.pid,
+        mailProvider: config.postmarkApiToken ? "postmark" : config.smtpHost ? "smtp" : "none",
+        mailFrom: config.mailFrom,
+        siteUrl: config.siteUrl,
+      })
+    );
   });
 
   const shutdown = async (signal) => {

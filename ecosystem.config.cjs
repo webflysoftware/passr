@@ -15,6 +15,8 @@ module.exports = {
       autorestart: true,
       watch: false,
       max_memory_restart: "256M",
+      merge_logs: true,
+      time: true,
       env: {
         NODE_ENV: "development",
         PORT: String(bePort),
@@ -30,6 +32,8 @@ module.exports = {
       autorestart: true,
       watch: false,
       max_memory_restart: "128M",
+      merge_logs: true,
+      time: true,
       env: {
         FE_PORT: String(fePort),
         API_TARGET: `http://127.0.0.1:${bePort}`,
