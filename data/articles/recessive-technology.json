@@ -15,7 +15,7 @@
       "description": "A trivia app that everyone used could not recall ever using it. The team reached out for feedback and the users — a week later — had no memory of the experience, the interface, or the name. What does it mean to build technology that achieves invisibility on success?",
       "abstract": "A trivia app that everyone used could not recall ever using it. The team reached out for feedback and the users — a week later — had no memory of the experience, the interface, or the name. What does it mean to build technology that achieves invisibility on success? Here is a strange thing that happened to the people who built TriviaRat.…",
       "url": "https://passr.net/article/recessive-technology",
-      "image": "https://passr.net/images/trivia-rat-philosophy.webp",
+      "image": "https://passr.net/api/v1/media/images/trivia-rat-philosophy.webp",
       "datePublished": "2026-06-13",
       "dateModified": "2026-06-13",
       "inLanguage": "en-US",

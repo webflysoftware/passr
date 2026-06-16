@@ -15,7 +15,7 @@
       "description": "Morgan Stanley and Reuters are both running stories this week about an AI industry entering a harder, more expensive phase. What they are describing is not a recession. It is what happens when you run out of demos.",
       "abstract": "Morgan Stanley and Reuters are both running stories this week about an AI industry entering a harder, more expensive phase. What they are describing is not a recession. It is what happens when you run out of demos. There is a narrative forming in the financial press this week: the AI industry is entering a harder, more expensive phase. China's AI infrastructure push, US regulatory tightening, the cost of compute, the cost of power, the cost of water to cool data centers. Morgan Stanley is cited.…",
       "url": "https://passr.net/article/ai-industry-expensive-phase",
-      "image": "https://passr.net/images/ai-infrastructure.jpg",
+      "image": "https://passr.net/api/v1/media/images/ai-infrastructure.jpg",
       "datePublished": "2026-06-12",
       "dateModified": "2026-06-12",
       "inLanguage": "en-US",

@@ -3,6 +3,7 @@ import helmet from "helmet";
 import authRoutes from "./routes/auth.routes.js";
 import passrRoutes from "./routes/passr.routes.js";
 import commentsRoutes from "./routes/comments.routes.js";
+import mediaRoutes from "./routes/media.routes.js";
 import { errorHandler, notFoundHandler } from "./middleware/errorHandler.js";
 
 function requestLogger(req, res, next) {
@@ -42,6 +43,7 @@ export function createApp() {
   app.use("/api/v1/auth", authRoutes);
   app.use("/api/v1/passr", passrRoutes);
   app.use("/api/v1/comments", commentsRoutes);
+  app.use("/api/v1/media", mediaRoutes);
 
   app.use(notFoundHandler);
   app.use(errorHandler);

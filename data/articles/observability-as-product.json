@@ -15,7 +15,7 @@
       "description": "We stopped treating metrics and traces as infrastructure plumbing and started treating them as part of what we sell: reliability you can see.",
       "abstract": "We stopped treating metrics and traces as infrastructure plumbing and started treating them as part of what we sell: reliability you can see. Our sales team kept losing deals to competitors who showed prospects a real-time dashboard of system health. We had the same data internally — in Grafana, behind a VPN, visible only to engineers. The gap was obvious once someone said it out loud.…",
       "url": "https://passr.net/article/observability-as-product",
-      "image": "https://images.unsplash.com/photo-1504639720780-fa0f0a36d0b2?w=1200&q=80&auto=format",
+      "image": "https://passr.net/api/v1/media/images/observability-as-product.jpg",
       "datePublished": "2026-05-08",
       "dateModified": "2026-05-08",
       "inLanguage": "en-US",

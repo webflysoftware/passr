@@ -20,7 +20,7 @@ const AUTHORS = {
   "kevin-tan": {
     name: "Kevin Tan",
     role: "Software Engineer",
-    avatar: "https://images.unsplash.com/photo-1599566150163-9eaeffa65746?w=120&h=120&fit=crop&crop=face",
+    avatar: "/api/v1/media/images/authors/kevin-tan.webp",
     bio: "Kevin writes about AI tooling, shipping software, and the gap between demo code and production.",
   },
   "james-okonkwo": {
@@ -144,29 +144,30 @@ const ARTICLES = [
         </div>
       </section>
 
-      <section class="platform-entry">
+       <section class="platform-entry">
         <a class="platform-entry-banner-link" href="https://electosense.com?utm_source=passr" aria-label="Visit ElectoSense">
           <figure class="platform-entry-banner platform-entry-banner-logo">
             <span class="platform-rank">2</span>
             <img src="/images/logos/electosense.webp" alt="ElectoSense logo" width="280" height="60" loading="lazy">
           </figure>
         </a>
-        <h2 class="platform-entry-title"><a href="https://electosense.com?utm_source=passr">ElectoSense</a></h2>
-        <p>Purpose-built for HOA and community association elections. Set up a vote, invite eligible owners, collect results without paper ballots or a gymnasium full of angry unit owners.</p>
+        <h2 class="platform-entry-title"><a href="https://electosense.com?utm_source=passr">ElectoSense.com</a></h2>
+	<p>ElectoSense is that solid modern platform you were hoping to find with a google search: Simple, a DIY sign-up without talking to sales, a pricing table right in front of you, a familiar wizard to import voters and you're off to the races.  Recently it has started to put some focus on HOA and community association elections, providing templates for certain jurisdictions. The stand-out feature was the quorum 'pilot' that automatically hunts down the voters for you.</p>
         <div class="platform-details">
           <div class="platform-pros">
             <p><strong>Pros</strong></p>
             <ul>
-              <li>Eligible voter lists and real-time results</li>
-              <li>Works in the browser — no app required</li>
-              <li>Guest trial lets you test before buying</li>
+              <li>Modern and easy-to-use user interfaces.</li>
+              <li>A free tier that allows you to test the entire workflow.</li>
+              <li>Decent pricing compared to older platforms</li>
+              <li>Modern tech functionality (auto quorum pilot, etc)</li>
             </ul>
           </div>
           <div class="platform-cons">
             <p><strong>Cons</strong></p>
             <ul>
-              <li>Newer name than ElectionBuddy or Simply Voting</li>
-              <li>Not built for huge union votes or exotic ballot math</li>
+              <li>No paper ballot services</li>
+              <li>Functionality is North-American focused (voting methods etc) and there is no multi-language support. </li>
             </ul>
           </div>
         </div>
@@ -184,7 +185,6 @@ const ARTICLES = [
             <p><strong>Pros</strong></p>
             <ul>
               <li>Long track record and broad election types</li>
-              <li>Weighted votes, proxy voting, solid admin workflow</li>
               <li>Good documentation from setup through results</li>
             </ul>
           </div>
@@ -209,7 +209,6 @@ const ARTICLES = [
           <div class="platform-pros">
             <p><strong>Pros</strong></p>
             <ul>
-              <li>Strong security and authentication options</li>
               <li>Handles complex, high-stakes elections</li>
               <li>Detailed post-election reporting</li>
             </ul>
@@ -217,7 +216,7 @@ const ARTICLES = [
           <div class="platform-cons">
             <p><strong>Cons</strong></p>
             <ul>
-              <li>Heavy setup for a small condo board</li>
+              <li>Heavy setup for a small board/association</li>
               <li>Pricing reflects enterprise seriousness</li>
             </ul>
           </div>
@@ -236,8 +235,7 @@ const ARTICLES = [
             <p><strong>Pros</strong></p>
             <ul>
               <li>Handles ranked and preferential ballots correctly</li>
-              <li>Clean voter experience</li>
-              <li>Reasonable pricing for smaller elections</li>
+              <li>Lot's of voting methods (FPTP/SNTV, etc)</li>
             </ul>
           </div>
           <div class="platform-cons">
@@ -655,7 +653,7 @@ RETURNING event_id;</code></pre>
     date: "2026-05-08",
     readTime: "6 min read",
     featured: false,
-    image: "https://images.unsplash.com/photo-1504639720780-fa0f0a36d0b2?w=1200&q=80&auto=format",
+    image: "/api/v1/media/images/observability-as-product.jpg",
     imageCredit: "Photo by Markus Spiske on Unsplash",
     body: `
       <p>Our sales team kept losing deals to competitors who showed prospects a real-time dashboard of system health. We had the same data internally — in Grafana, behind a VPN, visible only to engineers. The gap was obvious once someone said it out loud.</p>
@@ -703,7 +701,7 @@ RETURNING event_id;</code></pre>
     date: "2026-06-13",
     readTime: "6 min read",
     featured: false,
-    image: "/images/microsoft-patch.jpg",
+    image: "/api/v1/media/images/microsoft-patch.jpg",
     imageCredit: "",
     body: `
       <p>Microsoft dropped 206 security patches this June. Three zero-days. Thirty-eight criticals. The headlines wrote themselves. The Hacker News comments filled with the usual "just switch to Linux" crowd, who were not the target audience and would not be running Windows Server 2012 anyway.</p>
@@ -738,7 +736,7 @@ RETURNING event_id;</code></pre>
     date: "2026-06-12",
     readTime: "7 min read",
     featured: false,
-    image: "/images/wwdc-apple.jpg",
+    image: "/api/v1/media/images/wwdc-apple.jpg",
     imageCredit: "",
     body: `
       <p>WWDC 2026 wrapped and the tech press spent most of it trying to figure out whether Apple's AI announcements were impressive or embarrassing. The honest answer is neither. They were deliberate.</p>
@@ -776,7 +774,7 @@ RETURNING event_id;</code></pre>
     date: "2026-06-12",
     readTime: "7 min read",
     featured: false,
-    image: "/images/ai-infrastructure.jpg",
+    image: "/api/v1/media/images/ai-infrastructure.jpg",
     imageCredit: "",
     body: `
       <p>There is a narrative forming in the financial press this week: the AI industry is entering a harder, more expensive phase. China's AI infrastructure push, US regulatory tightening, the cost of compute, the cost of power, the cost of water to cool data centers. Morgan Stanley is cited. Reuters runs a long piece. Tech blogs pick it up.</p>
@@ -813,7 +811,7 @@ RETURNING event_id;</code></pre>
     date: "2026-06-11",
     readTime: "5 min read",
     featured: false,
-    image: "/images/robotaxi.jpg",
+    image: "/api/v1/media/images/robotaxi.jpg",
     imageCredit: "",
     body: `
       <p>Baidu got regulatory approval to run commercial robotaxi service in Switzerland. The Reuters story ran on a Tuesday afternoon, between a story about India's self-driving car regulations and a quarterly earnings preview. It got twelve hours of attention and disappeared.</p>
@@ -848,7 +846,7 @@ RETURNING event_id;</code></pre>
     date: "2026-06-13",
     readTime: "8 min read",
     featured: false,
-    image: "/images/trivia-rat-philosophy.webp",
+    image: "/api/v1/media/images/trivia-rat-philosophy.webp",
     imageCredit: "",
     body: `
       <p>Here is a strange thing that happened to the people who built TriviaRat. As the platform grew — as bars filled with players on Tuesday nights, as company offsites ran through their full question sets, as the platform became a regular fixture of social gatherings — the team did what growing companies do. They reached out to users. They asked for feedback. They wanted to understand the experience.</p>
@@ -897,7 +895,7 @@ RETURNING event_id;</code></pre>
     date: "2026-06-13",
     readTime: "7 min read",
     featured: false,
-    image: "/images/spacex-ipo.jpg",
+    image: "/api/v1/media/images/spacex-ipo.jpg",
     imageCredit: "",
     body: `
       <p>SpaceX closed at $2 trillion on its first day of trading. The headlines wrote themselves: first trillionaire, biggest IPO ever, rockets beat software. All of that is true and none of it matters as much as what the market is actually signaling.</p>
@@ -934,7 +932,7 @@ RETURNING event_id;</code></pre>
     date: "2026-06-13",
     readTime: "7 min read",
     featured: false,
-    image: "/images/bezos-prometheus.jpg",
+    image: "/api/v1/media/images/bezos-prometheus.jpg",
     imageCredit: "",
     body: `
       <p>Prometheus raised $12 billion at a $41 billion valuation. Jeff Bezos is co-CEO. The stated goal is to build what he calls an "artificial general engineer" — a system that can compress the cycle of designing and manufacturing complex physical objects: jet engines, chips, drugs, bridges. The Ars Technica headline called it "the most well-funded AI startup you haven't heard of." The tech press wrote it up as a Bezos comeback narrative.</p>
@@ -974,7 +972,7 @@ RETURNING event_id;</code></pre>
     date: "2026-06-13",
     readTime: "6 min read",
     featured: false,
-    image: "/images/visa-ai-payments.jpg",
+    image: "/api/v1/media/images/visa-ai-payments.jpg",
     imageCredit: "",
     body: `
       <p>On June 10, 2026, Visa integrated its payment network directly into OpenAI's platform. ChatGPT can now, with your permission, initiate a purchase at any of 175 million merchants that accept Visa. No clicking "buy." No typing in a credit card number. Just a prompt: "find me running shoes, under $80, with good reviews, and buy them." The AI finds them, picks them, pays for them.</p>
@@ -1013,7 +1011,7 @@ RETURNING event_id;</code></pre>
     date: "2026-06-13",
     readTime: "6 min read",
     featured: false,
-    image: "/images/meta-ai-overcorrection.jpg",
+    image: "/api/v1/media/images/meta-ai-overcorrection.jpg",
     imageCredit: "",
     body: `
       <p>Mark Zuckerberg sent an internal memo to Meta employees this week. The memo said two things. First: no more company-wide layoffs for the rest of 2026. Second: the AI transformation went too far. He used different words — something about the company moving too aggressively to automate roles before understanding what those roles actually did — but the meaning was clear.</p>

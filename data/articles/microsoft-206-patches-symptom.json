@@ -15,7 +15,7 @@
       "description": "Everyone treated Microsoft's record Patch Tuesday as a crisis. The more honest read: this is what happens when your operating system runs half the world's infrastructure and you can never truly break backwards compatibility.",
       "abstract": "Everyone treated Microsoft's record Patch Tuesday as a crisis. The more honest read: this is what happens when your operating system runs half the world's infrastructure and you can never truly break backwards compatibility. Microsoft dropped 206 security patches this June. Three zero-days. Thirty-eight criticals. The headlines wrote themselves. The Hacker News comments filled with the usual \"just switch to Linux\" crowd, who were not the target audience and would not be running Windows Server 2012 anyway.…",
       "url": "https://passr.net/article/microsoft-206-patches-symptom",
-      "image": "https://passr.net/images/microsoft-patch.jpg",
+      "image": "https://passr.net/api/v1/media/images/microsoft-patch.jpg",
       "datePublished": "2026-06-13",
       "dateModified": "2026-06-13",
       "inLanguage": "en-US",

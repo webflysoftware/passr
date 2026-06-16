@@ -15,7 +15,7 @@
       "description": "AI agents can now buy things at 175 million merchants on your behalf. The moment an AI can spend your money, the threat model for AI safety changes fundamentally. We did not have the conversations before we built it.",
       "abstract": "AI agents can now buy things at 175 million merchants on your behalf. The moment an AI can spend your money, the threat model for AI safety changes fundamentally. We did not have the conversations before we built it. On June 10, 2026, Visa integrated its payment network directly into OpenAI's platform. ChatGPT can now, with your permission, initiate a purchase at any of 175 million merchants that accept Visa. No clicking \"buy.\" No typing in a credit card number.…",
       "url": "https://passr.net/article/visa-chatgpt-spending-your-money",
-      "image": "https://passr.net/images/visa-ai-payments.jpg",
+      "image": "https://passr.net/api/v1/media/images/visa-ai-payments.jpg",
       "datePublished": "2026-06-13",
       "dateModified": "2026-06-13",
       "inLanguage": "en-US",
