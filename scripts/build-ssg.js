@@ -37,6 +37,7 @@ const STATIC_PAGES = [
   "contact.html",
   "topic.html",
   "article.html",
+  "eas-7-quiz.html",
   "login.html",
   "forgot-password.html",
   "reset-password.html",
@@ -507,6 +508,7 @@ function buildSitemap(articles) {
     { loc: `${SITE_URL}/about.html`, lastmod: latestDate, changefreq: "monthly", priority: "0.5" },
     { loc: `${SITE_URL}/contact`, changefreq: "monthly", priority: "0.6" },
     { loc: `${SITE_URL}/topic.html`, lastmod: latestDate, changefreq: "weekly", priority: "0.6" },
+    { loc: `${SITE_URL}/eas-7-quiz.html`, lastmod: latestDate, changefreq: "monthly", priority: "0.7" },
     { loc: `${SITE_URL}/login`, changefreq: "monthly", priority: "0.3" },
   ];
 

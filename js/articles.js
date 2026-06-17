@@ -43,6 +43,83 @@ const CATEGORIES = [
 
 const ARTICLES = [
   {
+    slug: "eas-7-election-assurance-standard",
+    title: "EAS-7: The Election Assurance Standard",
+    subtitle: "Seven questions to answer before voting opens — not after someone disputes the result.",
+    excerpt: "EAS-7 is a seven-part readiness framework for checking whether an association election is private, auditable, traceable, and defensible before the first ballot is cast.",
+    category: "security",
+    author: "james-okonkwo",
+    date: "2026-06-17",
+    readTime: "9 min read",
+    featured: false,
+    image: "/images/top-digital-voting.jpg",
+    imageCredit: "",
+    body: `
+      <p>Most disputed elections are not lost on counting day. They are lost weeks earlier, in the quiet decisions nobody wrote down: who got a ballot, how secrecy was protected, what happened when someone voted twice, and whether anyone could reconstruct the sequence of events afterward. By the time a homeowner stands up at the annual meeting and asks "how do we know this is right?", the answer has already been decided.</p>
+      <p>EAS-7 — the Election Assurance Standard — is a readiness framework for answering that question <em>before</em> voting begins. It is not software and it is not a certification you buy. It is seven control areas you walk through while you still have time to fix gaps. If you cannot answer all seven cleanly, you do not have an election yet. You have a result waiting to be challenged.</p>
+      <p>This guide is written for the people who actually run association votes: HOA and condo boards, community managers, nonprofit secretaries, co-op election committees, and the inspectors of election who sign off at the end. If you are still choosing a platform, pair this with our rundown of the <a href="/article/top-digital-voting-platforms-2026">top digital voting platforms of 2026</a> — EAS-7 is the lens we used to separate the serious tools from the Google Form crowd.</p>
+
+      <h2>Why a framework instead of a checklist</h2>
+      <p>Checklists tell you what to do. A framework tells you what to defend. Every control area in EAS-7 maps to a question someone can ask you later — a board member, a manager, an inspector, an attorney, or an angry owner. The goal is not to tick boxes. The goal is that for each of the seven areas, you can produce evidence on demand without scrambling. Treat anything you cannot evidence as a finding to remediate before launch.</p>
+
+      <h2>1. Eligibility Assurance</h2>
+      <p><strong>The control:</strong> only eligible voters, units, owners, or members can access the ballot.</p>
+      <p>This is the foundation, and it is where most homegrown processes quietly fail. Eligibility is rarely as simple as "everyone on the email list." Delinquent accounts may lose voting rights. A single unit owned by an LLC gets one vote, not three. Co-owners may share a vote, or split it, depending on your governing documents. New owners who closed last week may or may not be eligible depending on your record date.</p>
+      <p>To meet this control, establish a defensible eligibility roster tied to your bylaws and a fixed record date, document the rule you applied for each edge case (delinquencies, multiple units, trusts, recent transfers), and ensure ballot access is bound to that roster — not to whoever happens to have the link. A ballot link that works for anyone who receives it does not satisfy Eligibility Assurance, no matter how the rest of the process looks.</p>
+      <p><strong>You pass when</strong> you can hand someone the eligible-voter list, explain how it was derived, and show that no one outside it could cast a counted ballot.</p>
+
+      <h2>2. Ballot Secrecy</h2>
+      <p><strong>The control:</strong> participation can be verified without exposing vote choices.</p>
+      <p>Secrecy and verification pull in opposite directions, and the tension is the whole point. You need to prove that a specific eligible voter participated (so you can enforce one-ballot rules and confirm quorum), while making it impossible to connect that voter to how they voted. A spreadsheet that lists names next to selections fails this control instantly, and so does any system where an administrator can open a ballot and read a named voter's choices.</p>
+      <p>To meet this control, separate the identity layer (who voted) from the content layer (what was chosen) so that no single view or export reunites them. If your process can answer "did Unit 14 vote?" and "what did the community choose?" but cannot answer "what did Unit 14 choose?", secrecy is intact.</p>
+      <p><strong>You pass when</strong> you can prove turnout and prove the tally, but no role in the system — including the administrator — can reveal an individual's selections.</p>
+
+      <h2>3. Duplicate Prevention</h2>
+      <p><strong>The control:</strong> each eligible voter can submit only one valid ballot.</p>
+      <p>The risk is not usually fraud; it is mess. Someone votes by paper and then online. A co-owner and their spouse both submit for the same unit. A voter resubmits because they were not sure the first one "went through." Without a control, you end up with multiple ballots per voter and no principled way to decide which one counts.</p>
+      <p>To meet this control, define the rule before voting opens — typically "one ballot per eligible voter, last valid submission supersedes earlier ones" or "first submission locks the voter" — and enforce it mechanically rather than by manual review at the end. Where multiple channels exist (paper plus online), reconcile them against a single voter identity so a person cannot be counted twice across channels.</p>
+      <p><strong>You pass when</strong> the system prevents a second counted ballot automatically and you can state, in one sentence, the rule it applies when a voter tries.</p>
+
+      <h2>4. Audit Trail</h2>
+      <p><strong>The control:</strong> election setup, voter access, reminders, changes, and results can be reconstructed afterward.</p>
+      <p>An audit trail is the difference between "trust us" and "here is the record." It should capture the full lifecycle: how the election was configured, who the eligible voters were, when access and reminders went out, any mid-election changes (and who made them), and how the final results were produced. Crucially, the trail must be append-only — if an administrator can edit history, it is not an audit trail, it is a draft.</p>
+      <p>To meet this control, ensure every consequential action is timestamped and attributable, that changes are logged rather than overwritten, and that the record survives after the election closes in a form you can export and hand to an inspector or attorney. Logs that disappear when the event ends, or that live only in one person's inbox, do not count.</p>
+      <p><strong>You pass when</strong> a neutral third party could reconstruct the entire election from your records without interviewing you.</p>
+
+      <h2>5. Turnout Visibility</h2>
+      <p><strong>The control:</strong> participation can be tracked without compromising ballot secrecy.</p>
+      <p>Boards need to watch turnout in real time — to know whether they will hit quorum, to time reminders, and to decide whether to extend voting. The trap is doing this in a way that leaks vote content. "We are at 38% and the incumbent is winning" is a secrecy violation dressed up as a status update.</p>
+      <p>To meet this control, expose turnout as counts and percentages of the eligible roster, broken down by the dimensions you legitimately need (channel, district, deadline progress), while keeping selections sealed until the close. Turnout visibility is a direct partner to Ballot Secrecy: you are proving how many voted without hinting at how.</p>
+      <p><strong>You pass when</strong> the board can see participation at any moment and quorum status is unambiguous, while no live view reveals a single choice.</p>
+
+      <h2>6. Proxy &amp; Submission Control</h2>
+      <p><strong>The control:</strong> proxies, nominations, write-ins, and special submissions are recorded and reviewable.</p>
+      <p>This is the area most platforms ignore and most association bylaws care about deeply. Real elections include proxies (one member voting on another's behalf), floor or write-in nominations, abstentions, and challenged ballots set aside for review. Each is a legitimate object that must be captured with its provenance — who granted the proxy, when, for what scope — not jammed into a comment field or handled over text message.</p>
+      <p>To meet this control, give every non-standard submission a recorded, reviewable home: proxies tied to the granting and receiving voters, write-ins captured verbatim, and challenged ballots flagged with the reason and the resolution. The inspector should be able to review these as a distinct, complete set.</p>
+      <p><strong>You pass when</strong> every proxy, nomination, write-in, and special case can be listed, sourced, and reviewed — and none of them lives only in someone's memory.</p>
+
+      <h2>7. Result Defensibility</h2>
+      <p><strong>The control:</strong> the final tally can be explained to the board, manager, inspector, and voters.</p>
+      <p>This is where the previous six pay off. A defensible result is one you can walk a skeptical audience through: here is who was eligible, here is how many voted, here is how duplicates and proxies were handled, here is the count, and here is the record that backs all of it. If the only answer you can give is "the system said so," you do not have a defensible result — you have an assertion.</p>
+      <p>To meet this control, produce a certification package: the eligible-voter basis, turnout figures, the tally with the method used (plurality, cumulative, ranked, whatever your bylaws require), the handling of edge cases, and a pointer to the audit trail. The test is simple — could you survive a challenge at the annual meeting with these documents in front of you?</p>
+      <p><strong>You pass when</strong> the result comes with its own explanation, and that explanation answers the four audiences before they have to ask.</p>
+
+      <h2>How to use EAS-7</h2>
+      <p>Run it twice. The first pass is during setup, before invitations go out, as a gating checklist — any control you cannot satisfy is a launch blocker, not a nice-to-have. The second pass is at certification, where each control becomes a section of the record you hand to your inspector or attorney. Used this way, EAS-7 turns "we think it was fine" into "here is the evidence it was fine."</p>
+      <p>You do not need expensive infrastructure to pass — small associations clear EAS-7 with disciplined process and the right platform. But you cannot pass on a tool that was never built for it. A general-purpose form has no eligibility binding, no secrecy separation, no duplicate enforcement, no real audit trail, and no certification output. Purpose-built systems like <a href="https://lawpilot.cloud/voting?utm_source=passr">ElectionPilot</a> exist precisely because these seven controls are hard to bolt on after the fact.</p>
+
+      <blockquote>An election is not defensible because nobody complained. It is defensible because, if someone does, you can answer all seven questions without flinching.</blockquote>
+
+      <p>Print the seven control areas. Walk your next election through them before you send a single ballot. The hour you spend doing that is the cheapest insurance your association will ever buy.</p>
+
+      <div class="article-cta">
+        <h3>Score your election against EAS-7</h3>
+        <p>Not sure where you stand? Take the free EAS-7 readiness quiz — fourteen scenario questions across the seven control areas — and get a percentage score with a control-by-control breakdown of where your next election is strong and where it has gaps.</p>
+        <p><a class="btn btn-primary" href="/eas-7-quiz.html">Take the EAS-7 readiness quiz</a></p>
+      </div>
+    `,
+  },
+  {
     slug: "end-of-vibe-coding",
     title: "The End of Vibe Coding",
     subtitle: "I got my job back last month. That is not the heartwarming part of this story.",
@@ -463,11 +540,11 @@ const ARTICLES = [
 
       <h2>So which one?</h2>
       <ul class="platform-picks">
-        <li><strong>Top pick for covering multiple engagement types:</strong> <a href="https://roomsignal.com?utm_source=passr2">RoomSignal</a></li>
-        <li><strong>Best for trivia-only simplicity and affordability:</strong> <a href="https://triviarat.com?utm_source=passr2">TriviaRat</a></li>
-        <li><strong>Fast setup, lots of customizations:</strong> Kahoot</li>
-        <li><strong>Trivia inside a slide deck or town hall:</strong> Mentimeter</li>
-        <li><strong>800-person corporate all-hands with a budget:</strong> CrowdPurr</li>
+        <li><strong>Top pick for covering tonsn of engagement types:</strong> <a href="https://roomsignal.com?utm_source=passr2">RoomSignal</a></li>
+        <li><strong>Best overall for classic trivia, simplicity, and affordability:</strong> <a href="https://triviarat.com?utm_source=passr2">TriviaRat</a></li>
+        <li><strong>Fast setup, lots of customizations:</strong> <a href="#">Kahoot</a></li>
+        <li><strong>Trivia inside a slide deck or town hall:</strong> <a href="#">Mentimeter</a></li>
+        <li><strong>800-person corporate all-hands with a budget:</strong> <a href="#">CrowdPurr</a></li>
       </ul>
       <p>Pick the tool that matches your room size, your host's patience, and how much you like reading pricing pages. Everything else is marketing.</p>
     `,

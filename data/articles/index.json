@@ -7,8 +7,17 @@
   "isPartOf": {
     "@id": "https://passr.net/#blog"
   },
-  "numberOfItems": 21,
+  "numberOfItems": 22,
   "hasPart": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/eas-7-election-assurance-standard#article",
+      "headline": "EAS-7: The Election Assurance Standard",
+      "url": "https://passr.net/article/eas-7-election-assurance-standard",
+      "datePublished": "2026-06-17",
+      "articleSection": "Security",
+      "contentUrl": "https://passr.net/data/articles/eas-7-election-assurance-standard.json"
+    },
     {
       "@type": "BlogPosting",
       "@id": "https://passr.net/article/end-of-vibe-coding#article",
