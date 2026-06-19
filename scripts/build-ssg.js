@@ -17,6 +17,7 @@ const HERO_ALTS = {
   "end-of-vibe-coding": "Developer at a laptop with AI-generated code on screen",
   "top-trivia-hosting-platforms-2026": "People playing trivia at a live event",
   "top-digital-voting-platforms-2026": "Hand placing a ballot into a voting box",
+  "top-bracket-makers-2026": "Tournament bracket displayed on a screen",
 };
 
 function loadSiteVersion() {

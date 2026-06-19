@@ -7,17 +7,8 @@
   "isPartOf": {
     "@id": "https://passr.net/#blog"
   },
-  "numberOfItems": 22,
+  "numberOfItems": 23,
   "hasPart": [
-    {
-      "@type": "BlogPosting",
-      "@id": "https://passr.net/article/eas-7-election-assurance-standard#article",
-      "headline": "EAS-7: The Election Assurance Standard",
-      "url": "https://passr.net/article/eas-7-election-assurance-standard",
-      "datePublished": "2026-06-17",
-      "articleSection": "Security",
-      "contentUrl": "https://passr.net/data/articles/eas-7-election-assurance-standard.json"
-    },
     {
       "@type": "BlogPosting",
       "@id": "https://passr.net/article/end-of-vibe-coding#article",
@@ -128,6 +119,15 @@
     },
     {
       "@type": "BlogPosting",
+      "@id": "https://passr.net/article/top-bracket-makers-2026#article",
+      "headline": "Top 5 Bracket Makers of 2026",
+      "url": "https://passr.net/article/top-bracket-makers-2026",
+      "datePublished": "2026-06-10",
+      "articleSection": "Reviews",
+      "contentUrl": "https://passr.net/data/articles/top-bracket-makers-2026.json"
+    },
+    {
+      "@type": "BlogPosting",
       "@id": "https://passr.net/article/short-lived-jwts-auth-layer#article",
       "headline": "Why We Moved Our Auth Layer to Short-Lived JWTs",
       "url": "https://passr.net/article/short-lived-jwts-auth-layer",
@@ -206,6 +206,15 @@
       "datePublished": "2026-04-24",
       "articleSection": "Architecture",
       "contentUrl": "https://passr.net/data/articles/rpc-vs-rest-2026.json"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://passr.net/article/eas-7-election-assurance-standard#article",
+      "headline": "EAS-7: The Election Assurance Standard",
+      "url": "https://passr.net/article/eas-7-election-assurance-standard",
+      "datePublished": "2025-09-23",
+      "articleSection": "Security",
+      "contentUrl": "https://passr.net/data/articles/eas-7-election-assurance-standard.json"
     }
   ]
 }

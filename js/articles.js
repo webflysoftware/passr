@@ -49,10 +49,10 @@ const ARTICLES = [
     excerpt: "EAS-7 is a seven-part readiness framework for checking whether an association election is private, auditable, traceable, and defensible before the first ballot is cast.",
     category: "security",
     author: "james-okonkwo",
-    date: "2026-06-17",
+    date: "2025-09-23",
     readTime: "9 min read",
     featured: false,
-    image: "/images/top-digital-voting.jpg",
+    image: "/images/eas-7.jpg",
     imageCredit: "",
     body: `
       <p>Most disputed elections are not lost on counting day. They are lost weeks earlier, in the quiet decisions nobody wrote down: who got a ballot, how secrecy was protected, what happened when someone voted twice, and whether anyone could reconstruct the sequence of events afterward. By the time a homeowner stands up at the annual meeting and asks "how do we know this is right?", the answer has already been decided.</p>
@@ -387,6 +387,160 @@ const ARTICLES = [
         <li><strong>Ranked-choice or preferential ballot:</strong> Opavote</li>
         <li><strong>Picking lunch:</strong> Google Forms</li>
       </ul>
+    `,
+  },
+  {
+    slug: "top-bracket-makers-2026",
+    title: "Top 5 Bracket Makers of 2026",
+    subtitle: "Someone needed a tournament bracket by Friday. That somehow turned into ranking the whole internet.",
+    excerpt: "Challonge, Bracket HQ, BracketForce, Bracketmaker.app, and Score7 — ranked for gamers, pub nights, live crowds, and anyone who needs a bracket that does not look like a ransom note.",
+    category: "reviews",
+    author: "james-okonkwo",
+    date: "2026-06-10",
+    readTime: "7 min read",
+    featured: false,
+    image: "/images/brackets.jpg",
+    imageCredit: "",
+    body: `
+      <p>Tournament brackets are deceptively simple until you are standing in front of a room full of people waiting for the next matchup. Single elimination, double elimination, round robin, Swiss — pick the wrong tool and you spend the night manually updating a spreadsheet while someone asks whether the bracket on the projector is current.</p>
+      <p>We ranked five bracket makers people actually use in 2026 — from the veteran workhorse to the live-audience spectacle — and noted where each one shines, where it falls short, and who should reach for it first.</p>
+
+      <section class="platform-entry">
+        <h2 class="platform-entry-title"><span class="platform-rank-inline">1</span> <a href="https://challonge.com/?utm_source=passr">Challonge</a> <span class="platform-byline">The veteran that still slaps</span></h2>
+        <p><a href="https://challonge.com/?utm_source=passr">Challonge</a> has been around long enough that "millions of brackets created" is not marketing fluff — it is the default answer when someone says they need a tournament. Single elim, double elim, round robin, Swiss, group stages, weird hybrids: it handles the formats serious organizers actually run. Gamers, sports leagues, esports brackets, recurring community events — this is the reliable workhorse that makes your event look professional without a week of setup.</p>
+        <div class="platform-details">
+          <div class="platform-pros">
+            <p><strong>Pros</strong></p>
+            <ul>
+              <li>Deep format support with seeding, groups, and customization</li>
+              <li>Strong for communities and ongoing leagues</li>
+              <li>Sign-ups, match chat, and easy sharing built in</li>
+            </ul>
+          </div>
+          <div class="platform-cons">
+            <p><strong>Cons</strong></p>
+            <ul>
+              <li>Ads on the free tier — tolerable, but present</li>
+              <li>Can feel heavy if you only need a one-off bracket</li>
+              <li>Premium features (no ads, higher limits) cost a few dollars a month</li>
+            </ul>
+          </div>
+        </div>
+        <p class="platform-verdict"><strong>Verdict:</strong> If you run real tournaments regularly, this is your workhorse. Confidently solid.</p>
+      </section>
+
+      <section class="platform-entry">
+        <h2 class="platform-entry-title"><span class="platform-rank-inline">2</span> <a href="https://brackethq.com/?utm_source=passr">Bracket HQ</a> <span class="platform-byline">The pretty one</span></h2>
+        <p>Some brackets need to look good on a big screen, not like a spreadsheet someone exported at 11pm. <a href="https://brackethq.com/?utm_source=passr">Bracket HQ</a> leans into visuals: drag-and-drop seeding, themes, live score updates, and a presentation layer you will actually want to screenshot. Single and double elimination, round robin with standings — the interface stays out of your way while the bracket looks like it belongs on a projector.</p>
+        <div class="platform-details">
+          <div class="platform-pros">
+            <p><strong>Pros</strong></p>
+            <ul>
+              <li>Beautiful, customizable designs and themes</li>
+              <li>Handles single/double elim and round robin smoothly</li>
+              <li>Easy live score updates with an intuitive interface</li>
+            </ul>
+          </div>
+          <div class="platform-cons">
+            <p><strong>Cons</strong></p>
+            <ul>
+              <li>May be overkill (or pricey) for casual one-offs</li>
+              <li>Fewer advanced formats compared to Challonge</li>
+              <li>Free tier has limits, as expected</li>
+            </ul>
+          </div>
+        </div>
+        <p class="platform-verdict"><strong>Verdict:</strong> For organizers who care about aesthetics almost as much as crowning a champion. Your participants will notice.</p>
+      </section>
+
+      <section class="platform-entry platform-entry-top">
+        <a class="platform-entry-banner-link" href="https://bracketforce.com/?utm_source=passr" aria-label="Visit BracketForce">
+          <figure class="platform-entry-banner">
+            <span class="platform-rank">3</span>
+            <img src="/images/brackets.jpg" alt="BracketForce live voting bracket on a display screen" width="1280" height="720" loading="lazy">
+          </figure>
+        </a>
+        <h2 class="platform-entry-title"><a href="https://bracketforce.com/?utm_source=passr">BracketForce</a> <span class="platform-byline">The live crowd-pleaser</span></h2>
+        <p>Here is the pick for anyone hosting in a room with a screen and an opinionated audience. <a href="https://bracketforce.com/?utm_source=passr">BracketForce</a> turns a bracket into a live spectacle: audience members vote from their phones, results update in real time on the TV or projector, and the whole room watches percentages flip. Trivia nights, watch parties, fundraisers, classrooms, bar events, streams — anywhere the crowd picks the winner. Setup in about a minute. No app installs, no sign-ups, no forgot-password loops.</p>
+        <div class="platform-details">
+          <div class="platform-pros">
+            <p><strong>Pros</strong></p>
+            <ul>
+              <li>Live audience voting with real-time tallies on any display</li>
+              <li>Works for judge- or organizer-driven results too</li>
+              <li>Fast to launch — QR code, link, big-screen display mode</li>
+              <li>Free to start; built for bars, events, and live streams</li>
+            </ul>
+          </div>
+          <div class="platform-cons">
+            <p><strong>Cons</strong></p>
+            <ul>
+              <li>Limited integrations (calendars, CRMs, etc.)</li>
+              <li>Less emphasis on massive multi-stage league management</li>
+            </ul>
+          </div>
+        </div>
+        <p class="platform-verdict"><strong>Verdict:</strong> If your tournament involves a crowd staring at a screen yelling at votes, this is the undisputed champ. Interactive and ridiculously fun.</p>
+      </section>
+
+      <section class="platform-entry">
+        <h2 class="platform-entry-title"><span class="platform-rank-inline">4</span> <a href="https://bracketmaker.app/?utm_source=passr">Bracketmaker.app</a> <span class="platform-byline">The free Swiss Army knife</span></h2>
+        <p>Need every common format without opening a wallet? <a href="https://bracketmaker.app/?utm_source=passr">Bracketmaker.app</a> covers single elim, double elim, round robin, Swiss, and leagues — automatic generation, participant management, live sharing, PDF export. It is the no-frills powerhouse for sports, games, or whatever chaos you are organizing on a shoestring.</p>
+        <div class="platform-details">
+          <div class="platform-pros">
+            <p><strong>Pros</strong></p>
+            <ul>
+              <li>Wide format variety including Swiss and leagues</li>
+              <li>Automatic seeding, pairings, and standings updates</li>
+              <li>Quick setup, sharing, and print-ready exports</li>
+            </ul>
+          </div>
+          <div class="platform-cons">
+            <p><strong>Cons</strong></p>
+            <ul>
+              <li>Interface is functional more than flashy</li>
+              <li>Less polish than paid options at the high end</li>
+              <li>Support and advanced features vary</li>
+            </ul>
+          </div>
+        </div>
+        <p class="platform-verdict"><strong>Verdict:</strong> The best bang-for-zero-bucks option. Grab this when you want maximum flexibility on a budget.</p>
+      </section>
+
+      <section class="platform-entry">
+        <h2 class="platform-entry-title"><span class="platform-rank-inline">5</span> <a href="https://www.score7.io/en?utm_source=passr">Score7</a> <span class="platform-byline">The full tournament boss</span></h2>
+        <p>Some events outgrow a bracket generator. <a href="https://www.score7.io/en?utm_source=passr">Score7</a> is tournament management: scheduling, fixtures, venues, live results, stats, multi-stage events, embeddable public pages, and collaboration for teams. Schools, leagues, and organizers tired of stitching five tools together — this is the step up when brackets alone are not enough.</p>
+        <div class="platform-details">
+          <div class="platform-pros">
+            <p><strong>Pros</strong></p>
+            <ul>
+              <li>Comprehensive scheduling and multi-stage support</li>
+              <li>Live updates, stats, and participant management</li>
+              <li>Strong for complex events (groups plus knockouts)</li>
+              <li>Collaboration features for organizing teams</li>
+            </ul>
+          </div>
+          <div class="platform-cons">
+            <p><strong>Cons</strong></p>
+            <ul>
+              <li>Steeper learning curve than pure bracket tools</li>
+              <li>Free plan limits you to one active tournament</li>
+              <li>Geared more toward serious sports orgs than casual nights</li>
+            </ul>
+          </div>
+        </div>
+        <p class="platform-verdict"><strong>Verdict:</strong> When your event outgrows basic brackets, Score7 steps up like a pro.</p>
+      </section>
+
+      <h2>Final bracket: which one wins?</h2>
+      <ul class="platform-picks">
+        <li><strong>Casual live event with a crowd voting:</strong> <a href="https://bracketforce.com/?utm_source=passr">BracketForce</a></li>
+        <li><strong>Looks matter most:</strong> <a href="https://brackethq.com/?utm_source=passr">Bracket HQ</a></li>
+        <li><strong>Free and flexible:</strong> <a href="https://bracketmaker.app/?utm_source=passr">Bracketmaker.app</a> or <a href="https://challonge.com/?utm_source=passr">Challonge</a></li>
+        <li><strong>Full league or multi-stage tournament:</strong> <a href="https://www.score7.io/en?utm_source=passr">Score7</a></li>
+        <li><strong>Regular tournaments and communities:</strong> Challonge</li>
+      </ul>
+      <p>Pick one, set it up in minutes, and go crown some champions. Your future self — and everyone watching the bracket update — will thank you.</p>
     `,
   },
   {

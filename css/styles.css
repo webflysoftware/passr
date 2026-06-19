@@ -868,6 +868,36 @@ button {
   margin-top: 0.65rem;
 }
 
+.article-body .platform-rank-inline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.75rem;
+  height: 1.75rem;
+  margin-right: 0.35rem;
+  border-radius: 6px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.article-body .platform-verdict {
+  margin-top: 1.25rem;
+  padding: 14px 18px;
+  border-radius: 6px;
+  background: var(--bg-subtle);
+  border-left: 3px solid var(--accent);
+  font-size: 1.02rem;
+  color: var(--text-secondary);
+}
+
+.article-body .platform-verdict strong {
+  color: var(--text);
+}
+
 .article-body h3 {
   font-family: var(--sans);
   font-size: 1.125rem;
