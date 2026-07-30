@@ -1,9 +1,10 @@
 name: Deploy to production
 
+# NOTE: push-to-main auto-deploy is disabled. Production is ahead of git
+# (many articles/images exist only on the VPS). A full rsync --delete from
+# this repo would wipe live content. Use workflow_dispatch deliberately, and
+# only after syncing prod → git. Prefer surgical patch workflows for small fixes.
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 concurrency:

@@ -1,0 +1,46 @@
+name: Patch will article image
+
+# Surgical prod update — does NOT rsync the full site (prod is ahead of git).
+on:
+  workflow_dispatch:
+
+jobs:
+  patch:
+    name: Upload image and update article refs
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Upload image, article HTML, and JSON
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER || 'root' }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ secrets.DEPLOY_PORT || 22 }}
+          source: "images/will-builder-confused.jpg,article/using-llms-to-build-a-legal-will/index.html,data/articles/using-llms-to-build-a-legal-will.json"
+          target: "/var/www/passr.net/"
+          overwrite: true
+
+      - name: Verify on origin
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER || 'root' }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ secrets.DEPLOY_PORT || 22 }}
+          script: |
+            set -euo pipefail
+            test -f /var/www/passr.net/images/will-builder-confused.jpg
+            file /var/www/passr.net/images/will-builder-confused.jpg
+            grep -q 'will-builder-confused.jpg' /var/www/passr.net/article/using-llms-to-build-a-legal-will/index.html
+            grep -q 'will-builder-confused.jpg' /var/www/passr.net/data/articles/using-llms-to-build-a-legal-will.json
+            if grep -q 'using-llms-to-build-a-legal-will.jpg' /var/www/passr.net/article/using-llms-to-build-a-legal-will/index.html; then
+              echo "Old image ref still present" >&2
+              exit 1
+            fi
+            ls -la /var/www/passr.net/images/will-builder-confused.jpg
+            echo "Patch verified on $(hostname)"
