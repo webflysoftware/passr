@@ -3,6 +3,14 @@ name: Patch will article image
 # Surgical prod update — does NOT rsync the full site (prod is ahead of git).
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "images/will-builder-confused.jpg"
+      - "article/using-llms-to-build-a-legal-will/**"
+      - "data/articles/using-llms-to-build-a-legal-will.json"
+      - ".github/workflows/patch-will-article-image.yml"
 
 jobs:
   patch:
